@@ -1,0 +1,147 @@
+FSE 2026 Agentic-Based Python Dependency Resolution Competition Guide
+===================================================================
+
+1) What this competition is about
+---------------------------------
+This competition focuses on building an agentic system that can automatically resolve hard Python dependency conflicts.
+
+Context:
+- Event: FSE 2026 (AIWare competition track)
+- Problem: Real-world Python snippets often fail because of package/version conflicts, missing modules, and incompatible Python versions.
+- Goal: Design a tool that can infer, test, and iteratively fix dependencies in a reproducible Docker setup.
+
+
+2) Core objective for your team
+-------------------------------
+You need to submit:
+A) A working dependency-resolution tool (code)
+B) A short research paper describing your method and results
+
+Your tool should improve over the provided PLLM baseline or present a different strong approach.
+
+
+3) What you are expected to build (tool requirements)
+-----------------------------------------------------
+Your tool must:
+- Run in Docker (reproducible execution)
+- Keep Python/module versions pinned
+- Respect memory constraints (10GB VRAM limit)
+- Accept input as either:
+  - a folder of snippets, or
+  - one snippet at a time
+- Attempt to generate a workable dependency fix per snippet
+
+Recommended engineering approach:
+- Parse imports and context from snippet
+- Infer candidate Python version(s)
+- Infer package names/versions
+- Build and run test container
+- Analyze build/runtime errors
+- Iteratively revise dependency set until pass or stop condition
+- Log attempts/results
+
+
+4) Dataset and evaluation setup
+-------------------------------
+Primary dataset:
+- HG2.9K (hard dependency-conflict snippets)
+
+Provided resources in this repo:
+- PLLM baseline tool and scripts
+- Historical result artifacts:
+  - pllm_results
+  - pyego-results
+  - readpy-results
+
+Evaluation dimensions:
+- Success rate (how many snippets fixed)
+- Efficiency (time per snippet / total run time)
+- Computational cost (resource use under constraints)
+- Generalization (performance on held-out unseen conflicts)
+
+
+5) How to participate (workflow)
+--------------------------------
+Step 1: Study baseline
+- Review tools/pllm to understand baseline loop (infer -> build -> error analyze -> iterate).
+
+Step 2: Implement your tool
+- Create your own folder under tools/
+- Keep dependencies/environment reproducible
+- Ensure your tool can run end-to-end on snippets
+
+Step 3: Run experiments
+- Execute on available data
+- Collect metrics and logs
+- Compare against baseline behavior
+
+Step 4: Prepare submissions
+- Code submission through fork + pull request
+  (or private zip/tar sent with paper if needed)
+- Paper submission to organizer email (per README instructions)
+
+
+6) What you need to present in the end
+--------------------------------------
+A) Tool submission (code artifact)
+Must include:
+- Source code
+- Docker build/run instructions
+- Required model/setup details
+- Reproducible command(s) to execute your resolver
+- Output format/logs showing results
+
+B) Paper submission (short paper, max 4 pages incl. references)
+Should clearly present:
+- Problem framing and motivation
+- Method/design of your agentic approach
+- How your pipeline works (algorithm/system architecture)
+- Experimental setup and environment constraints
+- Quantitative results on dataset(s)
+- Comparison with PLLM baseline
+- Error analysis / failure cases
+- Limitations and future work
+
+C) Conference/workshop presentation expectations
+At least one author should be registered to present selected work.
+You should be ready to present:
+- High-level idea
+- Tool architecture
+- Key implementation decisions
+- Main results and trade-offs
+- Lessons learned and practical recommendations
+
+
+7) Suggested minimum checklist before final submission
+------------------------------------------------------
+[ ] Dockerized tool runs from a clean environment
+[ ] Dependencies and versions are pinned
+[ ] Input handling works for single-file and/or folder mode
+[ ] Output logs are clear and reproducible
+[ ] Benchmark results are collected and summarized
+[ ] Paper includes method, experiments, baseline comparison, and limitations
+[ ] Submission follows deadline and format requirements
+
+
+8) Important competition timeline (AoE)
+---------------------------------------
+- Competition Announcement: January 1, 2026
+- Paper and Tool Submission Deadline: March 13, 2026
+- Notification to Authors: April 2, 2026
+- Participants Camera Ready: April 7, 2026
+- Camera-Ready Deadline: April 9, 2026
+- Organizers Report Camera Ready: April 16, 2026
+- Competition Date: July 6, 2026
+
+
+9) Quick practical strategy (if you are short on time)
+-------------------------------------------------------
+- Start from PLLM baseline and improve one or two high-impact parts:
+  1) Better dependency extraction + package-name normalization
+  2) Better error-to-fix reasoning loop
+  3) Better retry/search strategy across Python/package versions
+- Prioritize reliability and reproducibility over novelty-only features.
+- Ensure your final paper quantifies improvements with clear tables/metrics.
+
+
+End of guide.
