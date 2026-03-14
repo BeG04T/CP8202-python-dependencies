@@ -1,0 +1,25 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+datetime = "5.5"
+python-dateutil = "2.9.0.post0"
+requests = "<2.32"
+docker = "7.1.0"
+ollama = "0.2.0"
+langchain = "0.2.1"
+langchain-openai = "0.1.9"
+langchain-community = "0.2.1"
+pypi-json = "0.4.0"
+jsonschema = "4.22.0"
+load-dotenv = "0.1.0"
+pyyaml = "6.0.1"
+
+[dev-packages]
+ipykernel = "*"
+
+[requires]
+python_version = "3.11"
+

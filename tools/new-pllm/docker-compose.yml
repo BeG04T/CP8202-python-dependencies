@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  new-pllm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UNAME: ${USER:-appuser}
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+        DOCKER_GID: ${DOCKER_GID:-999}
+      platforms:
+        - linux/amd64
+
+    image: new-pllm:latest
+    container_name: new-pllm-test
+    platform: linux/amd64
+
+    networks:
+      - pllm-network
+
+    volumes:
+      # Docker-in-Docker via socket mount
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      # Mount test gists (two levels up from tools/new-pllm)
+      - ../../hard-gists:/gists:rw
+
+    working_dir: /app
+
+    stdin_open: true
+    tty: true
+
+    entrypoint: /bin/bash
+
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    restart: unless-stopped
+
+    networks:
+      - pllm-network
+
+    ports:
+      - "11434:11434"
+
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+
+networks:
+  pllm-network:
+    driver: bridge
+
