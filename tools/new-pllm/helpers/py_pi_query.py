@@ -231,6 +231,82 @@ class PyPIQuery:
 
         return final_modules, python_version
 
+    def get_version_list(self, module, python_version):
+        """Return the cached version list as a sorted Python list."""
+        raw = self.read_module_file(module, python_version)
+        if not raw:
+            return []
+        versions = [v.strip() for v in raw.split(",") if v.strip()]
+        def _version_key(v):
+            return [int(p) if p.isdigit() else p for p in re.split(r"(\d+)", v)]
+        return sorted(versions, key=_version_key)
+
+    def select_version_algorithmically(self, module, python_version, excluded=None):
+        """Pick the next version to try using midpoint sampling.
+        Strategy: start with the latest version, then binary-search the version
+        space by always picking the midpoint of the largest untried region.
+        This covers the version space much faster than random LLM selection."""
+        versions = self.get_version_list(module, python_version)
+        if not versions:
+            return None
+        if excluded is None:
+            excluded = set()
+        else:
+            excluded = set(excluded)
+
+        available = [v for v in versions if v not in excluded]
+        if not available:
+            return None
+
+        # First attempt: try the latest version
+        if versions[-1] not in excluded:
+            return versions[-1]
+
+        # Second attempt: try the second-latest
+        if len(versions) >= 2 and versions[-2] not in excluded:
+            return versions[-2]
+
+        # Subsequent attempts: midpoint sampling of the largest gap
+        # Map available versions to their indices in the full list
+        all_indices = list(range(len(versions)))
+        excluded_indices = {i for i, v in enumerate(versions) if v in excluded}
+        available_indices = [i for i in all_indices if i not in excluded_indices]
+
+        if not available_indices:
+            return None
+
+        # Find the midpoint of the full available range
+        mid_idx = available_indices[len(available_indices) // 2]
+        return versions[mid_idx]
+
+    def validate_version(self, module, version, python_version):
+        """Check if a version string exists in the cached version list."""
+        versions = self.get_version_list(module, python_version)
+        return version in versions
+
+    def find_closest_version(self, module, target_version, python_version, excluded=None):
+        """Find the closest valid version to *target_version* in the cached list."""
+        versions = self.get_version_list(module, python_version)
+        if not versions:
+            return None
+        if excluded is None:
+            excluded = set()
+        available = [v for v in versions if v not in excluded]
+        if not available:
+            return None
+        if target_version in available:
+            return target_version
+        # Try to find the closest by index position
+        if target_version in versions:
+            idx = versions.index(target_version)
+            # Search outward from target position
+            for offset in range(1, len(versions)):
+                for candidate_idx in (idx + offset, idx - offset):
+                    if 0 <= candidate_idx < len(versions) and versions[candidate_idx] in available:
+                        return versions[candidate_idx]
+        # Fallback: return the latest available
+        return available[-1]
+
     def _extract_python_version(self, code):
         """Convert a classifier like 'cp37' to '3.7'."""
         if "cp" not in code:

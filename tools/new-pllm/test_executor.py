@@ -187,6 +187,10 @@ class TestExecutor:
             "DependencyConflict": 0, "AttributeError": 0, "NonZeroCode": 0,
             "SyntaxError": 0,
         }
+        # Per-module error counter: skip modules that fail too many times
+        MAX_MODULE_ERRORS = 3
+        module_error_counts = {}
+        last_error_signature = None
 
         proj_dir, _, _ = docker_helper.get_project_dir(filepath)
         log_path = f"{proj_dir}/output_data_{llm_eval['python_version']}.yml"
@@ -212,6 +216,22 @@ class TestExecutor:
                         docker_helper, llm, llm_eval, filepath, error_handler
                     )
                     if not build_ok:
+                        # Detect repeated identical errors (stuck in a loop)
+                        error_sig = f"{etype}:{output.get('module') if output else 'unknown'}"
+                        if error_sig == last_error_signature:
+                            mod_name = output.get("module") if output else None
+                            if mod_name:
+                                module_error_counts[mod_name] = module_error_counts.get(mod_name, 0) + 1
+                                if module_error_counts[mod_name] >= MAX_MODULE_ERRORS:
+                                    print(f"[SKIP] Module '{mod_name}' failed {MAX_MODULE_ERRORS} times, removing it")
+                                    llm_eval["python_modules"].pop(mod_name, None)
+                                    last_error_signature = None
+                                    iteration = self.write_iteration(
+                                        log_path, llm_eval, docker_helper, etype, docker_out, iteration, False
+                                    )
+                                    continue
+                        last_error_signature = error_sig
+
                         error_handler = self.record_error(output, error_handler, etype, llm_eval)
                         llm_eval = self.apply_fix(output, llm_eval)
                         if etype == "ImportError" and "returned a non-zero code: 1" in docker_out:

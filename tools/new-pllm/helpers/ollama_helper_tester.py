@@ -27,6 +27,84 @@ class PythonFile(BaseModel):
     python_modules: List[str]
 
 
+# ── Regex-based error parsing (reduces LLM hallucination) ────────────
+class ErrorParser:
+    """Extract structured information from Python/Docker error messages
+    using regex before falling back to the LLM. This dramatically reduces
+    hallucination because the LLM only needs to confirm, not guess."""
+
+    # Pattern: ModuleNotFoundError: No module named 'xxx'
+    _MODULE_NOT_FOUND = re.compile(
+        r"ModuleNotFoundError:\s*No module named\s+['\"]([a-zA-Z0-9_]+)['\"]"
+    )
+    # Pattern: ImportError: cannot import name 'yyy' from 'xxx'
+    _IMPORT_FROM = re.compile(
+        r"ImportError:.*cannot import name\s+['\"](\w+)['\"]\s+from\s+['\"]([a-zA-Z0-9_.]+)['\"]"
+    )
+    # Pattern: ImportError: No module named xxx
+    _IMPORT_NO_MODULE = re.compile(
+        r"ImportError:\s*No module named\s+['\"]?([a-zA-Z0-9_]+)['\"]?"
+    )
+    # Pattern: from module_name==version (pip errors)
+    _PIP_MODULE_VERSION = re.compile(
+        r"([a-zA-Z0-9_-]+)==([0-9]+(?:\.[0-9]+)*[a-zA-Z0-9]*)"
+    )
+    # Pattern: Could not find a version that satisfies the requirement xxx
+    _VERSION_REQUIREMENT = re.compile(
+        r"Could not find a version that satisfies the requirement\s+([a-zA-Z0-9_-]+)"
+    )
+    # Pattern: AttributeError: module 'xxx' has no attribute 'yyy'
+    _ATTRIBUTE_ERROR = re.compile(
+        r"AttributeError:\s*module\s+['\"]([a-zA-Z0-9_.]+)['\"]\s+has no attribute"
+    )
+    # Pattern: non-zero code with module==version
+    _NON_ZERO_MODULE = re.compile(
+        r"(?:pip install|RUN pip).*?([a-zA-Z0-9_-]+)==[0-9].*?(?:non-zero|error|failed)"
+    , re.IGNORECASE | re.DOTALL)
+
+    @classmethod
+    def extract_module_from_error(cls, error_message, error_type):
+        """Try to extract the module name from an error message using regex.
+        Returns the module name string or None if regex can't determine it."""
+        if error_type == "ModuleNotFound":
+            match = cls._MODULE_NOT_FOUND.search(error_message)
+            if match:
+                return match.group(1).split(".")[0]
+        elif error_type == "ImportError":
+            match = cls._IMPORT_FROM.search(error_message)
+            if match:
+                return match.group(2).split(".")[0]
+            match = cls._IMPORT_NO_MODULE.search(error_message)
+            if match:
+                return match.group(1).split(".")[0]
+        elif error_type == "VersionNotFound":
+            match = cls._VERSION_REQUIREMENT.search(error_message)
+            if match:
+                return match.group(1)
+            # Fallback: look for module==version pattern
+            match = cls._PIP_MODULE_VERSION.search(error_message)
+            if match:
+                return match.group(1)
+        elif error_type == "AttributeError":
+            match = cls._ATTRIBUTE_ERROR.search(error_message)
+            if match:
+                return match.group(1).split(".")[0]
+        elif error_type == "NonZeroCode":
+            # Search for the last pip install that failed
+            all_pip = cls._PIP_MODULE_VERSION.findall(error_message)
+            if all_pip:
+                return all_pip[-1][0]
+        return None
+
+    @classmethod
+    def extract_version_from_error(cls, error_message):
+        """Try to extract a version number from the error message."""
+        match = cls._PIP_MODULE_VERSION.search(error_message)
+        if match:
+            return match.group(2)
+        return None
+
+
 # ── Main helper ─────────────────────────────────────────────────────
 class OllamaHelper(OllamaHelperBase):
     """Wraps LLM calls for each stage of the dependency-resolution pipeline."""
@@ -81,33 +159,40 @@ class OllamaHelper(OllamaHelperBase):
         return llm_eval
 
     def get_module_versions(self, details):
-        """For every module, ask the LLM to pick a version from the cached list."""
+        """For every module, pick a version — algorithmically first, LLM as fallback."""
         modules = details["python_modules"]
         if not modules:
             return {}
 
-        parser = JsonOutputParser(pydantic_object=ModuleVersion)
         updated = {}
-        attempts = 5
+        for mod in modules:
+            # Primary: algorithmic selection (pick latest available)
+            algo_pick = self.pypi.select_version_algorithmically(
+                mod, details["python_version"]
+            )
+            if algo_pick:
+                updated[mod] = algo_pick
+                print(f"[ALGO] {mod} -> {algo_pick}")
+                continue
 
-        while attempts > 0:
-            try:
-                for mod in modules:
-                    versions_text = self.read_python_file(
-                        f"{self.base_modules}/{mod}_{details['python_version']}.txt"
-                    )
-                    if self.rag:
+            # Fallback: LLM selection
+            parser = JsonOutputParser(pydantic_object=ModuleVersion)
+            versions_text = self.read_python_file(
+                f"{self.base_modules}/{mod}_{details['python_version']}.txt"
+            )
+            attempts = 3
+            while attempts > 0:
+                try:
+                    if self.rag and versions_text:
                         tpl = (
                             "Given a comma separated list of '{version_details}', "
                             "for the '{module}' module, from oldest to newest.\n"
-                            "Select a recent version for us to use that isn't previously used: "
-                            "'Previously used: {previous}, and return the information with "
-                            "the format {format_instructions}"
+                            "Select the most recent stable version. "
+                            "Return the information with the format {format_instructions}"
                         )
                         pvars = {
                             "version_details": versions_text,
                             "module": mod,
-                            "previous": [],
                             "format_instructions": parser.get_format_instructions(),
                         }
                     else:
@@ -117,7 +202,6 @@ class OllamaHelper(OllamaHelperBase):
                             "the format {format_instructions}"
                         )
                         pvars = {
-                            "version_details": versions_text,
                             "module": mod,
                             "python_version": details["python_version"],
                             "format_instructions": parser.get_format_instructions(),
@@ -127,14 +211,28 @@ class OllamaHelper(OllamaHelperBase):
                     )
                     chain = prompt | self.model | parser
                     out = chain.invoke({})
-                    updated[out["module"]] = out["version"].split(" ")[0]
-                break  # success
-            except Exception:
-                attempts -= 1
+                    version = out["version"].split(" ")[0]
+                    # Validate against cached list
+                    if self.pypi.validate_version(mod, version, details["python_version"]):
+                        updated[out["module"]] = version
+                        print(f"[LLM-validated] {mod} -> {version}")
+                    else:
+                        # LLM picked invalid version — find closest real one
+                        closest = self.pypi.find_closest_version(
+                            mod, version, details["python_version"]
+                        )
+                        if closest:
+                            updated[mod] = closest
+                            print(f"[LLM-corrected] {mod} -> {closest} (LLM said {version})")
+                        else:
+                            updated[out["module"]] = version
+                            print(f"[LLM-unvalidated] {mod} -> {version}")
+                    break
+                except Exception:
+                    attempts -= 1
 
-        if attempts <= 0:
-            print("Failed to find versions")
-            exit(0)
+            if mod not in updated:
+                print(f"[WARN] Failed to find version for {mod}")
 
         print(updated)
         return updated
@@ -152,38 +250,71 @@ class OllamaHelper(OllamaHelperBase):
         return False, None
 
     # ── Generic error helpers ────────────────────────────────────────
-    def _get_module_from_error(self, prompt, parser):
-        """Try up to 5 times to extract a module name from an error via the LLM."""
+    def _get_module_from_error(self, prompt, parser, error_message=None, error_type=None):
+        """Extract module name: try regex first, then fall back to LLM."""
+        # Primary: regex extraction (fast, deterministic, no hallucination)
+        if error_message and error_type:
+            regex_module = ErrorParser.extract_module_from_error(error_message, error_type)
+            if regex_module:
+                resolved = self.pypi.check_module_name(regex_module)[0]
+                if resolved:
+                    print(f"[REGEX] Extracted module: {resolved} (from {error_type})")
+                    return resolved
+
+        # Fallback: LLM extraction
         for _ in range(5):
             try:
                 chain = prompt | self.model | parser
                 out = chain.invoke({})
                 bad = self.pypi.check_module_name(out["module"])[0]
                 if bad:
+                    print(f"[LLM] Extracted module: {bad}")
                     return bad
             except Exception as exc:
                 print(f"Error getting module name from error: {exc}")
         return None
 
-    def _get_version_excluding_previous(self, prompt, parser, prev_versions):
-        """Ask the LLM for a version, rejecting any that match *prev_versions*."""
+    def _get_version_excluding_previous(self, prompt, parser, prev_versions,
+                                         module=None, details=None):
+        """Pick a version: try algorithmic selection first, then LLM fallback."""
+        prev_set = set(v.strip() for v in prev_versions.split(",") if v.strip())
+
+        # Primary: algorithmic version selection
+        if module and details:
+            algo_pick = self.pypi.select_version_algorithmically(
+                module, details.get("python_version", ""), excluded=prev_set
+            )
+            if algo_pick:
+                print(f"[ALGO] Version for {module}: {algo_pick}")
+                return {"module": module, "version": algo_pick}
+
+        # Fallback: LLM selection with validation
         out = None
         for _ in range(5):
             try:
                 chain = prompt | self.model | parser
                 out = chain.invoke({})
                 print(out)
-                for v in prev_versions.split(", "):
-                    if v == out["version"]:
-                        out = None
-                        break
-                if out and (out["version"] is None or self.is_valid_version(out["version"])):
+                version = out.get("version")
+                if version and version in prev_set:
+                    out = None
+                    continue
+                if out and (version is None or self.is_valid_version(version)):
+                    # Validate against cached list if possible
+                    if module and details and version:
+                        if not self.pypi.validate_version(module, version, details.get("python_version", "")):
+                            closest = self.pypi.find_closest_version(
+                                module, version, details.get("python_version", ""), excluded=prev_set
+                            )
+                            if closest:
+                                out["version"] = closest
+                                print(f"[LLM-corrected] {module}: {version} -> {closest}")
                     return out
             except Exception as exc:
                 print(f"Error getting versions from error: {exc}")
         if out:
-            for v in prev_versions.split(", "):
-                if v == out["version"]:
+            for v in prev_set:
+                if v == out.get("version"):
                     out["version"] = None
         return out
 
@@ -211,7 +342,7 @@ class OllamaHelper(OllamaHelperBase):
             input_variables=[],
             partial_variables={"error": error, "format_instructions": parser.get_format_instructions()},
         )
-        bad = self._get_module_from_error(prompt, parser)
+        bad = self._get_module_from_error(prompt, parser, error_message=error, error_type="VersionNotFound")
         if bad is None:
             return None
 
@@ -239,7 +370,8 @@ class OllamaHelper(OllamaHelperBase):
                       "format_instructions": parser.get_format_instructions()}
 
         ver_prompt = PromptTemplate(template=tpl, input_variables=[], partial_variables=pvars)
-        out = self._get_version_excluding_previous(ver_prompt, parser, prev_str)
+        out = self._get_version_excluding_previous(ver_prompt, parser, prev_str,
+                                                    module=bad, details=details)
 
         if out and out.get("module") != bad:
             # Retry with version list
@@ -259,7 +391,8 @@ class OllamaHelper(OllamaHelperBase):
                 pvars2 = {"module": bad, "python_version": details["python_version"],
                            "format_instructions": parser.get_format_instructions()}
             ver_prompt2 = PromptTemplate(template=tpl2, input_variables=[], partial_variables=pvars2)
-            out = self._get_version_excluding_previous(ver_prompt2, parser, prev_str)
+            out = self._get_version_excluding_previous(ver_prompt2, parser, prev_str,
+                                                        module=bad, details=details)
 
         return out if out and "module" in out and "version" in out else None
 
@@ -278,7 +411,8 @@ class OllamaHelper(OllamaHelperBase):
         print(result)
         return result
 
-    def _version_from_error_generic(self, error, prev_info, details, error_prompt_tpl):
+    def _version_from_error_generic(self, error, prev_info, details, error_prompt_tpl,
+                                     error_type=None):
         """Shared logic for import_error, module_not_found, attribute_error, syntax_error."""
         parser = JsonOutputParser(pydantic_object=Module)
         mod_prompt = PromptTemplate(
@@ -287,7 +421,8 @@ class OllamaHelper(OllamaHelperBase):
             partial_variables={"error": error, "format_instructions": parser.get_format_instructions(),
                                 "python_modules": ", ".join(list(details.get("python_modules", {}).keys()))},
         )
-        bad = self._get_module_from_error(mod_prompt, parser)
+        bad = self._get_module_from_error(mod_prompt, parser,
+                                           error_message=error, error_type=error_type)
         if bad is None:
             return None
 
@@ -313,7 +448,8 @@ class OllamaHelper(OllamaHelperBase):
                       "format_instructions": parser.get_format_instructions()}
 
         ver_prompt = PromptTemplate(template=tpl, input_variables=[], partial_variables=pvars)
-        out = self._get_version_excluding_previous(ver_prompt, parser, prev_str)
+        out = self._get_version_excluding_previous(ver_prompt, parser, prev_str,
+                                                    module=bad, details=details)
         return out if out and "module" in out and "version" in out else None
 
     def import_error(self, error, prev_info, details):
@@ -323,7 +459,8 @@ class OllamaHelper(OllamaHelperBase):
             "where x and y are the module to import and the offending method.\n"
             "Return the name of the module using the format instructions.\n{format_instructions}"
         )
-        return self._version_from_error_generic(error, prev_info, details, tpl)
+        return self._version_from_error_generic(error, prev_info, details, tpl,
+                                                 error_type="ImportError")
 
     def module_not_found(self, error, prev_info, details):
         tpl = (
@@ -331,7 +468,8 @@ class OllamaHelper(OllamaHelperBase):
             "causing this error.\nReturn the name of the module using the format instructions.\n"
             "{format_instructions}"
         )
-        return self._version_from_error_generic(error, prev_info, details, tpl)
+        return self._version_from_error_generic(error, prev_info, details, tpl,
+                                                 error_type="ModuleNotFound")
 
     def attribute_error(self, error, prev_info, details):
         tpl = (
@@ -339,7 +477,8 @@ class OllamaHelper(OllamaHelperBase):
             "which of the existing modules ({python_modules}) is causing the error.\n"
             "Return the name of the module using the format instructions.\n{format_instructions}"
         )
-        return self._version_from_error_generic(error, prev_info, details, tpl)
+        return self._version_from_error_generic(error, prev_info, details, tpl,
+                                                 error_type="AttributeError")
 
     def syntax_error_helper(self, error, prev_info, details):
         tpl = (
@@ -376,7 +515,8 @@ class OllamaHelper(OllamaHelperBase):
             input_variables=[],
             partial_variables={"error": error, "format_instructions": parser.get_format_instructions()},
         )
-        return self._get_module_from_error(prompt, parser)
+        return self._get_module_from_error(prompt, parser,
+                                            error_message=error, error_type="NonZeroCode")
 
     def non_zero_error_version(self, error, module, prev_info, details):
         versions, prev_str = self._fetch_versions_and_history(module, prev_info, details)
@@ -401,7 +541,8 @@ class OllamaHelper(OllamaHelperBase):
                       "format_instructions": parser.get_format_instructions()}
 
         ver_prompt = PromptTemplate(template=tpl, input_variables=[], partial_variables=pvars)
-        out = self._get_version_excluding_previous(ver_prompt, parser, prev_str)
+        out = self._get_version_excluding_previous(ver_prompt, parser, prev_str,
+                                                    module=module, details=details)
         return out if out and "module" in out and "version" in out else None
 
     # ── Central error dispatcher ─────────────────────────────────────
