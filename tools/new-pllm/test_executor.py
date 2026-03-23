@@ -8,6 +8,7 @@ import multiprocessing as mp
 from helpers.ollama_helper_tester import OllamaHelper
 from helpers.py_pi_query import PyPIQuery
 from helpers.build_dockerfile import DockerHelper
+from helpers.local_helper import LocalHelper
 from helpers.deps_scraper import DepsScraper
 
 
@@ -174,9 +175,9 @@ class TestExecutor:
     # ------------------------------------------------------------------
     # Main process loop (runs per Python version)
     # ------------------------------------------------------------------
-    def docker_process(self, llm, llm_eval, filepath, proc_id):
+    def docker_process(self, llm, llm_eval, filepath, proc_id, no_docker=False):
         """Build → run → analyse → fix loop for one Python version."""
-        docker_helper = DockerHelper(logging=True)
+        docker_helper = LocalHelper(logging=True) if no_docker else DockerHelper(logging=True)
         llm_eval = self.resolve_modules(llm, llm_eval)
         print(llm_eval)
 
@@ -313,6 +314,8 @@ def parse_args():
     p.add_argument("-ra", "--rag", type=str2bool, nargs="?",
                    default=True, const=True, help="Enable RAG")
     p.add_argument("-v", "--verbose", action="store_true", help="Verbose output")
+    p.add_argument("--no-docker", action="store_true",
+                   help="Use local venv instead of Docker (no Docker required)")
     return p.parse_args()
 
 
@@ -374,7 +377,7 @@ def main():
                     base_url=args.base, model=args.model, logging=True,
                     temp=args.temp, base_modules=modules_dir, rag=args.rag,
                 ),
-                run_info, args.file, i,
+                run_info, args.file, i, args.no_docker,
             ),
         )
         processes.append(p)
