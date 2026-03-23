@@ -258,6 +258,10 @@ class TestExecutor:
                         build_ok = False
                         error_handler = self.record_error(output, error_handler, etype, llm_eval)
                         llm_eval = self.apply_fix(output, llm_eval)
+                elif etype == "Py2SyntaxError":
+                    # Python 2 code on Python 3 host — cannot be fixed via dependencies
+                    print("[STOP] Python 2 syntax detected on Python 3 host — unresolvable in --no-docker mode")
+                    run_ok = True
                 elif etype in ("VersionNotFound", "DependencyConflict", "ModuleNotFound",
                                "AttributeError", "InvalidVersion", "SyntaxError"):
                     build_ok = False

@@ -61,6 +61,11 @@ class ErrorParser:
     _NON_ZERO_MODULE = re.compile(
         r"(?:pip install|RUN pip).*?([a-zA-Z0-9_-]+)==[0-9].*?(?:non-zero|error|failed)"
     , re.IGNORECASE | re.DOTALL)
+    # Pattern: SyntaxError indicating Python 2/3 incompatibility
+    _PY2_SYNTAX_ERROR = re.compile(
+        r"SyntaxError:\s*(?:Missing parentheses in call to 'print'|invalid syntax)",
+        re.IGNORECASE
+    )
 
     @classmethod
     def extract_module_from_error(cls, error_message, error_type):
@@ -94,7 +99,15 @@ class ErrorParser:
             all_pip = cls._PIP_MODULE_VERSION.findall(error_message)
             if all_pip:
                 return all_pip[-1][0]
+        elif error_type == "SyntaxError":
+            # Don't try to extract a module — SyntaxError is in the snippet itself
+            return None
         return None
+
+    @classmethod
+    def is_python2_syntax_error(cls, error_message):
+        """Check if the error is a Python 2/3 syntax incompatibility."""
+        return bool(cls._PY2_SYNTAX_ERROR.search(error_message))
 
     @classmethod
     def extract_version_from_error(cls, error_message):
@@ -585,9 +598,14 @@ class OllamaHelper(OllamaHelperBase):
             output = self.non_zero_error(message)
             output = self.non_zero_error_version(message, output, error_details, llm_eval)
         elif "SyntaxError" in message:
-            if self.logging: print("Syntax Error")
-            error_type = "SyntaxError"
-            output = self.syntax_error_helper(message, error_details, llm_eval)
+            if ErrorParser.is_python2_syntax_error(message):
+                if self.logging: print("Syntax Error (Python 2/3 incompatibility — unresolvable)")
+                error_type = "Py2SyntaxError"
+                output = None
+            else:
+                if self.logging: print("Syntax Error")
+                error_type = "SyntaxError"
+                output = self.syntax_error_helper(message, error_details, llm_eval)
         else:
             if self.logging: print("No error type found")
 
