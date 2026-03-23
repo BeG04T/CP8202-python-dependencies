@@ -100,10 +100,11 @@ class TestExecutor:
         name = self.pypi.check_module_name(new_module["module"])
         name = name[0] if name else new_module["module"]
         ver = new_module.get("version")
-        if ver in (None, "None", "none", ""):
+        # Treat None, "None", empty, and whitespace-only as "remove this module"
+        if ver is None or str(ver).strip().lower() in ("none", ""):
             updated["python_modules"].pop(name, None)
         else:
-            updated["python_modules"][name] = ver
+            updated["python_modules"][name] = str(ver).strip()
         return updated
 
     def reorder_modules(self, new_mod, move_mod, llm_eval):

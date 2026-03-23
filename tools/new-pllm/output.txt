@@ -1,0 +1,1101 @@
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ ollama serve
+Couldn't find '/home/geng-04/.ollama/id_ed25519'. Generating new private key.
+Your new public key is: 
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFOfFh8cqgBI4uCTAFZbluyYCzX5XClkg/Mv9+mq8JAE
+
+Error: listen tcp 127.0.0.1:11434: bind: address already in use
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ ollama pull gemma2
+pulling manifest 
+pulling ff1d1fc78170: 100% ▕████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏ 5.4 GB                         
+pulling 109037bec39c: 100% ▕████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏  136 B                         
+pulling 097a36493f71: 100% ▕████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏ 8.4 KB                         
+pulling 2490e7468436: 100% ▕████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏   65 B                         
+pulling 10aa81da732e: 100% ▕████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏  487 B                         
+verifying sha256 digest 
+writing manifest 
+success 
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ cd tools/new-pllm
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ ls
+build.sh  changes_from_original.txt  docker-compose.yml  Dockerfile  entrypoint.sh  helpers  Pipfile  test_executor.py
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ pip install datetime==5.5
+Requirement already satisfied: datetime==5.5 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (5.5)
+Requirement already satisfied: zope.interface in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from datetime==5.5) (8.2)
+Requirement already satisfied: pytz in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from datetime==5.5) (2026.1.post1)
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python-dateutil==2.9.0.post0 "requests<2.32" \
+    ollama==0.2.0 langchain==0.2.1 langchain-openai==0.1.9 \
+    langchain-community==0.2.1 pypi-json==0.4.0 jsonschema==4.22.0 \
+    load-dotenv==0.1.0 pyyaml==6.0.1
+python-dateutil==2.9.0.post0: command not found
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ pip install datetime==5.5 python-dateutil==2.9.0.post0 "requests<2.32" \
+    ollama==0.2.0 langchain==0.2.1 langchain-openai==0.1.9 \
+    langchain-community==0.2.1 pypi-json==0.4.0 jsonschema==4.22.0 \
+    load-dotenv==0.1.0 pyyaml==6.0.1
+Requirement already satisfied: datetime==5.5 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (5.5)
+Requirement already satisfied: python-dateutil==2.9.0.post0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (2.9.0.post0)
+Requirement already satisfied: requests<2.32 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (2.31.0)
+Requirement already satisfied: ollama==0.2.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (0.2.0)
+Requirement already satisfied: langchain==0.2.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (0.2.1)
+Requirement already satisfied: langchain-openai==0.1.9 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (0.1.9)
+Requirement already satisfied: langchain-community==0.2.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (0.2.1)
+Requirement already satisfied: pypi-json==0.4.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (0.4.0)
+Requirement already satisfied: jsonschema==4.22.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (4.22.0)
+Requirement already satisfied: load-dotenv==0.1.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (0.1.0)
+Requirement already satisfied: pyyaml==6.0.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (6.0.1)
+Requirement already satisfied: zope.interface in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from datetime==5.5) (8.2)
+Requirement already satisfied: pytz in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from datetime==5.5) (2026.1.post1)
+Requirement already satisfied: six>=1.5 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from python-dateutil==2.9.0.post0) (1.17.0)
+Requirement already satisfied: httpx<0.28.0,>=0.27.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from ollama==0.2.0) (0.27.2)
+Requirement already satisfied: SQLAlchemy<3,>=1.4 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (2.0.48)
+Requirement already satisfied: aiohttp<4.0.0,>=3.8.3 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (3.13.3)
+Requirement already satisfied: langchain-core<0.3.0,>=0.2.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (0.2.43)
+Requirement already satisfied: langchain-text-splitters<0.3.0,>=0.2.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (0.2.4)
+Requirement already satisfied: langsmith<0.2.0,>=0.1.17 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (0.1.147)
+Requirement already satisfied: numpy<2,>=1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (1.26.4)
+Requirement already satisfied: pydantic<3,>=1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (2.12.5)
+Requirement already satisfied: tenacity<9.0.0,>=8.1.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain==0.2.1) (8.5.0)
+Requirement already satisfied: openai<2.0.0,>=1.26.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain-openai==0.1.9) (1.109.1)
+Requirement already satisfied: tiktoken<1,>=0.7 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain-openai==0.1.9) (0.12.0)
+Requirement already satisfied: dataclasses-json<0.7,>=0.5.7 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain-community==0.2.1) (0.6.7)
+Requirement already satisfied: apeye>=1.1.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from pypi-json==0.4.0) (1.4.1)
+Requirement already satisfied: packaging>=21.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from pypi-json==0.4.0) (24.2)
+Requirement already satisfied: attrs>=22.2.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from jsonschema==4.22.0) (26.1.0)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from jsonschema==4.22.0) (2025.9.1)
+Requirement already satisfied: referencing>=0.28.4 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from jsonschema==4.22.0) (0.37.0)
+Requirement already satisfied: rpds-py>=0.7.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from jsonschema==4.22.0) (0.30.0)
+Requirement already satisfied: python-dotenv in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from load-dotenv==0.1.0) (1.2.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from requests<2.32) (3.4.6)
+Requirement already satisfied: idna<4,>=2.5 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from requests<2.32) (3.11)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from requests<2.32) (2.6.3)
+Requirement already satisfied: certifi>=2017.4.17 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from requests<2.32) (2026.2.25)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from aiohttp<4.0.0,>=3.8.3->langchain==0.2.1) (2.6.1)
+Requirement already satisfied: aiosignal>=1.4.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from aiohttp<4.0.0,>=3.8.3->langchain==0.2.1) (1.4.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from aiohttp<4.0.0,>=3.8.3->langchain==0.2.1) (1.8.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from aiohttp<4.0.0,>=3.8.3->langchain==0.2.1) (6.7.1)
+Requirement already satisfied: propcache>=0.2.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from aiohttp<4.0.0,>=3.8.3->langchain==0.2.1) (0.4.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from aiohttp<4.0.0,>=3.8.3->langchain==0.2.1) (1.23.0)
+Requirement already satisfied: marshmallow<4.0.0,>=3.18.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from dataclasses-json<0.7,>=0.5.7->langchain-community==0.2.1) (3.26.2)
+Requirement already satisfied: typing-inspect<1,>=0.4.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from dataclasses-json<0.7,>=0.5.7->langchain-community==0.2.1) (0.9.0)
+Requirement already satisfied: anyio in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from httpx<0.28.0,>=0.27.0->ollama==0.2.0) (4.12.1)
+Requirement already satisfied: httpcore==1.* in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from httpx<0.28.0,>=0.27.0->ollama==0.2.0) (1.0.9)
+Requirement already satisfied: sniffio in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from httpx<0.28.0,>=0.27.0->ollama==0.2.0) (1.3.1)
+Requirement already satisfied: h11>=0.16 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from httpcore==1.*->httpx<0.28.0,>=0.27.0->ollama==0.2.0) (0.16.0)
+Requirement already satisfied: jsonpatch<2.0,>=1.33 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain-core<0.3.0,>=0.2.0->langchain==0.2.1) (1.33)
+Requirement already satisfied: typing-extensions>=4.7 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langchain-core<0.3.0,>=0.2.0->langchain==0.2.1) (4.15.0)
+Requirement already satisfied: jsonpointer>=1.9 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from jsonpatch<2.0,>=1.33->langchain-core<0.3.0,>=0.2.0->langchain==0.2.1) (3.1.0)
+Requirement already satisfied: orjson<4.0.0,>=3.9.14 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langsmith<0.2.0,>=0.1.17->langchain==0.2.1) (3.11.7)
+Requirement already satisfied: requests-toolbelt<2.0.0,>=1.0.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from langsmith<0.2.0,>=0.1.17->langchain==0.2.1) (1.0.0)
+Requirement already satisfied: distro<2,>=1.7.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from openai<2.0.0,>=1.26.0->langchain-openai==0.1.9) (1.9.0)
+Requirement already satisfied: jiter<1,>=0.4.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from openai<2.0.0,>=1.26.0->langchain-openai==0.1.9) (0.13.0)
+Requirement already satisfied: tqdm>4 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from openai<2.0.0,>=1.26.0->langchain-openai==0.1.9) (4.67.3)
+Requirement already satisfied: annotated-types>=0.6.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from pydantic<3,>=1->langchain==0.2.1) (0.7.0)
+Requirement already satisfied: pydantic-core==2.41.5 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from pydantic<3,>=1->langchain==0.2.1) (2.41.5)
+Requirement already satisfied: typing-inspection>=0.4.2 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from pydantic<3,>=1->langchain==0.2.1) (0.4.2)
+Requirement already satisfied: greenlet>=1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from SQLAlchemy<3,>=1.4->langchain==0.2.1) (3.3.2)
+Requirement already satisfied: regex>=2022.1.18 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from tiktoken<1,>=0.7->langchain-openai==0.1.9) (2026.2.28)
+Requirement already satisfied: mypy-extensions>=0.3.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from typing-inspect<1,>=0.4.0->dataclasses-json<0.7,>=0.5.7->langchain-community==0.2.1) (1.1.0)
+Requirement already satisfied: apeye-core>=1.0.0b2 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from apeye>=1.1.0->pypi-json==0.4.0) (1.1.5)
+Requirement already satisfied: domdf-python-tools>=2.6.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from apeye>=1.1.0->pypi-json==0.4.0) (3.10.0)
+Requirement already satisfied: platformdirs>=2.3.0 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from apeye>=1.1.0->pypi-json==0.4.0) (4.9.4)
+Requirement already satisfied: natsort>=7.0.1 in /home/geng-04/CP8202-python-dependencies/venv/lib/python3.12/site-packages (from domdf-python-tools>=2.6.0->apeye>=1.1.0->pypi-json==0.4.0) (8.4.0)
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python test_executor.py \
+    -f '../../hard-gists/0a2ac74d800a2eff9540/snippet.py' \
+    -m 'gemma2' \
+    -b 'http://localhost:11434' \
+    -l 5 \
+    -r 0 \
+    --no-docker
+Running model: gemma2 | temp: 0.7 | loops: 5 | range: 0
+Found "import" in ../../hard-gists/0a2ac74d800a2eff9540/snippet.py at line 3:
+Found "import" in ../../hard-gists/0a2ac74d800a2eff9540/snippet.py at line 4:
+Found "import" in ../../hard-gists/0a2ac74d800a2eff9540/snippet.py at line 5:
+{'python_version': '2', 'python_modules': ['appindicator', 'gtk', 'urllib2']}
+{'python_version': '2', 'python_modules': ['appindicator', 'gtk', 'urllib2']}
+['2.7']
+[LLM-unvalidated] appindicator -> 0.1.0
+[WARN] Failed to find version for appindicator
+[LLM-unvalidated] gtk -> 2.24
+[LLM-unvalidated] urllib2 -> 2.7
+{'appindicator_compat': '0.1.0', 'gtk': '2.24', 'urllib2': '2.7'}
+{'python_version': '2.7', 'python_modules': {'appindicator_compat': '0.1.0', 'gtk': '2.24', 'urllib2': '2.7'}}
+In process 0
+[local] pip install appindicator_compat==0.1.0
+[local] FAILED: appindicator_compat==0.1.0
+ERROR: Could not find a version that satisfies the requirement appindicator_compat==0.1.0 (from versions: none)
+ERROR: No matching distribution found for appindicator_compat==0.1.0
+
+[local] pip install gtk==2.24
+[local] FAILED: gtk==2.24
+ERROR: Could not find a version that satisfies the requirement gtk==2.24 (from versions: none)
+ERROR: No matching distribution found for gtk==2.24
+
+[local] pip install urllib2==2.7
+[local] FAILED: urllib2==2.7
+ERROR: Could not find a version that satisfies the requirement urllib2==2.7 (from versions: none)
+ERROR: No matching distribution found for urllib2==2.7
+
+ERROR: Could not find a version that satisfies the requirement appindicator_compat==0.1.0 (from versions: none)
+ERROR: No matching distribution found for appindicator_compat==0.1.0
+ERROR: Could not find a version that satisfies the requirement gtk==2.24 (from versions: none)
+ERROR: No matching distribution found for gtk==2.24
+ERROR: Could not find a version that satisfies the requirement urllib2==2.7 (from versions: none)
+ERROR: No matching distribution found for urllib2==2.7
+
+Could not find a version
+[REGEX] Extracted module: appindicator_compat (from VersionNotFound)
+{'module': 'appindicator_compat', 'version': None}
+Docker build failed!
+1
+[local] pip install gtk==2.24
+[local] FAILED: gtk==2.24
+ERROR: Could not find a version that satisfies the requirement gtk==2.24 (from versions: none)
+ERROR: No matching distribution found for gtk==2.24
+
+[local] pip install urllib2==2.7
+[local] FAILED: urllib2==2.7
+ERROR: Could not find a version that satisfies the requirement urllib2==2.7 (from versions: none)
+ERROR: No matching distribution found for urllib2==2.7
+
+ERROR: Could not find a version that satisfies the requirement gtk==2.24 (from versions: none)
+ERROR: No matching distribution found for gtk==2.24
+ERROR: Could not find a version that satisfies the requirement urllib2==2.7 (from versions: none)
+ERROR: No matching distribution found for urllib2==2.7
+
+Could not find a version
+[REGEX] Extracted module: gtk (from VersionNotFound)
+{'module': 'gtk', 'version': 'None'}
+{'module': 'gtk', 'version': 'None'}
+{'module': 'gtk', 'version': 'None'}
+{'module': 'gtk', 'version': 'None'}
+{'module': 'gtk', 'version': 'None'}
+Docker build failed!
+2
+[local] pip install urllib2==2.7
+[local] FAILED: urllib2==2.7
+ERROR: Could not find a version that satisfies the requirement urllib2==2.7 (from versions: none)
+ERROR: No matching distribution found for urllib2==2.7
+
+ERROR: Could not find a version that satisfies the requirement urllib2==2.7 (from versions: none)
+ERROR: No matching distribution found for urllib2==2.7
+
+Could not find a version
+[REGEX] Extracted module: urllib2 (from VersionNotFound)
+{'module': 'urllib2', 'version': 'None'}
+{'module': 'urllib2', 'version': 'None'}
+{'module': 'urllib2', 'version': 'None'}
+{'module': 'urllib2', 'version': 'None'}
+{'module': 'urllib2', 'version': 'None'}
+Docker build failed!
+3
+Docker build complete!
+[local] snippet exit code: 1
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/new-pllm/../../hard-gists/0a2ac74d800a2eff9540/snippet.py", line 3, in <module>
+    import appindicator
+ModuleNotFoundError: No module named 'appindicator'
+
+Module not found
+[REGEX] Extracted module: appindicator (from ModuleNotFound)
+{'module': 'appindicator', 'version': ''}
+{'module': 'appindicator', 'version': '  '}
+{'module': 'appindicator', 'version': ' '}
+{'module': 'appindicator', 'version': ''}
+{'module': 'appindicator', 'version': ' '}
+No previous this time!
+4
+In process 0
+[local] pip install appindicator== 
+[local] FAILED: appindicator== 
+ERROR: Invalid requirement: 'appindicator==': Expected semicolon (after name with no version specifier) or end
+    appindicator==
+                ^
+
+ERROR: Invalid requirement: 'appindicator==': Expected semicolon (after name with no version specifier) or end
+    appindicator==
+                ^
+
+No error type found
+Docker build failed!
+No previous this time!
+5
+[local] Removed venv: ../../hard-gists/0a2ac74d800a2eff9540/.venv_0a2ac74d800a2eff9540_2.7
+Processing completed without timeout
+Done
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ cd ..
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools$ ls
+new-pllm  pllm
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools$ cd ..
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ ls
+clean_dirs.sh		 competition_guide.txt	fse-aiware.jpeg  hard-gists.tar.gz  pllm_results   README.md	   tools
+cleanup_test_folders.sh  folder_to_file.sh	hard-gists	 LICENSE	    pyego-results  readpy-results  venv
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ cd hard-gists
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists$ ls
+00056d4304c58a035c87cdf5ff1e5e3e  2522574			    4630017			      66f1569ebb0d878748fe		9673839
+000eccf3d66540d75def		  2545a281e3f17ba6ef82		    4632416			      67044				9674216
+00135b0dfee0ae165ad2		  256155			    4636851			      6714b632c92d8967fd3c		9676416
+005bbad123ef309a5bef		  2571471			    4640256			      6718314				9679647
+005ceac0483fc5a581cc		  2577781			    4654376			      6719172				9680901
+00a17b1d374dfc267a9a		  2581132			    4654813			      672229				9683c333e73a82379b8e377eb2e6fc41
+00a4835bf36513ca58a3		  2584789			    4656144			      6754465				968909
+00e9638c0efad1adac878522cf172484  258a248d20334e781b56		    465de1f5f66334c91a4c	      6759305				969ea467e870b68963f3
+011004bcac763eaf6f28		  2590850			    4667205			      6770178				96a329f6d12f17b4760373b1cf3b92e9
+0115e0ce312f26ff59f4fbf4f5821ca2  25b92260471cfbdc8054		    4668212			      6771295				96ec9b3c5df60a07b216
+015e2ce27cecdea63564		  25d48938c07b73541361		    4684561			      6776391				9705471
+01886b6f79ba0c4dce66		  25d98841e6a82f30ae5cac24e9039856  4684752			      6799568				9709984
+0191e14717af68bbba81		  2604241			    46c9d4ed1ea43c3d916b	      67bdd4bd8c26e2178579		9716578
+019fd5c706e0bc94879f		  260617			    4700064			      67c14af0d5afaae5b18c		9722045
+01b8b8e1909ae0f601c85e142f2bd15b  261818			    4707012			      67c7a6d77a6da0a56329		97256
+01bf3900d3a02c4e3927b2a2bcf39100  2620735			    4707775			      67effa81dd1cd5a488b4		9747287
+01c99322cf985e771827		  2620876			    470c2ffcf1cde9b2a740f48015915e30  6808772				9750796
+026a4d6400b1efac9a13a3296f16e655  2623926			    4711568			      6815711				9763549
+02ff378b3a91de94306a84d3aa2228bb  2628382			    4712723			      6838974				9768713
+0306734dfe17076dfd34e09660c198c0  263113			    4713392			      6843565				9771f75e3f16ba5daafb
+034e799c19eb763fa859		  2632394			    4716919			      6856389				9773143
+035dc3b722b7f89cce66520dde285c9a  2635074			    4718429			      6869344				977777
+037e4134d8271c0de71b838a461e7ac1  2636213			    472309			      6874944				9797a9ce8ad97de6e326afc7c9894965
+03d9c46c86691c9bb680		  2638485			    4724761			      6874ff814ab7f2530b2a		97a1b2b7f954246886de
+03de5c4c21138da5c29d		  265a43f255716c11cc62		    4727690			      6893b83409ae4575e2bd		97cffbea574a5890f0d7
+044682e76def583a12e6c09209c664a1  265e68a5e879b5540ebc		    4727865			      689f4a38bc6cb9a7adc0		97d0fb82c3894f56809a
+045c887b6ccdf0edf4648da0c40bcc12  2660685			    472922			      6901429				9822570
+046e434c51057dc9588762edd40199b1  2661065			    4730736			      691e97ce22f7cd43d6a9d54305344587	982ce339d5f8c9a769a0
+04c2b5ce5978c0d66e6e		  268379			    4732233			      6947661				9842903
+04ef258fa29e4e685287a30cf60462d0  2691939			    4732790			      6957826				984892
+04f3047ca8770f4a3a58		  2692786			    4741790			      6958459				985060
+051e881fc94fe4a49295		  2692960			    4742296			      6987693				9874480
+053b89bd6975f89f043871335dce8c5b  26a33ce1e82092b4d2dbdf18c3610fde  4745061			      6993747				9875439
+053db410f7fdd4e1d6034a0a7fd45d9b  2704426			    4760272			      69aae99be6f6acfadf2073817c2f61b0	9875468
+054023c4fca5369ffdb2		  2705927			    47610e6462faba8781242cdb6218d83e  69aec1259131b5619fb7		989074
+056626de3fbdc7cf7b59de1d9f6279d1  2708979			    4761479			      69b8e351dac87f4c3f5b440632727fdb	98a38b54f889fce2b237
+05aadb969e43788593d3		  271862			    4776b4b2075bf9b7e512	      69da10ec6f22c6d7b92deefdb4a4f475	98b4d7288a2ee7b1319a8ff71d3e2c7b
+05bec6966701f720c3aa		  2719812			    477969			      69dfe7943b076f0d79db		98b59370a1d171817edb
+05ff99985269200cdc4854ddc04fa6e9  2721811			    477a9dcd198439ef2def	      69f4acd1fc094c66ba73		98b7edca1b29c949fcf1
+0618f44dc5270f9a2be2826d0d933ed7  2725286			    478f9ba38afb1bf5f5613bfe46eb82ce  6a01cbe55657121a1f3d		98bb452dc14e8c40e403
+06336eb10a1628850d6f		  2729506			    4792fc97f8a4094ac90d	      6a9e5ef2921c0214eeeb		9901745
+06649145d7e6c4c147c02459fd2bc5af  273bef4c5b4490c687b2f92ee721b546  47e1d07b136c316bfb33c880ca910e8c  6aa898d22e74aa9dafc3		990d3653c5803927cbb6
+070c805d947bd17c7a19		  2757171			    48136d7a17387e7cf6c3	      6af3dd8894ec4255a63f		9927923
+071932322204bcad6063		  2760477			    484009			      6af6a8478561aa8a0121		994260
+075c35b536cc08b832e353f2f43c0bdc  2760f2f12201f638d7de		    485977			      6b2273d7e332f29193d0		99442e1294a6c83368f5
+076424abd8b012371b516da32807ca14  2764305			    486793ad61db4c1dec9d	      6b2944d74ec9dd229938		9947556
+076bbc6a0d5056d20ad45095b434b02d  2768310			    4882342eba2b57376ed1	      6b93a8028f4dc40cab49		9951701907ed328218dd
+07cdfc2826a565b50a68		  276a2b26cab5bc22d882		    4893d1a05df86afbc2cf	      6b9bae1310f2ee6b47ba3663bdcb1ded	9952389
+0830affa1f7f19fd47b06d4cf89ed44d  2773137			    48b54ea4cbc7eb014308	      6bb9ddb5d904b7275c62		9956ec93a07ca4e9ba5bc415b014bcca
+083777cb1f8c9efe6418c75d18bdd32b  27737c5f2de213216360		    48c5c0124ba4e162b2e3	      6c168b0c36ca3b23cacc		996771
+0932b2b5293839cd7d79fa6b513c8128  2778605			    48d35095a414580c055b	      6c78e65f4b78adfa3766		9985307
+09648344984565f9477a		  2779820			    48d92d4153754aea4504	      6ca93b8309f05055c6a3		998722
+096f3b651b268b7af4c8c32475fa23d1  2783865			    492713			      6cd16631253eed21f37f		999228
+097f97f4cb67c554f04dba6b5a09a506  2786290			    492858			      6d459a8c2ae945808d69		99b7fb8ff89104d30eab
+098f399d69f230521ef530baca832e76  2787060			    493065			      6d6bb834d48b9664b38d		99e1ad329383de04be4834a8c3e28c0d
+09b1f5403c63ceab5ae34710cbe2809e  2788978			    4948282			      6d7c78ea329d4e9e1217		99f7f921b512496a9563691e15d846b2
+09cae53bf67ea8a39700		  2790749			    4950253			      6d94b7d06f7ed9d8bfc4985b094bf6d4	9a632bbb0acb445f4f3a
+09f5ab44486b1fc6df7bf20ce57159f1  2792956			    4952342			      6da9a7c1e03912fde62e		9ad6a265aac887fa26c1
+0a2ac74d800a2eff9540		  2798682			    4959534			      6e1016cc188104d123676ccef3264981	9b1e305543f6fcc9318a
+0a3d4fae965bdbec1f9d		  27a1eea9f1d01056ebb0		    4961824			      6e20dba959277bd9af77		9b2b3e8a6c67697279d3724dce5dab3c
+0a509faf231cff3cdec7		  27ab7d2a30bbaf5ef431b4a02194ac60  4964727			      6e41e8512c17eae5da50aebef3378a4c	9b7787a607a5a676c6d8
+0aaa9e4659977a98fc9f36d6887fef37  27bbd6895c0afb314879		    4972374			      6e56d947ceaacdebb7fd3a88ed89cb6c	9bb9eaea2523cd2144cf959f48a14194
+0acf77b2c022e2467cfb0d5493d454d6  27dd0d768ccede849051		    4973958			      6f490f3a0e082ae6592a630bd7abe588	9bde6d0985bd71b103d3
+0afa43225bdbe8e803cb		  27f33798d12317575c6c		    4981937			      6ffa8fb7756c16798b2a		9be3d2aa4930ecd8e536
+0b42dbd687ae3b838728		  2816295			    4988673			      7002279				9c1614281797ce620c6069476d39c7b8
+0b677b13fca6cd0905ca		  2821234			    4992092			      7002396				9c411d2b88eab4232cc66a9c7f6988fc
+0b7e91487dcf10c0b8e8711eb6d73bc5  2821544			    4995154			      7003083				9c4d012d6fff059ccea7
+0b92b9ca837a0f5474c732876220db78  2830057			    4995164			      700554				9cba618eacedc68c656b
+0b942dd86f01efe996b8977b158c37a6  2836237			    4996449			      701416				9cc23ce7c1e5c9e4379e
+0b9d8a742fe0efe0fe82		  283860			    49aca627205aebaa2be1811511dbc422  7015554				9cdead881799a47742ff3cd296d06cc1
+0ba0270279a0f38280423754cea2ee1e  2838603			    4a07818b8a21dd5c49013b9ed496cb70  701904				9cfd4d8400961a3b67a1351a1851c869
+0bc7d313e7a84b708374		  2838927			    4a3f8b0fee43d45646cf118bda4d202a  7019296a9a9ad74e44f0		9d0bf77bf070262ab3cddfc4b79d031b
+0bdd7059a08cbcd00898		  2840020			    4a4e7e700c34c04160b93aa03a14861c  7020937				9d39e1868e220e02cb58
+0c01b7a27e512db480847fac2cc54103  284507			    4a76e42f058ef7b467d9	      7025496				9d4ea9b04b223de02c7a
+0c10e910e514832b7103		  2856099			    4a89bf7c52500a1d7e7b	      7026954				9dad6c4ab0d8d7dbf3dc
+0c7ccae5d764ff61788fc626096e5688  2859545			    4abfb80b336a8a56c0a5	      702a848ba0a7a64b139985f5cad885f0	9dcd642059214d81b3ef
+0ca2272c015266e667924836364349c3  2866253			    4aed548e606f11971f5a	      702d05be879fa5a23d2b		9e1f7cf4945a608ae48a
+0cdd8d6adb8463961f50bd1845faddf8  2866461			    4b2897a857a5ec91d9ea965d87b795c8  7030355				9e30b2f908e801da1bd789f4ce3e7aac
+0cfe89a89b892e47e8418e281dfe318d  286805			    4b3c1a78b0104e52b2a1	      704add465613d5ca0d53		9e990f56dabe27b42bfb
+0d1baad4e3a871587ab1		  2869341f38f5b1eeb86d		    4b5afb297b4b7c835e6f	      706573				9ea0e4feb62a45acffee
+0d25683d9c8fce27edd3		  2870240			    4b79e30fad4ae8a50e2630fcfc4c8cfd  7065820				9ed6ee8a55ff1587c08c793d5f23dfda
+0d5a709bbb4186d1f45f2af14c65b110  2872d7f994d192188970408980267e6e  4b984557676d2d6c92a6	      7079332cab038da1394d		9f1793c4d1f466d3b58966da36b54fad
+0d5b3e7cc89cb2180c6e		  287dbf64163fda470c89e8b992e112e0  4ba8ae5459ca4a287d42af549a611792  7088662				9f2d7da68779a17a0890
+0d9745f39a034758e51e		  28802627584b21ba1f6a		    4bbe165b19a2b0d457c6	      7091940				9f49f91bd7d0a527fdb5
+0d9f91f789f0c523b0e7		  2888158			    4c10830640d325e0cab978bc18c6263a  709384				9f6118ff84867e89f3348707c7a1271f
+0db840f27f1f0fd0747f13ab80d0ca37  2888380			    4c223b8e2d72b0e35bde	      709890				9f782f83e25d3c9eb202
+0db858e055cc2bae953b435f5116aaa8  2890739			    4c2d4105ea2c7e407fb5	      70df4922fec74ea87405b83840b45d57	9fbbf2f450779bde60c3
+0e7d366d2e3623c5bb95		  2894514			    4c4323f90f74f079b50d9a689fa8a448  70e5fefe128214b7d2a1		9fd4304148b398983b3c
+0ec0c3f5ca69bac2b625		  2894704			    4c47dc94cc6054fe1398	      70ed63ee8992c401a9dd		9fffe8ba08e378e3d027610921c51a78
+0ee6dd444994fd67f63b		  2899595			    4c528bb794449160e9f9a303b7b2dc23  7103585				a003ace716c278ab87669f2fbd37727b
+0efb4d07f28af1c8fc1b		  28adf35f1e4ba3145e2d		    4c59bb823a2c4cc886ae51deae9b23d5  710480				a027a9fc5aac66e6a382
+0efb90d998c59d5926ca7f4e79054361  28bf77e9a95ae6b70b14141feacb1f84  4c5dc5b2b267b43bb4c399ca9115c3f8  71152286b0a8826249fe		a05a9ed37a3096cffef80bdc7fee31bc
+0efcacfb43827ba3a6bac3356315c419  28d2311cc6b28fe9bec0		    4ca0c68878c6d978d067da4a36bcc71d  712c270355b6c2642600		a06477775f18c11b4517
+0f450e738bf79c003253		  28f95f95731a5a24e553		    4cd70e9515ab722b2bce	      7131838				a08221826c6f20ac47fe688e575e51ca
+0f575a0891cfef5f1b0024c89dcbaeea  2901479			    4cfe3995013225d1d119	      7131909				a0a5dd7bfcaac3d3e9c18e5ea1080b95
+0f5f65ddbfa278713f58		  2902213			    4d0f862d981d9bfc6b4f	      715284				a0d42148fa11cbdaa00168e321f598f5
+0f87efc363309e99d600e3a6300fbcff  290224			    4d3a1d7c49de414942b87d7f6ab1461c  7157510				a1178bf10729a27184b1
+10005117			  2909661			    4d7afed1dadb457bba977bd3757c1e29  716261				a14e56ab945cd7e64c3b
+10010307			  2913338			    4d834d429763e953a40c	      7183354				a16749ee76941e8d86c8
+10011921			  2915436			    4d859423b9dae1cf7471	      7191601fd58bb37a9efd		a2b9c6ecdb24ca8fd6f4f41a9c0eb32e
+10016605			  2915875			    4dc4e988baae35aa2ae810281b5297fa  719502				a303721443f5eb46035e
+10023837			  294151			    4deac45790fa339b537a	      719fc5e3a21dd2779d9fe69bf41e6ba6	a3dd4a35ecd94660411112999923d561
+1009475				  2942127			    4e24eb196dc377278fc51e517d81df63  71b14c4beab12998b6d1		a400d6c20a52f0b3cd5415e833263b1f
+101323115e70bb6671d3		  2942374			    4e5035242b8e4b07ff3a	      71eda2aab0ee32d19b01		a428ef783211b0ffdee1
+10206392			  2949632			    4e958d673c51f1fe6f8f	      7226559				a42aecb379742d3cd150
+1023456				  2951556			    4e97eb41e2b9a80cd5de	      7228939				a430d460966d64edc6cad71c502d7005
+10235798			  2957026			    4eb4497f57e9f6fb78d14aef27fcc750  7230348				a4533e0adebe57e3ed06d4b50c8419ae
+1025525				  296207			    4ed43412878723491240814a0d5a6ed6  7234995				a48b50e46f01dc7ac96d
+1025736				  2962884			    4ee0a712454480df5ee3	      7236266				a48feaecfdb9e0609c6a02590fd1f91b
+10281460			  2968620			    4efe2e28ffcba38aa242	      723736				a4cfdc19144e7bd634a8
+1029336				  2971450			    4f0c1d94f5f164d67f40a4f1c8b0dc15  723a39071659bb763cff		a52b036424bd9975d719f224ca8cc8d5
+10295174			  2972ba872df05cb5f0c3		    4f3a3b3c1828e6d781b624f378890cb0  7247d72f97e6bfbf97809da5922f0e14	a536bfa68b066c6fd593
+1029870				  2973355			    4f4934893388f971c6c5	      7270594				a5407ce6b5061525e7f2
+10335601			  2974887f3fab071c11a0		    5001170			      7275456				a54e7e182ddf564f6a5c1fe50db556a2
+1035190				  2975718			    5002929			      7282002				a56421d26afb1f728a2b5959ce1c4486
+10354951			  2977d9f26866b05583b0c40d88a315bf  5008118			      7282822				a56d5446416f5ad2bbac
+1035890				  2986210			    5015483			      7285154				a5808fe356b8da031837
+1036883				  2988354			    5017218			      72b2f24b6d2ff6ffde1597f1ca2dea3f	a5af977340c1c452d2d0
+1038987				  2993700			    5022297			      72c7938230537b4f8a4c		a5b640e4368204426310
+1040366				  2996448			    5028413			      72e709ba8a3a7c6affa1		a5f57e8c9d0aedee285fb6f43cb5900c
+1041172				  2998372			    5029885			      72e72417af260ac17bb0d878e9ea1f52	a5fb23f096d7b0c3880e1622938d0901
+1042719				  299905			    503106			      7301722				a61918cbfae993b68eb17b5b780b7e32
+1042778				  29c51b6997c3e3bff568		    5036719			      7304099				a62b5cf5262fc7179dee
+10438748			  2a1df455e7643926739e934e910cbf2e  5036f784eec2036252e1990da21eda18  730765				a64321dd69339c42a184
+1044215				  2a5d283b0d279ea96c26		    504232			      7310160				a67517621c2a9d4c2f14
+1045108				  2aa18ba3b821b2f580a2		    5043521			      732873				a682299af39b76d8592f
+10491632			  2aa430e00dde0cf905a9		    504768e05fda49a6e3338e798ae1cddd  7344542				a68d6f32f4985ed547ce
+1052286				  2b19fd6f758ffd2e8ab9ec7d1f3f4b2c  5048588			      735379e9c853171713ca		a6a32bd87fdfe5529f0e908ed743f779
+1054969				  2b2abbb88b5d2b4f4e5adde42975fd0f  5051911			      735556				a7733a15cbf6c0cd9fba
+1055161				  2b3003f44b3ddf5931c9a5e61d8ba417  5053686			      7365980				a7c41b072cfa4cc2c592
+10554232			  2b83b1c47a18448d3cbf		    5055971			      736778				a8121604385ce6da251d20d018f9a6d6
+1055992				  2b8e2e05cf05a630b132		    5057356			      738156				a8332d2b6dc517accedbff8fd8e63b08
+10567484			  2bcca0a7654168ef454f		    5059989			      738fa2eedd9666b78404ed1751336f56	a86b412988cbf5216aa5c48b1cf439c4
+10589494			  2c0d9e1a0012065bb56c		    5065738			      7398239				a8c96f1aeb41393dadf6
+1059647				  2c6abf964810ed74802c		    5071300			      73a523f0cdbc978c148d1cd9e9d5f0be	a8ddb994df41583b64f8
+1065196				  2c7b95beed642248487a		    5073235			      73c9565719d124af64ff		a8f87b0d95e73eb482c5
+1068021				  2cb9c79df7a58db9e5ec		    5078476			      73efaccda6025883fc66		a90c6f22372de8859f14
+1068255				  2cf4998949f49b58ff284239784e1561  5079405			      742160				a9de2ef498a09747bbf673ddf6ea4843
+1068868				  2d4a4a8be57a9b8e94c7a4903d8d8bf8  507bcbf3e8cfdc5d3549	      7428185				a9f0b1ca7e98391a5067
+106c49a3ae6d420937aa		  2d6bbffce9dda5f3057b4879c3bd4422  5088386			      7434f7431d1cc0350dbe		aa3d19a12b74e9ab7941
+1072977				  2d971a5a087881a966c3		    5090763			      7443646				aa46105d34349543582b177ae79f32f0
+1074124				  2da57d5b039aab4da7ce		    5091345			      744413				aa64ddf6109414291030
+1074202				  2db1522dbfc5fe58b52c		    5091825			      744700				aa8713d4334036bcb0060ff73dba54c4
+1074227				  2de2e9a156fe619dbdad762fe1cf84e1  5097274			      7447067				aad88d51001ea83ecfc6
+1074551				  2de48835250e5fceaa1b626099abfa53  5099161			      745868fb26102298e837		aad8a37114825b0ce1a5bc48bf5f3cac
+1077318				  2e0cbef7d50e8e7ef2d2		    50abbd0ad3c16c5dee55	      7466823				ab136dbfb97f8ee1d309
+1077970				  2e11b48f431c53b101db6cb817b2fc7f  50ffa966dbb6a1296320705890fcb5cf  748cda36befe17fd1cb0		ab2e34dc58c8c2d0f2e15f25b528dc19
+10792332			  2e3b989e0343f0884388ed7ed82eb3b0  5104071			      7495576				abb8a2f22adbdb6d387f
+1082570				  2e466ff4e6b3425aba3c		    5106221			      749788				abca49bf36433fd1f9d1
+1083908				  2e90566e9497725065388859762a7185  5108298			      749857				ac5987161bc27048e1da48e40299468b
+1088273				  2ec85f1f8fe0d4f44b6f		    5108504			      74e556cd8a7814a5270079f94950957f	ac5f50d1409954c38681353fb6c6921b
+1091026				  2eec49ca1e4f58c5310d72918d991ef6  511440			      7521277				ac8f22326f095ed2690e
+10938795			  2f0a1118edb70de95f6859cfa979fad5  5116241			      7524815				ac9170132e5abfc5381353428e70f1d9
+1094832				  2f1b9a255993bf9b2629		    5145500			      7535869				ac9be1abd2bebe9ad8da5c645a1d0b5e
+10955449			  2f8370ee83ab074f5b5e		    5149802			      7540117				acaaf10e9649bfd1863b
+1096373				  2f8f55987ccc224e2342		    5167728			      754329				acbd669af86ecb8f988325084ba7a749
+1098968				  2f904cb32be20d808481e04f5dd7fe0c  51686			      7543724				ad16c57cf48eb95a4b63
+10a742de43246210f3ba		  2fe1c16a7cc27ef01c1f		    5170087			      75483d51641a0c03bf7c		ad575cee6bb503d4d193da355d70d3e9
+10cd35b2872628246140		  2ff89e40721d1f1a007449f02aee3990  5173293			      7551089				ad7eda38c797dfddc394
+1104507				  3001099			    5177683			      755524				ae2a7adaab133c61a059
+1104553				  3004168			    5181631			      756b1d8df2d1487497d29b90e81f8068	aea4329b760eb3e72f4d
+1107375				  3009143			    5182378			      756c86fdad219867c0f4		aecb82d8b51e991dbd01
+11078820			  3012089			    5182379			      7571752				af466b8d32d7cd4954f1
+1108817				  3012306			    5189575			      757191				af5bc4fae39b16f8d505
+1109153				  3012318			    518b0c9564e500b4b50f	      7578539				afb129122a64bde3bd0c
+1112928				  3013470			    51934724e0896184a2340217b383af73  7622246				b02bac4b48f780bee77b
+11129975			  3015625			    51edd66425998e5fca37	      7634c596fe7669a54321		b09f45e112b226b97a36
+11181988			  3015852			    5201689			      7639387				b0a882f844e188c78358
+1118585				  3018527			    5208296			      764262				b0c075cfde406280cbf7
+11192605			  3018bf3643f80798bde75c17571a38a9  5209228			      764746				b0e95087771dbefa386f
+111c8ee32505a11ad7a6c629f277c2a4  3019988			    520a2c13f358b3689d00a3c88b34e0c6  7652081				b0eae211db963fe56c0c55773e6a16c0
+11215761			  3023497			    5213fabf2bcb943efc82f00959b91163  7653403				b18ce332bde37e156034e5d3f60f8a23
+11242170			  3037448			    5215968			      7669374				b19bb35f5484af5d7622
+1124bb02a9fd4abce3d86caf2f950cb2  3039696			    5225027			      7671688				b1d181802fac750f0cc1
+1125832				  3040846			    5232301			      7680498				b1ef03dd21e7a3016161
+11280233			  3042651			    5237007			      7681066				b205bdf830c9f81e5fb6
+11284662			  3047772			    5237011			      76877c8f262de24becc081ad96759730	b26bc0333cc18660d07baeb923ce9021
+11292725			  304963			    5237529			      7689218				b26db61d8bde30b8a88451615105da7a
+1133602				  304a77371c9e207a5fa42a6b874017d5  5241369			      7692685				b27cdbff68870418bdb8cefa86a2d558
+1134410				  305322			    5263533			      769687				b2af7d980eb217a0af07
+113635				  3057138			    5263bc6284c4dbe79951	      7698491				b3143dde185cecda7c1dee7ffbce5d2c
+11367287			  3077639			    5264046			      76fa64ee8380763871ab		b3e6f9b5d95af8ba2cc46f2ba6eae5e2
+11375647			  3078465			    5267494			      7703144				b3f329868934710fbc81218ce1d6d722
+11378945			  3078764			    5269514			      7704036				b3f8ab944a85b33e694de21c6ded029e
+1140136				  3079065			    5284646			      7704845				b45983f227f1e4fbea65b6e06abfdecc
+1140516				  3081369			    5287589			      771052				b45d21224c4ea16bf4a72e2a03f741af
+11405336			  3083085			    5289693			      771426542eb36afeb56ce8b163560a4c	b46119196c75d6ef20ff
+1142740				  30839ae0280a5077b8669757e5efa75d  528d816d035f2deaaca1	      7716005				b470324dc5c81cef8ae24fd1d3fd4e59
+1147973				  3089556			    5292f95000e409e239b9dc973295327a  7719245				b48d48fc1b6eb080412129e596ab2193
+11526013			  3094847			    5297676			      7719991351343a92aa7b654d2b36c8db	b492a548aa342ce0badfe1eed86ea5a4
+11538913			  3097851			    5297697			      771dabe22b34d59728bddcf87b26cf54	b493a228c4081ff0260b
+1160201				  309bed093f6a7084c855		    529816			      7720207				b4a0aed67fc0da6b02434a5c2cef45c4
+1160696				  30a5138e41cba69dc81c		    52bba57f724e38229da9d85fbc85b673  7752095				b4afaf9648ec986928a9
+1161423				  30d2e626772e84edd688ba717a766c89  52ec27e3010a3fd852e1d0d6e2ab5180  777789				b4ea0034839ccbc2aa03
+1165038				  31122eb9e4c0af8adeca		    5301ff823bef4b5eae52	      778260a1f0553575be99		b53cc1e0482411e4b53d74bd12a485c1
+1165344				  3113810			    5303446			      7785749				b55de7edbcbc1ad46a28a0975c01a5cf
+1177373				  3116927			    5305869			      7793e2058c5c9dacb5212c0ac0b18a8a	b5952c36b36b877adcb0495163678675
+1183767				  3128835			    5305895			      77a1a4d5506258f3dc1f		b59679e31dbdb01064d6bceb827ed88b
+1183842				  3129692			    5307284			      77a4640bb5fcd1e7f038		b5b2c4be45437992df58a7dd13dbafa7
+1184264				  3130141			    530c20924768ce180923	      77d02d8f2f09e27de08b		b5d44b5c06172733d9edda4bcf9326b2
+1186126				  313753			    5310037			      780003				b5e7a80691ed5e44e7fea1964bae18dc
+1189327				  313761			    5316196			      780263				b6460d1e3da5044ffff235403d16fed2
+1191457				  3141128			    5326230			      780379				b6e374d172bbe3e6130f6849e7bd6c13
+1192059				  3141140			    5326379			      7804540				b71ed0e977e6d345bcb8
+1196291				  3144636			    5328738			      7805193				b72585771a9f606ad800
+1200485				  3148833			    5329310			      7808564				b76261844db0255899ba857838a7c201
+1202066				  3151375			    5330231			      7812916				b7beba6f962110596660
+1202516				  3153844			    5330566			      781411170d36adb3197cba86b8653136	b8240ea53d22e1bb4d32
+1203640				  3158388			    5338905			      7814472				b82d70b0d581dc4609e4
+1207636				  3163938			    5344084			      781740				b82da1cb8f3afe5ccb643f87e2f853b0
+1210791				  3166d6123bd26c066c462328bebcf0c0  5352608			      7820246				b8462a8a1cb69f55d8356cbb0f3a4d63
+1217855				  3167162			    5355925			      783810				b85fcfd4a0479810e6aa
+1218932				  3167821			    5356796			      783993				b87ffb502890909aea2eb449643d5bc7
+1219671				  3168336			    5358040			      7854404				b8a7b7be344e447e7ee6625fe2fdd765
+1219955				  317164			    535acf4c62ee2a71da498281c2dfc4f4  7870550				b9309cdd7d5adc3b4b70
+1228626				  3178905			    5372873			      7872ef0d472a1a2c037736af21b30cfe	b95cb69fd1c82ca4c2ff
+1229681				  3181989			    5377033			      7880c101557297beeccda05978aeb278	b9768b4eefe679c988ce
+1229685				  3197a2bae38f77799ea8		    5378938			      78e41a5065136e41bccbffdaab108492	b9bc61a74e7cadeb1fec
+1229770				  31ccafbfceac2ed88974		    5380169			      790687				b9df49cfc1540bc8b896
+122f258ba6eaa23dd9c5		  31eee50b9aaebf387b380f70054575c5  5382778			      790721				ba235b7e90aafb9986158697a457a0d0
+1231964e784ab9acb65d		  3205bf5aab78623c5ee5		    5383149			      7923781				badd18a84b236c9e6c34057512cb569a
+1233846				  320a949b092bf30913ef		    539928493c4e74b3ec112f4cf4a6df91  792634				baf42b089d71b94fd229
+1234843				  3210264			    539a9ec008b1e5b3b7fd	      793f7ddfc2393ffd0418		bb160e63686f517c93a937f46714dd03
+1239373				  3211f1660291f871739379082f204c83  53aad9bb83b233b523270c30d36e4c81  79405fa0f930e41544b584c4d7864611	bb61c15139bff338cb17
+1239674				  3219308			    5400853			      794424				bb640cebefcc550f357c
+1242589				  3227267			    5403877			      7946246				bb85da3aa563b747151e
+1246146				  3231186			    5406587			      7946961				bba5c2ba3000010ca049d6f96f5d2f27
+1246268				  324968			    540687			      7948151				bbfa863f3fe4bb2163d94394d7b60899
+1248728				  32561f20db62886bcf6af5ce98087ab9  5409581			      795180				bbfc1f0b9d003bf08b26
+1251716				  326462			    540f615dd9d54de47dc52b0ca60522c1  7955963				bc901de8b7e59cbeb190
+1253332				  3264921			    5415296			      7956216				bca0daa0c3ca0ddb2c70
+1254809				  3271073			    5415869			      795cc1fd6d0c9069b20204cbd133e36b	bcc376fb336b73f24b29
+125559				  3287286			    5420020			      7964172				bcd8b4002b6cbf77dd89
+1260ba896d448bad0eebdf26b80c00cc  329142c1740500bd3797		    5420652			      7977492				bce94f1c37215f644e0c
+1262332				  3295631			    542786			      7977513				bce98c5c1688fc833475
+1264102				  3298867			    5437131			      79b418a25b374804701069f31b39606c	bd0940f7988774e2822d
+1265346				  3305365			    5437436			      79d38da49cb4f4a511d74d780e53743a	bd2d6c2271e42ed97b97
+1267632				  3308963			    5441636			      79f9bfb5a7e767b4b756ff1c7dc04eaa	bd57b54a5c6903e4a6a2
+1268033				  3309494			    5441be08c6d80ca55040678bcd79c3c5  7a3fc9739b7778f6673a458605e18963	bdb31b04fb1e69fa5346
+1269098				  3310561			    5443399			      7a41da7aabb8455d0898db362335e139	be6123c7ee3b366e333a
+1269949				  33150bde6bd296310e41ea5d018fce51  5445149			      7a56a1253355c0f4442d		be7e84c9d61c4869e981
+127368f7dc810dd37fe18aee87dd2ee2  3334a3cc57b31ae3a5c4		    5455375			      7a9e046470dcf05420d4cdc2b2defd79	bf576ee091e75071bc66
+1275204				  3340802			    5455d2c57fb33c1ae04706f2dc4fee01  7ad3a91b1b49fe2682d7		bfb45408d43986eefdf83b59bc9e8629
+1277655				  3341591			    5459536			      7adc87d2c4fde941cea6		bfc2099235ac96937f34
+1283684				  3356622			    5463830			      7ade9bbe4cb46e3cc1b8		c01b65369b71c35431c8
+1284577				  3359203			    5463a2fbac8facf55d74	      7aea60f80f6aa9b79cc9509b633557c9	c063bddb9b8d17a037695d748db4f592
+1285742				  3390999			    5466822			      7b2161871953f0c12615		c078cabc0a48f2570028bff397a9e154
+1288025				  33cc5534cb555a0b710b		    5472885			      7b4a8e2f1fbfd70b4aaea5d205cb35eb	c0fdb29ddf0d338bcbd021b68f5bea51
+1288160dad16cc473a53		  33e2172bafbb5dd794ab		    5473058			      7b64238424175742a8a1		c12be33cdcd9a86f20a2
+1289286				  3409403			    5476453			      7b75093ec0d5ecc8d95e		c18130768ac0ef0345947c5aa0827b65
+1290744				  3411495			    5478382			      7b96bba85ed81aba864a		c18bfe4fd96008ffa0aef25001a2e88f
+12da69b95d010c8a810fd384cca8d02a  3425960			    5478642			      7bd4e4bd0a00ac9076986148afc06507	c1adfdb0f526465c99409cc143dea97b
+1303651				  3427750			    5480533			      7c18bf7ac5fd4d26cbce		c211c1af232974f00564
+130583				  342989			    5487749			      7c24802dd9c5e15870b4b56e22135c96	c233b0d25c5fbe008d9477bc1b2d234c
+1306719				  3446681			    5488053			      7c2ec1cd01ada79b45fc9a6323934181	c26b2dd5c2bdeaf6d7479a68bd7023bb
+1307521				  3451509			    54e6f7d63df3866a87a15aed17b51eaf  7c3070bc1c2766633b8ff1d4d51089cf	c28329f12711a914c7a8cbe6eeb947c0
+1308865				  3453185b41d8d985356cbe5e57d67342  5502087			      7c395aa3634b2f2a0cb4		c2b2943ead94c200574a
+1309895				  3454877			    550fe172cd277bb2f057574f2e75aff4  7c3d01ad13b0e7e5985a		c2cf8d8aee3eb70668bd
+130cd92dc47c56c47030		  3473799			    5515619			      7c87c10921f0ed0c4f7641b4e14f2071	c2d24fe340a7f3cf76d2
+1310549				  347596			    5519057			      7ccd43b1f2f79f1bb23c70920f75cec4	c2dfe5772ba3cd16c1be17ba42b7db66
+1315148				  3485205			    5520379			      7cd166e311992a828675		c3124826a3c49ddda6999acb40ad2c27
+1320970				  3488502			    5521548			      7ceb3e7ef239e282a9d2		c344f114e1579a29e163
+1321295				  3493579			    5521734			      7dc87b8d1dc16b025e7019113cc2de93	c362f0ad488e3b289394
+1321575				  3494203			    5527142			      7e173302952b210aeaf3		c3a540563e0774489ceafb3156b318a2
+1321585				  349423			    5534008			      7e3d537b94c30c782d1b50b712ea79a6	c3c474a04d7c0cd8ddeb
+1323194				  3494560			    5536498			      7e9499ba7e436535fd94		c42d76db2ad2e87a5086
+1326477				  350281			    5540702			      7eb39b44eb9e16e59632d25fb3119975	c4329fa17f1b3f287341
+1327072				  35164461db4da79f7d56		    5544335			      7ec5bf797308279dc587		c4602c23783d894b8d96
+1329319				  353499f2e6e407883b32		    5544803			      7eca8b9f0ff5b3bfb742		c47824c116e6a61a56d9
+1337131				  3542836			    5553364			      7ef2ef722e4520fba09c9f4d83ecc453	c4806c504e46e8cdb00a
+1338222				  354b90d59faf8b0d758f74eae3a511e2  5560796			      7f1737a750d8246d325e		c4b999517b713adb6480a349bb6d7658
+1342497				  35536ca8f1769dc6c74f		    5562029			      7f3ab982eb65900c5159		c503014bbb03088bec37a61231036461
+1342942				  356294			    5574345			      7f46e790c9e342d75dcbd9b1deb9d940	c577716bd2f15b9ca330b15443e8bfbe
+1343455				  3563671			    5580829			      7f4e44a42b8e1f457f77		c591cab03c66780b18d5
+134acb5f7423312effcc98ec56679136  35723b58d238a67234d8		    5587680			      7f73238f55b7158b6852		c5af642cf217971d93f499e8f70fcb72
+1350641				  3582544			    5596077			      7f79c85c8883268660bd		c5afa16b07747b113808
+1351047				  3599025			    5598271			      7f9422fc8372b7c4b1a2		c5ead2b72b2be03eb0ca
+1352028				  35fb758c18036d7f8640		    559e56401dee3eccfa23	      7fd265e5419efe71477ca560801d0130	c613bd0fad5de00bab2e
+1355170				  3624478			    55b804cf62b8ee0fa23efdb3ea5a4701  7fd4c975883074a99864		c648d753e7d0176ff172
+1357185				  3649773			    5603909			      801265				c67039252268ec5e66ba
+1358794				  3668591			    5604018			      8020379				c6936d219db8e6635d25
+1361643				  3669688			    5606474			      8035611				c6b3e4d47d933b057aab32c9c29c4221
+13623f68e36fdad4cb67		  3676137			    5608566			      8036995				c70fb69eef42d40bed06
+1362a8908be01e23041d		  367ff95d4d3d3770fa7b		    5610068			      8054226				c71f241125ed879d4af7
+1363730				  3682135			    5612981			      805439				c781881856b30cacef36
+1367378				  3685134			    5614326			      8067e173121625e79498		c7a2333c227e24226808
+1369619				  3688944			    56180516c91e8b934168ea29c52ee242  8069261				c7a37230842f82fc51eaecf855fbf7ab
+1372780				  3691418			    561bf3bf6c1477d99e7b	      8074321				c7dd1262bd81a32663f0
+137653				  3692387			    561d5eec7fed9ebf48751d124a77b087  8086892				c7e9a91256c9c5db1676aa3c240531cf
+137667				  3693550			    5623772			      809420				c7ec9a30052127c7a1ad169eeb83f159
+1379479				  3695458			    562f25bbcf20691217b8	      8096192				c80e24454ee353d3c123
+1379652				  3696512			    5633266			      809693				c84643e4d13818fc5a35a8de888126bb
+1381489				  3699110			    5642247			      809867d7110acbde87af		c87011a445135417c114960bbc187618
+1382972				  3699696			    5649074			      809993				c87cc706625b8a54e604fb1024106556
+1387470				  36c1db6ba57fc1fe72ae		    5650237			      80b4b93baa5b33ed25e1823d3494f0a8	c8a451502958fa367d84bf038081ee4b
+1388243				  36c31a9b653779b2b7d1		    5658529			      8112114				c8b3fb31c1552ecbaafb
+1390853				  36e652488563ab23ea04		    5660363			      81299cd171a60a071343		c8d1caabaf7b43317bc8825c226045d2
+1395810				  3706203			    5660624			      813813				c8e62ef8cb9515d64df4
+139f710ca91ed5fabaf9e6616d2c762b  3714115			    5663cc76aa329b2ddfb5	      814599				c8eb9d0938584a277f90
+13f02f45a41ad90f454f		  371698			    5665472			      8149412				c91859ed22e4dda11d36
+1401195				  3719535			    5669126			      816134462577399ee8b2		c92066d9d38b236a21d5a7b729a10f12
+1402045				  3719849			    566ebde618ec18f2bea6	      81635e6cbc933b7e8862		c9248a239bbab0e0d42e
+1402892				  3721106			    5675359			      816927d8d8d2d7d8afb0		c943835a9742f5021eeb
+1410088				  3725741			    5679049			      8169809				c9792757a9fc02d01408bf30855d412f
+1410094				  3728656			    5680477			      8171599				c97fe158082000ae06ad624527433de6
+1411980				  3735779			    5682306			      8172807				c9f42c81c53b276b6560
+1417f55cb896a44e68a6		  373f0857211e860c7591		    5684769			      8179471				ca6ed07e5c8017272701
+1423116				  37463b35ef8606629d2e		    5690111			      817977				ca851e39229551208c0d
+1423373				  3750225			    5690132			      817a70706587da3bd862835c59ef584e	ca8f71e38ad12ff157b34d5425d50ec7
+1424374				  3750774			    5690971			      8183993				ca92b42f1f796763e5d1f8cd73247a30
+1433392				  3750993			    5691375			      8184301				caaf6087162f1c6361571ee489da260f
+1433794				  375397bc942d134a3c82d0dd514f3fea  5693955			      8185b3dcf08ec728fb22b99016dd533f	cad6d3d223fc8d769227
+1435045				  3760008			    5696520			      8209b67ff556cb18651d		cadedd0dd0d4c966462b
+1435555				  3760670			    5702d57eb4cb6ef6e7e8	      821473a1596f1429024cb1eadb471927	caeb0a6dc89d9e7ec48d
+1436671				  3772157			    5703516			      8219574				cb0833a03a7d30c6d6e0
+143e65a425722dc2f3d0		  3778347			    5710254			      822643				cb2b90523c592abe7ae4
+1440567				  3778686			    571027			      8232376				cb5a28fa8d4db3fc1ba51894663c1aed
+1440754				  3783153			    5712436			      824628				cb5d8157a8fa5a4a046e
+1441019				  3791168			    5716253			      8248457				cc0ac48d34860c5bb3f9112f4d9a0300
+144747				  37931				    5717321			      8249238				cc3c187172ac848bd896ecb2b812dc51
+1451300				  3799831			    5719077			      8249328				cc63e6aa9a88ea6e901f
+1453629				  379cc31c29cfb5bdc9a0		    5719341			      825970				cc704ba2a96e4a319e9e
+1459283a9c934cbc41f3		  37d73786afab7da6037f		    5720029			      826218				cc8647960afeb2c15a6061d7ab7e594e
+1467584				  3800756			    5722085			      8263132				cd045c3663f0fe2cd0e92d88a8ae2274
+1473120				  3802732			    5722696			      827988				cd19a20d2e712f61d2ea
+1483322				  3803003			    5735359			      828099				cd72af254e50e01ae763
+1486762				  3803893			    57417446d9c2e986692b3c60069ebc45  8285428				cd9a1a7c969c06eaae8b
+1495011				  3805436			    5748e199a3bec164a867c9b654e5ffe5  8289612				cdf79835a0e30a9cbdeaaf2eb4151077
+1497850				  3806329			    574fc95caee4c22f21ed	      82d3bb091d45b59c1d7674727b1292a7	ce5ebb37390ab0ae56c9e6e80128fdc2
+14a8d6bf4783f4704c8a		  380c24afec20963617c82c43590b78f2  5752919			      82f7b21509a69a0d70e18f2e4ddf5ed9	ce648166902041fbc613
+14f34c2b8153d9b4f336df8535b3416a  3816122			    5753650			      831611				cf2b4e56fe28835c3ceb
+1507152				  3822f77eb07e8e8efb2e		    5761c3be67a0c7d78ec8	      8321212				cf4b324f8955bc56ce0ff9399d9fdea6
+1509946				  3823483			    5763651			      833151				cfaad5763fb7471aed85
+1516095				  3829194			    5773979			      8336771				cfc9f059459cfefd1f61134b48291436
+1519543				  3829302			    5778557			      835062				d039e69e97afbf1b863b
+1521059				  3832818			    5780124			      835821d98f325225e81352ea828cf521	d03a49767c7c307be5ed
+1522bcdb5b05365c0222		  3833430			    5780127			      835979				d049a307a271052dc740
+1526444				  3834957			    5781308			      835cda68ddd9c5416defce876a4d7dd9	d0bb1f94cda69a5e7c96d1742cc5adca
+152f15b2dadca9a74039aeab944714af  3834979			    5782780			      8364262				d100a028027c5a6b8340
+1534135a419bb0b957b9		  3838828			    5787626			      8372494				d11c77c5565482e965d1919291044470
+1545255				  3839812			    57901e91e5c5a8bac3eb0cbbdd3aba81  837538				d1351610477840bbbb72
+1551619				  3844261			    5793291			      8378209d6cf5f073087b3c2b9814acec	d1426ffad93b786e035e
+1554441				  3860197			    5794494			      8383050				d14e424540faedb3ea88
+1556251				  386098fb7348606b295a		    5796677			      839f6a3534002a6a29d819666a28bf5e	d1899f011ae41b26fb6e
+1558831				  3878ce0f3e232e3daf5c		    5803651			      83a39d9328788372677a		d1af2b73d38fbceee5c848fc9cf641ce
+1561144				  3886519			    5803923			      83b56c3e76c28f88e9ea		d29d079100f8d81b905e
+1567224				  3891365			    5805662			      83e4136803ca67b4955a		d2c38170d4beceeb32dc
+1572547				  3893296			    5807648			      83f3cd8f44208a1856ce		d37ab1524a7d5e373ee5a2a0176ebd22
+1574231				  3893624			    5807738			      83ff717d87c2559cc6e3		d3bf8d7a1867aed16d30
+1589531				  3898894			    5807746			      8403108				d3d4123985ffea996781
+1590178				  38f7f1f3b07c77a9c537		    5808d73731b50f8abbdcb3c3c5c1e6fa  8406352				d4175526801c6e7bddee
+15b3c2a2e9bc7a3c345138a32e029969  3912465			    5809279			      841006				d44132ae3bdcc0ca96a9f9f84d6d3463
+15f0772db25343be0bb7072f15992a4e  3917103			    5819145			      8412843				d44fde5d323473ce8be7
+1600408				  3918044			    5823693			      8414494				d45259ce3f8e4c226846d2f31bf719f5
+1608287				  3918279			    5823716a1da5f0273504	      8420193				d49f6fd44b9e690a6ac5
+160c990c61c5f527445c		  3918300			    5846464			      8427853				d4d90bc5b8fb9a56fa2d4f2383a2eda7
+1610922				  391fb178d7c06e8dc7e4051d9b5395af  5849024			      8428798				d4fc31bc09e8b0756569a416aede330b
+1628838				  3931936			    5849790			      844388				d4ffebb452fe738b8aaa8005fc08a068
+1638546				  3938253			    5855372			      8444323				d52d9ba44541fabaf4b012f4e62d675b
+1638695				  3940455			    5856269			      8447221				d592394c0cedd32513f8fbb87ca05938
+1639941				  3943d55ca7eedf716ed6		    5858518			      844aab52fcff6b1c652a		d5da6f4b29a844a5865a
+163f5fdf47ab45d7addd		  3946121			    5859643			      8450931				d64234a093e223e319d2d7a104d4b85e
+1646117				  3947385			    5860168615a35b5b5ef69710d61f02d4  8458501				d6428881f451097f329e
+1650115				  3947bdc0f7b0dbcd51fa1ee53974fe66  586056			      8460004				d68467b87bc50e04c41e
+1650418				  3948701			    5860853			      8464000				d692487c9ed35938da376f3b58d91206
+1653394				  3963225			    5862530			      846545				d6aa922505c4e5f21f2f
+166499794efcdfde4d00		  39656378b59fe2eeb0f4		    5866756			      8470123				d6cd0fb8c85e1547c3c60f95f5b2d5e1
+1676440				  396e85fe4facca626782		    58673e7bda3767bf82b1	      8477219				d6cdb809115ecf46d5fea5a458c4dada
+1679110				  3971007			    586892			      8481824				d6eb474543c32eb33504
+1685139				  3972601			    587011a65d05f067a29ce9c22894d1d2  848913				d710f2751428975448a4
+1685580				  3978039			    5872584			      8497c831c0a37ec4060b		d76eb4f4eea0320bb35dcd1b2a4575ee
+1688557				  3978536			    5875326			      850437				d85b17e6e13fd8dcad7cf51d1c6b3a1c
+168c9d74b988391e702aac5f4aa69e41  3978565			    5875346			      85098ded28a6e472fa7d4c5b0afd5d3e	d883c3fe1402c7ced6fc
+1693769				  398429347c96e98aba88		    5881137			      850ab7372d51005fdfd7		d887f01c563a60554360bb5ae07cd1b0
+1694496				  3984959			    5882365			      8513270				d8e8d65d0418886c47d0
+16c0eb09d232461a773c22803a3df35e  3989161			    5882966			      8543933				d91a0983140acbb8bc6455f58cbf45cb
+16ce4914683da30f87d0		  3990769			    5886984			      8555125				d97eb37da84ce7329de6
+16e35ed936bab863a29b		  3993992			    5888967			      8555297				d9ef555fb7ef5498c709
+1701305				  39c2f27b581720482bc0		    5889795			      855680				da0ebd94c1c1fcf7ef6f3cd3f1f6fb9c
+1701845				  39c53f824daef7d363db		    5894681			      8577232				da582d745fa2bf0ddd8f5f7480042291
+1702293				  3a094e0218bc91f0e2d4		    5898352			      8585400				da673e7cd79d0b6899b9bd6a68c860d0
+1705235				  3a2a081e4f3089920fd8aecefecbe280  58e015dd9ff33049da5a	      8588668				da6c11fad0fc1966aa057e62bacccb2d
+1707483				  3a6e4d618afc344aab81		    5900563			      859473				daef0b34ec5af6f026af52d593131c64
+1710122				  3a96a407e16dae155744		    5907109			      85a3eab09fefbb3bee5d		db030013e981c46acb2886060dde607e
+1714d2952c09b96ba2d8777f1cbf9de1  3aa1d94bb83e5124eae6		    5911624			      85ab1cfc3f733165e4b9		db051ab5105c5af5401aa5ef8739ada9
+1715202				  3abc9577bede0aeef25526b201732246  592040			      85c2ea78ba8de11cdaa14c75e740d633	db5ec4ce7c1dbaae4707
+1716699				  3af51fd2d11ddcad7f16		    5924965			      8601bfad4ad512ff9d6d46d1ba0fbcca	db709c8c1279348e0638
+1720032				  3b1159baecb809b5fcb3a6154bc3cb0b  593c950ba1a3b9dd08d5	      8616550				db7b6db7035dd48e5902
+1722150				  3b258f5287fcc181aacf		    594015			      8617378				db972e738cfacdf8055f
+1722465				  3b71a120ae7789956ef8		    5951030			      8621775				dbb593a597acb2c0b93b
+1722663				  3b9d893f1e0788f8fad0e6b49cde70f1  5953776			      8638475				dbec2584e7508cbfc79e
+1727204				  3c2e5bf1e77986dfd51f		    5969656			      8659759				dc176cdb29efd826e8c748e7f96933f0
+1728255				  3c76bc174844948c5f98		    5973156			      8662660				dc3257b6a44da3d8fd05
+173778fd95b9e21afd1aa4ed16bb0694  3c98ac23d4e1c97da065ad7c4562c16c  5981683			      8663d3bbfd586bffecf6a0094cd116f2	dc36e180d1888629cf33
+174056				  3cefcc92891c4f1571f8		    5984815			      8664457				dc61c42aa4e89e139cd8248f59af6b3e
+1748a6676120a0aacea2		  3d2454905d8f01886d651f207e2419f0  5996074			      8668000				dc673da0c531c7a6059b
+1752014				  3d5aa90144a4696be61b3991aa339cc5  5998853			      867589				dccc1c4fdcf1c7a31757168b19c827a7
+1757120				  3d7e2b077ba5af48ab1ba96678733e6f  59cf3e5b6d96bf67bca34530e522be08  867684				dd1538665994b48972a62966b4369354
+1757c55017ef2bfcc070909bdf0e6547  3d99498d4236248f9bfbc8ed2fd424fa  59f9d4f5fd8196c849a892a56ba90baf  8678538				dde829f94a8f83bfa922090102449fde
+1760854				  3d9ba175038a3f2e7de3794fa303f1ee  5a073b72c94de357d453	      8683457				ddf6aaa6b3d37f602fedfd38c9af9d49
+1761714				  3de0abd7d18e6edc87dd		    5a1aaa2effe3825368db4c1925924bba  8684968ebacb5522c86a		de1383080e9f8fb7d208
+1766791				  3e1cfdb76005c901b7d3f8b1e6ba1557  5a4c39e4c02502a8451d	      868b1057d9c0b72a57b809a67ad6e4cc	de1726bfc7330b2c9b2a
+1771937				  3e5107b11d19ac62a2ed		    5a51bc0ded46b230c5322a234cf8eabf  8691435				de22705b5f7ef778806b
+1773870				  3e8b195ff63929db69ccc4e5287d8ae5  5a534f9deb80775f0f497a4133a79d7b  86b60a7723b97da19f7bfa3cb7d2690e	de261e66949009f44ad2
+1776202				  3f3b547ff68effb03e20c470af22c696  5a5c3a6ad327f303cb915198aec8a90d  86b74ae47719a27bbb25		de3ab9cb8bb4b7719571
+177e37756c833768a21d446cc4921c6e  3f9c80ff42879cad41bf		    5a9f5f02c53b3fa648c5704e34b1db8a  8715089				de546cb143ebae4a489a482a05ab4beb
+1780878				  3fb234c37b5c2c934b79		    5aec669ea8a8c920c0960fa05895687f  871567				dedc857cdc0e680dfb1be99762990c9c
+1788517				  3fb443494f111eeb96e39cce1873070d  5af7cd0e934f5465b695	      872145				df0b30453338946e639449710862822d
+1791644				  3fdd80a08808bd275142d46863e92d68  5b17c9f37f351780744aefc74f93d3ae  8722026				df47cd6aea9eeac153ff
+1792428				  3fe84c05013fa87d74a8		    5b4c5ffdcdb5a13e0267	      8736338				df919538bcef391bc89f
+1792732				  3ff4278c609ce223ebb4fc300c5edd0f  5b581d774fc8500325f7	      874808				df9ad5ef01d16c02d68d9a8c17c75b73
+1795840				  4004895			    5b62847bf934785119ffb16be636e073  8752582				dfca335e370a2bc3bc79876e6270099e
+1805981				  4008567			    5b769cd2a86bb1270188ffa423941d5f  876324				dfd7eb0ce2915d004367
+1808234				  4016539			    5b9bd428079959558ba8	      876425				dffb8de093502b153e85
+1810707				  4017989			    5baaf1d206cf5e81436d	      8792346				e0defc252f665b2b51e8
+1815146				  4020619			    5bcffaac23236a78ea14	      87e9a3e0539ce268222d1d597864c098	e11b546d6ba9ebc2b604
+1818351				  4022537			    5bfad28ceb3a484dfd2a	      8803860				e196107b5e0afc834652bd3153030c42
+1820074				  4023068			    5c422d709c93615341a21009f800222e  8807124				e1b58ad5ff33c697ae83d83fdbab76e4
+1820829				  403306854d457c284d02		    5c4fd516ad174c7f443fcad9090a2d1f  880901				e1e011652b297d13b3ac3f99fd11b2bc
+1823320				  4034426			    5c973ec1b5ab2e387646	      8814190				e223622e255bd5b8c9130407397a0494
+18235723e926be0afbdd		  4034427			    5ce8bb1f4c55d17b5b25	      8818209				e28813c1e8721830ff9c
+1825401				  4034439			    5cf3163e0d77275870bf	      881cd3e0f8836121226a04efb9e2ae18	e294562759ff2755486e
+1835224				  4034526			    5d7c8763d1345eedee4408e2392bc5e0  8831412				e2af6270cc9563cca197
+1844928				  4036200			    5dcd725d464858e9082f	      8832970				e2ef822c744357a4ed16ec0c885100a3
+18531dba2bec928424c0		  4043086			    5df669df7b29806ca541	      8838751				e3433ebba20c92b63111
+1858252				  4043334			    5e96a65ee11698a26403	      883b3b4a51b0db7d0e0d		e3556f0089e89970bf9b
+1860715				  4047394			    5e9a7c0d46cfdfe00104	      8846206				e37887e81cee51ab2dc70d16780ae942
+1871929				  4050951			    5eaed8a5c299e5282d066a1fbc03152c  8851078				e37a85fb0258b045c005ca3db9cbc7f6
+1873692				  4051357			    5eba991c39426ca42cbb	      885932				e38e0588bf6d8f32e99d
+1876859				  4058325			    5eda4214788429e9d09c060cca10971f  8866ff9fd30930c85779c821f277cf58	e3a91e46df24e0c24eb656c89373c20d
+1877577				  4059061			    5f1baad30024a898e9f2115ac9b0c631  8877450				e3b59913d71d82a03eda
+187895beb89f0a1b3a54		  4070026			    5f256b69a07a43f978b4	      8883307				e41abdd59c5308eacf84
+1878983				  4073599			    5f2fd870eb8a2325c0842dbd787574c3  889692				e4907ccc9f6c1bb49b17
+1879626				  4074260			    5f54de51270d4c2d2747	      88d0ebab5ace81201f04		e522b44a1dc7d3a388d4386d416747f5
+1882562				  4076735			    5f59050155c3159c2185	      890640				e530dc9767d8f83c08f3582c71a5cbc8
+18a73aa5dab4b574e2f5		  4078034			    5f9f2c05c5e3dc6b31d8	      8907544				e53a70f9e5c3f55852b0
+18a8e06c2b179bb78353fbacfeee82da  4078780			    6000407			      891080				e542b181be28d168ba177c9b8e3787b6
+18e6b6ed5d69b057e773		  407d78fbe0f234ea34c6		    6003874			      8916745				e5fe0a832872c2b1cebe473c7cf6fb07
+1907f96e6e680bbeb15393d4f441b55e  4083574			    6005981			      8917867				e61631ea83c958befa5db92f8bde527d
+1911238				  4088322			    600fa8852b4741fb2bb1	      893580				e625e7ba482efdb670501cf401a2b6e9
+1912053				  4089133			    6019350			      893b63390160e33ddb3c		e68c2bcb3d0893eafc0025d1104a8c4a
+19154831c2049a69e8d53dea8cf3e744  4091897			    6021768			      8949577				e6d0864738da10cb9685
+1918389				  4093759			    6027183			      8951985				e6e53cbe679d3ec77e25
+1919511				  4093998b625d76ef4afe		    6027504			      8957990				e76e7c2a2aff228d7807
+191d15e28c39246a2525		  4104455			    6033364			      896603				e7b0bc65927b7987b7d4
+1920535				  4108a54877406dc231d95514e538bde9  6038174			      8969259				e82c16e0401a77dec92a
+1927a29f642593861afc		  4110897			    603819			      8973947				e93532d5e7ddf0ec56c336499165c4dc
+1928063				  411123			    6038468			      8974ac739d1ac9f60423		e9421f06ea3a62bfbb8c
+19284bd220165758a0c953ae25108b6b  4115763			    6040840			      8982669				e9625de0711f29cd0a4b57502648dd86
+19317d3e4b9a58f2355e7643040d483a  4116156			    6044677			      8983536				e972345a37686b9b1362
+1935808				  4118456			    6049584			      899524				e97d518fe02a79177b081c028a83ec1c
+1940208				  4119191			    6055795			      8a0f820261926e2f41cc		e9851bc47dcf1ba7ee15
+1943426				  4121343			    6065887			      8a16c8e30c954aec014d		e99c114a5b33cd2da538
+1947166				  4125009			    6069808			      8a8095721ee81d49f16c		e9fb36ca2220a167b7ed
+1950267				  4128591			    6074452			      8abc96b010820970f304		e9ff0ac61fcb3b1b60ba
+1951709				  4130c73434db79119f27		    6078248			      8abd37bf2d60cce6e01d		ea1b1bae0a75c4aae593df7eca72d9ca
+1969d4648458cf876af92b3507856d70  4131398			    6085344			      8abe1d2f62400f87958d		ea3bb160dbc2e650b4474a84248d0d1a
+1971061				  4132799			    608595			      8ac8be9010ebfa59c599d7915e9a7a47	ea46edc315b0f94d03b9
+1997771				  4133c66ccf65c0ba1f5f5a5bc4fb7298  6087798			      8ad859f30438f3be149fe9751391d037	ea6a808c1e1c382ec567
+19a4b105d1dff9a591b8		  4134185			    6092292			      8af030b2dd654273c5bc		ea8b0a48983b9f7a8d01cbc0651e43d1
+19d2397ff8da1952556cf2417d965f6c  4142563			    6094449			      8b100c205b8c35b3c8ce		ead9898bd3c973c40429
+1a43c785226a06a72872		  4145581			    6094977			      8b1502a49d8b20a6ae70		eb302ad37fe170386893
+1ad56b7720af8d706e7f22cbcb8c6d70  4149031			    6095815			      8b1b456ec95d95c77d42		eb6dc49c861a1c21b612b568dd188668
+1aefa4509e066690b892		  4156421			    6095e3cce3877881393a19659430ddf0  8b6f09310a847e0a7aed		eba2bf1a0ecd3e541146e98f35d49739
+1b42a20c8f3eb9bb7cb8		  4156864			    6097195			      8b799c0345eaba56cc8c		ebb282c3b73c41c1404123de6cea4771
+1b49c03968b2c83897a4a15c78980b18  4166551			    6099960			      8bb867dc631433c01fd0		ec0dbce5688e6fcd2cb91ac1fb7d03ca
+1b94c541ffc158d3e668810b75d69405  4171521			    60bacd65c89e5290f452	      8bbcc202a915e965c6a6d4f561d0e482	ec169727def8eb09b44fff84f93f1496
+1bd64fbbbc07f2a7634bcb9275929dac  4173534			    60e006b7642707c2e898	      8bc573bb3a970b1c214d		ec3adc02d927375f13d0
+1c160c9eee91fd44c587		  4173945			    6102062			      8be20f6256f9fd474c05		ec5c8bed17396e8e55cf3305dbb88f56
+1c3176fe9e38dcaadd1e56c2f15c95d9  4174069			    6103019			      8bfa8e25f36e6f619247203d1bc0291b	ec88cbdce3cdbac7b8d5
+1c48360bde201b3d54ab		  4176564			    6105220			      8c6446457bcabf6e8e868e8717426ff4	ec8ddab12364323c97d4e36459174f0d
+1c9b352ba19b5e33f9c4		  4176623			    6113246			      8c9644f9666d60cad37b		ec8f1689bfde3ce9a920
+1cae669defce037511ada4e0ed01b3cd  4178945			    6118172			      8cb3aa12e73a6df8d6b6		ec9c9074373d2443594a
+1cb4d81fed37fd06ef60d08c1181f557  4180945			    6145546			      8ce64008710128f3a076		eca49daaae6d4566383b39908bfc3fd0
+1cb65c4b5be2575ea3ab		  4189391			    6146161			      8cebde204781b7d27c90		ed9631f151710c6bd898499fcf938425
+1cd6ce82490d2c0f2e0a		  4190318			    6146611			      8d1a9b14d4e9a9080ab4752608c2de61	ed991fb8cdcac3dfadf7
+1cec2b3d8aeaaa102e3b		  4199895			    614fc39a78d028c9dce9	      8d36bc7ab765ee601403e90d1d2f303f	ede1aec7b3801eb08bc0
+1d08fa7af5ab846211ace2447e1e3e8a  41d15424e7989b936c1609b53edd1390  614fea74e9c67df0aae0	      8e2cf809155062082c838f7346e45fe8	ede5b6b793f02bd966a6a7502c0a7fbf
+1d596ca757a541da96ac3caa6f291229  41f782ce86346d46800d		    6152106			      8e4b396a1c8a1f3f80d0		ee05163d448353af4c260c544db4d6b2
+1d5b3ad08201b7df48c7f25a169d0021  4201551d7f8608f0b82b		    6156601			      8e4bea946ab9c05347fe		ee837b44613ce93064aa
+1d7cb531bb8fff8c228b7710126bcc33  4217925			    6162321			      8e7ab6fe8ad6d903aa0c		ee8c85ff0462ec6105b2
+1d878d0401b28b281eb75016ed29f2ee  4219140			    6165747			      8eabf18a6a79f5dbe3f4		ee8edb61a4aba40ce2fc653e12cd5e69
+1da13f548200d9fb2b06		  421c427db75c8c5fa1d1		    6168003			      8f07d0bfadffd40fcf40cd49cb77382d	ee9151b0ad985ca348cd
+1ddc318b4124ed152f6d		  4221932			    6175388			      8f3b0a678011ac74c61b		eea5bb9ea6a73a398c44
+1df6d34cd1b2861eb6b7432ee7245ccd  4222418			    6179550			      8f6667310a94f0c18bda10a1d5ff578c	eeb156dc7b4caca69f5b31037da54708
+1e1d383fb21841e8f144		  4225456			    6194556			      8f9980999ed43246b9b2		eebc4d569100c8e3039bf3eae56bee4c
+1e2600ed62d5e76b21ee		  422bb33419df91b253d8728fe794f8b4  619473			      8fa6b37265d5394dd7a4		eeea2093888e8d4004ec06b5a1dede1e
+1e5404260b7e3a8ba4ba0a0d62c0cf75  4230222			    6194738			      8fdb62f7094e6a9829f2		eef8c9bfb4434787672c303153eee500
+1e58686b6d5193cbaf30		  4230847			    61a82e7c920468325ea8	      8ff161505721b6c4ab25ccfe7996fd1a	eeff174666cce8ca67ae73d44d93054a
+1e7c18c6f6eda87f1cb4995b0e6a22a5  4232775			    61dc4abed6186117f2a70b058a2b8d14  8ff8e31ee1a2a9585a5a		ef26915065225df65c1187562eca7ec4
+1e7c794842755683162b		  4243336			    61f9226f7ea498abce36187ddaf51ed5  9000222				ef407a599f0f549f62d91c3a00dcfb6c
+1e7e3c1da32d00f8ce0dff6b86fd45fe  4243633			    6201049			      900514				ef4fc7fb905be7191cc2beb1421da37c
+1e8ab5bcf1a3af2c20de		  4245408			    6202539			      9012444				ef6caa586b647c3c032a4f84d52e3a11
+1ebaeaaa7f7408647fef		  42472327b4be382b02eb		    6206626			      9026148				ef7ed11b0abab37c94ad
+1ed9763ab4aa98516a7d		  425ca642955f73452ebc097b3b46c493  6229929			      9040475				ef9e5c352e54769c4d43
+1f140573b37939e78eb5		  4260425			    6230787			      905137				efabc30c4b2c9afd8a83
+1f66e4d58074d64c8268		  4260442			    6258303			      905380				efbe081b2bde5662cc1e76db0e12289e
+1f8dfb1b5c82627ae3efcfbbadb9f514  4266068bb3a5e36c2bff		    6260dd97a3e39eba9cd6	      9056ad6e642b814090829edffb4ffd27	efce2e1a817a01441f08
+1fa4f3360ffdb1e69507		  426829			    626356			      9060558				efe482bad12c2fae6afe
+1fe7b9ef3e6108216759		  426eb575fc70e5ee87ef		    6280390			      9077495				f07d827a4818fda0db81
+2005165				  4276757			    629508			      9089444				f0bc519824e46815939b240c4f6a7553
+20089f4abf9706d0cdc4		  4282679			    62d629216e19906c53d3	      908a8f99ea5c98cedb4aaf71c7a3324f	f112560fd04ce43c53d4
+2011426				  4289538			    6309113			      908ef5f4fa162f15b3b8		f11258583ffcc4728eb71adc0f38e832
+2019037				  428e5b737306937628f2944fbfdc4ffc  630df68eb42d881755a3e30343252f74  9090456				f150b59dd68500099a56184dc25f1300
+2020955				  4319265			    631953			      9098744				f15921b2257af1db953f
+2021781				  4334461			    6323931			      90a6d0f6789e15c38e97		f17910ef74687b3a062bd403f79e340a
+2025129				  4340606			    6325830			      90fe4a3bc0caa582fc563ec503e5444c	f18b7b54830270b01b99ba5e78024a39
+2030390				  4345418			    6327611			      910392				f1a6bd3c8585c400c190
+2031484				  4345582			    632e39a9b4dda391fe54	      910726				f1c94490e636a4ed54b4
+2032428				  4349257			    6333547			      9110299				f1eca6cb0061cde701c2
+2032745				  4349575			    6334787			      9132441				f234879ceb3a31e8ec54c601844ed706
+20336				  434e185ce543ca1c8a99		    6337361			      91334d590b6592c0c960		f2608cbe54403edb0b13
+2038329				  4350345			    6366854			      915335				f27efd1ddcbf57be0d14031a5e692015
+204a609ee295c81c3cc202ecbe68752c  4358668			    6374514			      9160719				f28b7a2d3356a0ed39823aaea66b50d0
+2054744				  4361991			    638aca3fc4314290af59110d0602f86e  918751				f2bb0cc876828b54f2ed
+2061456				  4365237			    639576c25693ca4890457efa5f67d103  918d4ad7c931bc14b475008c00aa09f1	f3190ebba6c53887d598d03119ca2066
+2068759				  4365631			    63e115cc0c79b4f6b8b3a6b797e485c7  9218791				f3538c32965575e59bcd
+2083178				  4365814			    6404683			      9218f99ba35da225ca11		f35fbc80e066a49d65f1688a7e99f069
+20a147e657ee5e8d8666		  436e19a22f570f1cce2f		    6408165			      9220847				f390aabf53cf1406fc71166a47236ebf
+20a36f89546854cc434ecee70522cb8d  43e20eda5eb5834b61bc06a4c1855b29  6414599			      9228580				f3ce814ee66c965638fe
+20d90e1f21792a67eb6d27c445aa7a1f  4407510			    641dc6b15155e600135d	      922973				f3f67424adda343fef40
+211868b4f589428d2626		  4413028			    642535b8baeaedb02a56	      925008				f3fc4537fac67a0f2df2
+2142891				  4413863			    6426282			      925270				f435aa0ccd498b0840d2407d599bf31d
+215101				  4420532			    643f812a275a9e0c75048aab6988a92c  9258971				f45de3bbabbcacd3ca29
+2152643				  4423605			    6446136			      9270848				f4b6f5c8f6c2a51c3f60
+215274				  4426342d455de2421d89		    6453947			      92a2d05dd772778f86f2		f4cc99efc90c487b6fed
+2172888				  4427984			    6454814			      92e65a8919b11d9310b32b194b09741c	f51df716906be1d8f7337ffa183d32f4
+217bfb7e54c6f75b9b1b2b3d73a1a43a  4431155			    6462976			      9300560				f53bb3e40edbceb38904
+2184906				  443622de54589e31c1d98c6ea8eff84b  6463966			      9301467				f551b2b6fd4d6b6e1ef2
+2192812				  4451253			    6467595			      930276				f55c4ce19598b2b345ef
+21b4442b7e7f36f6a17b		  445785			    6471e364501e7c62a0c41d92fa6090bc  931406				f5b0d13b0bb3e4ac0572
+21fbffd7a7990f5e066c		  4461572			    6472432			      9316552				f5e40e52de480e53a243fa15af536a8e
+2203822				  4461862			    64821d31816bce595a4bbd98588b37f5  931984				f66cb485a3f3353402a5
+2205aa857901be69a4186b7a74334a41  4463278			    6483510			      931b0194242fca0e234e		f676b9bd2e6930dda95c
+220d56ea6fe9a85a4d762128b11adfba  4463756			    6499135			      932345				f6923957293620d6814052e0ccdf0ddf
+2213915				  446bcbe699d4fb54972f		    64cf037c55c0d42196762c0ccacc7380  9335869				f6df442d0250f265409c
+221685a8e03a01baaf1e		  4470212			    6504557			      9343730				f6effc4468cca6f4e8f0
+2220293				  4471462			    6507189			      9345872				f788cfd227cb94d0843235a2542026fd
+2229985				  4474608			    6507cb95562f1db6df84	      934a8308a4ec09e2e0756a313a915622	f7d8b6cb045cbb65ab80
+2232681				  44822f94af25f11a2fda5beba2593229  6509307			      9358479				f7fdb8284643b1c175a9
+2245426				  4490410			    651080			      9372073				f85e89bef4b6e9b83f2a
+2280363				  4494118			    651afb13d45e4c587f63	      937534				f884a43c59e26199591ec4e234d069f5
+2288152				  4495f2c97ae6605c32c8b8c61bd34a74  6530635			      9378601				f8ab99789fd347a13591bc7eeff97149
+228998				  4497119			    6532185			      939252				f8b86d001a367aa7dde1ab6b587246b5
+22935c16da4eda92762f		  4497f8a4f675170180ab		    6532334			      9395cd6d36c7ac3be2d1		f8c9df05a65d311aa6ec
+2301119				  44a392a01fa3e0181972		    6536381			      9396204419c7b638d38f		f93a377244be9bfcb96d3547b9bc424d
+2310005				  4504341			    654157			      9397410				f940f98fbbac84d35e8d
+2321077				  450d7da20daaba6d39d0		    6551668			      93e0ba46f0fa6faf660d		f97205b73610dd30254652e7817f99cb
+2337dd6cf56f2845bfa901a6b9c430ae  451a6685fddcf8ccdfc5		    65538			      944049				fa0647722365f5a4b2ad
+2338529				  4522091			    6553a21faade20f72e9f	      94412c4808421acbd1d0		fa287fc6448f84004284f5c086f59661
+2344345				  4524299			    6557760			      944439a04546f4c02cb9		fa43af59f3ecf9b10c88
+2351057				  4524784			    6562886			      94456				fa5755c7f7fa49b47961
+2351079				  4534a3e2a1584afc314e7e040c79d60c  6572592			      945093				fb9d710bd20579771b40
+2358089				  4543974			    6576933			      946582				fbadce83877a36622720
+23585f7f50005408fc72		  4546068			    6581415			      946c4d9aa7a74828bc12		fbb19b73fa25423f02e8
+23703b934c442a54808e245d9418545a  4547295			    659867			      9481236				fbbdb1ba7c66cc4e1bb2
+2371c78fc0a5c8935a7a		  454964087739a449da04		    65fbce1860ef204ee908	      9497761				fbca5503c391c265f958f49b60af6bae
+2379572				  4555097			    660303			      949ba045d1471c03ae7c		fbecc71022b62515a484a4a33d13014d
+238302				  4555911			    6604662			      94a400a7bce6f8cfc9e7eff87270c9e9	fc1527d6d9492b59c610
+2392540				  455694506ee6595c92e4		    6606487			      94d747fe5180851196eb		fc3589eeabaee9ac5c05
+2395528ca82e1a9b1b5f34391f00e19c  4558903			    660a9d578b5f0225e5f0	      94e623123f20566d158569a2ef3b25a2	fcb9409ef1c1835fa5fb25a860991751
+2397ca6bea914adedb30b8bad4d14686  4565147			    6622819			      9502024				fcbdd3924ee230592ab4
+2406a3034b4afb800290		  4571292			    6622928			      9507070				fd65891daf183d99d91cb83b89e2a4c7
+2408388				  4574656			    6623972			      950bbb9d9d4014d893e5		fd9ee43167f5cc1da130
+2416148				  4575855			    6625609			      9542707				fda9fd2a7a1e0bc458650ec4c3a0bf93
+2420407				  4582282			    6627336			      9574251b3c7eefccd84fc38905110ce4	fdff82cc02b161d0141d
+242176c5bdb282b0a327		  4586359			    6637377			      95a2a749ceb47ad4eb1ff6d1f8d73c5c	fe0d232bda81f15e838b
+2423179				  4587049			    6649639			      95c61c9a1501ada2a6c5		fe4fd5f27a4811cb0187
+2428250				  4594879			    667150e96fdc2d53fd11	      95c66d564c58361ecf9f		fe855653e9757e1ce8c4
+2433411				  4598017			    6673250			      95f97485ada5b47693ca		fe8e267149862eb67127f4fff7e017be
+2438871				  4599814			    667919			      964472				feb86d4bdd9a658c122a706f26ba7e1e
+246474141cbe588eb9fb		  45c1c820a8fa67d8e17e3079d6aa2a65  6679768			      964622				ff122e8563793bb28f79
+246727				  45c3d886c182a1ea26d5		    667c5554e5d9d9a25ae6	      9646279d220994222845		ff2f97d91c9bed820c15
+2471505				  45cb32dd5c1485e273ab81468e531f09  667e61d2f101f2f04542	      9649532644540b5b798308f66699ef67	ffb1b5f12d7ad787f6e4
+2475758				  45ce9f33615a3b24c51f		    6680676			      9655195				ffd436e0a7897c9e872d
+2477361				  4603234			    668791			      966387
+247d1f1e86fa3749429791cf457052e2  4604508			    6691093			      9667052
+2511428				  4619865			    6695625			      9670681
+2511464				  4624820			    66ed98cf3fc2b161df47c0c08954dc62  967274
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists$ cd 0a2*
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists/0a2ac74d800a2eff9540$ ls
+modules  output_data_2.7.yml  snippet.py
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists/0a2ac74d800a2eff9540$ vim output_data*
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists/0a2ac74d800a2eff9540$ ls
+modules  output_data_2.7.yml  snippet.py
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists/0a2ac74d800a2eff9540$ python test_executor.py     -f '../../hard-gists/0a2ac74d800a2eff9540/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker >> output.txt
+python: can't open file '/home/geng-04/CP8202-python-dependencies/hard-gists/0a2ac74d800a2eff9540/test_executor.py': [Errno 2] No such file or directory
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists/0a2ac74d800a2eff9540$ cd ..
+(venv) geng-04@gamma:~/CP8202-python-dependencies/hard-gists$ cd ..
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ touch output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ ls
+clean_dirs.sh		 competition_guide.txt	fse-aiware.jpeg  hard-gists.tar.gz  output.txt	  pyego-results  readpy-results  venv
+cleanup_test_folders.sh  folder_to_file.sh	hard-gists	 LICENSE	    pllm_results  README.md	 tools
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ python test_executor.py     -f '../../hard-gists/0a2ac74d800a2eff9540/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker >> output.txt
+python: can't open file '/home/geng-04/CP8202-python-dependencies/test_executor.py': [Errno 2] No such file or directory
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ cd tools/new-pllm
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ ls
+build.sh  changes_from_original.txt  docker-compose.yml  Dockerfile  entrypoint.sh  helpers  Pipfile  test_executor.py
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python test_executor.py     -f '../../hard-gists/0a2ac74d800a2eff9540/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker >> ../../output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ cd ../..
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ ls
+clean_dirs.sh		 competition_guide.txt	fse-aiware.jpeg  hard-gists.tar.gz  output.txt	  pyego-results  readpy-results  venv
+cleanup_test_folders.sh  folder_to_file.sh	hard-gists	 LICENSE	    pllm_results  README.md	 tools
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ nano output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ vim output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ cd tools/new-pllm
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ ls
+build.sh  changes_from_original.txt  docker-compose.yml  Dockerfile  entrypoint.sh  helpers  Pipfile  test_executor.py
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python test_executor.py \
+    -f '../../hard-gists/<GIST_ID>/snippet.py' \
+    -m 'gemma2' \
+    -b 'http://localhost:11434' \
+    -l 5 \
+    -r 0 \
+    --no-docker
+Running model: gemma2 | temp: 0.7 | loops: 5 | range: 0
+File not found: ../../hard-gists/<GIST_ID>/snippet.py
+Failed to get modules: [Errno 2] No such file or directory: '../../hard-gists/<GIST_ID>/snippet.py'
+Failed to get modules: [Errno 2] No such file or directory: '../../hard-gists/<GIST_ID>/snippet.py'
+Failed to get modules: [Errno 2] No such file or directory: '../../hard-gists/<GIST_ID>/snippet.py'
+Failed to get modules: [Errno 2] No such file or directory: '../../hard-gists/<GIST_ID>/snippet.py'
+Failed to get modules: [Errno 2] No such file or directory: '../../hard-gists/<GIST_ID>/snippet.py'
+['2.7']
+{'python_version': '2.7', 'python_modules': {}}
+In process 0
+Docker build complete!
+[local] snippet exit code: 2
+../../hard-gists/<GIST_ID>/.venv_<GIST_ID>_2.7/bin/python: can't open file '/home/geng-04/CP8202-python-dependencies/tools/new-pllm/../../hard-gists/<GIST_ID>/snippet.py': [Errno 2] No such file or directory
+
+No error type found
+1
+[local] Removed venv: ../../hard-gists/<GIST_ID>/.venv_<GIST_ID>_2.7
+Processing completed without timeout
+Done
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ cd ../..
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ grep -rl "import flask\|import requests\|import numpy\|import pandas" hard-gists/*/snippet.py | head -5
+hard-gists/005bbad123ef309a5bef/snippet.py
+hard-gists/005ceac0483fc5a581cc/snippet.py
+hard-gists/00a17b1d374dfc267a9a/snippet.py
+hard-gists/00e9638c0efad1adac878522cf172484/snippet.py
+hard-gists/0306734dfe17076dfd34e09660c198c0/snippet.py
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ python test_executor.py     -f '../../hard-gists/005bbad123ef309a5bef/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker
+python: can't open file '/home/geng-04/CP8202-python-dependencies/test_executor.py': [Errno 2] No such file or directory
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ cd tools/new-pllm
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python test_executor.py     -f '../../hard-gists/005bbad123ef309a5bef/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker
+Running model: gemma2 | temp: 0.7 | loops: 5 | range: 0
+Found "import" in ../../hard-gists/005bbad123ef309a5bef/snippet.py at line 1:
+Found "import" in ../../hard-gists/005bbad123ef309a5bef/snippet.py at line 2:
+Found "import" in ../../hard-gists/005bbad123ef309a5bef/snippet.py at line 3:
+Found "import" in ../../hard-gists/005bbad123ef309a5bef/snippet.py at line 4:
+Found "import" in ../../hard-gists/005bbad123ef309a5bef/snippet.py at line 5:
+Found "import" in ../../hard-gists/005bbad123ef309a5bef/snippet.py at line 6:
+{'python_version': '3.6', 'python_modules': ['sqlalchemy', 'redis', 'time', 'requests', 'datetime', 'memcache']}
+{'python_version': '3.6', 'python_modules': ['sqlalchemy', 'redis', 'requests', 'python-memcached']}
+['2.7']
+[LLM-unvalidated] sqlalchemy -> 1.4.0
+[LLM-unvalidated] redis -> 2.10.6
+[LLM-unvalidated] requests -> 2.28.2
+[LLM-unvalidated] python-memcached -> 2.2.0
+{'sqlalchemy': '1.4.0', 'redis': '2.10.6', 'requests': '2.28.2', 'python-memcached': '2.2.0'}
+{'python_version': '2.7', 'python_modules': {'sqlalchemy': '1.4.0', 'redis': '2.10.6', 'requests': '2.28.2', 'python-memcached': '2.2.0'}}
+In process 0
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.2
+[local] pip install python-memcached==2.2.0
+[local] FAILED: python-memcached==2.2.0
+ERROR: Could not find a version that satisfies the requirement python-memcached==2.2.0 (from versions: 1.31, 1.47, 1.48, 1.51, 1.52, 1.53, 1.54, 1.56, 1.57, 1.58, 1.59, 1.60, 1.61, 1.62)
+ERROR: No matching distribution found for python-memcached==2.2.0
+
+ERROR: Could not find a version that satisfies the requirement python-memcached==2.2.0 (from versions: 1.31, 1.47, 1.48, 1.51, 1.52, 1.53, 1.54, 1.56, 1.57, 1.58, 1.59, 1.60, 1.61, 1.62)
+ERROR: No matching distribution found for python-memcached==2.2.0
+
+Could not find a version
+[REGEX] Extracted module: python-memcached (from VersionNotFound)
+{'module': 'python-memcached', 'version': '1.31'}
+Docker build failed!
+1
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.2
+[local] pip install python-memcached==1.31
+[local] FAILED: python-memcached==1.31
+  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [23 lines of output]
+      Traceback (most recent call last):
+        File "/home/geng-04/CP8202-python-dependencies/hard-gists/005bbad123ef309a5bef/.venv_005bbad123ef309a5bef_2.7/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+        File "/home/geng-04/CP8202-python-dependencies/hard-gists
+  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [23 lines of output]
+      Traceback (most recent call last):
+        File "/home/geng-04/CP8202-python-dependencies/hard-gists/005bbad123ef309a5bef/.venv_005bbad123ef309a5bef_2.7/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+        File "/home/geng-04/CP8202-python-dependencies/hard-gists/005bbad123ef309a5bef/.venv_005bbad123ef309a5bef_2.7/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+          json_out["return_val"] = hook(**hook_input["kwargs"])
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/home/geng-04/CP8202-python-dependencies/hard-gists/005bbad123ef309a5bef/.venv_005bbad123ef309a5bef_2.7/lib/python3.12/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 143, in get_requires_for_build_wheel
+          return hook(config_settings)
+                 ^^^^^^^^^^^^^^^^^^^^^
+        File "/tmp/pip-build-env-ksp1abim/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 333, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        File "/tmp/pip-build-env-ksp1abim/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+          self.run_setup()
+        File "/tmp/pip-build-env-ksp1abim/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 520, in run_setup
+          super().run_setup(setup_script=setup_script)
+        File "/tmp/pip-build-env-ksp1abim/overlay/lib/python3.12/site-packages/setuptools/build_meta.py", line 317, in run_setup
+          exec(code, locals())
+        File "<string>", line 4, in <module>
+        File "/tmp/pip-install-es4pzbpz/python-memcached_d7a56a0757134c6c88c1b84067eed220/memcache.py", line 405
+          except socket.error, msg:
+                 ^^^^^^^^^^^^^^^^^
+      SyntaxError: multiple exception types must be parenthesized
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+ERROR: Failed to build 'python-memcached' when getting requirements to build wheel
+Collecting python-memcached==1.31
+  Downloading python-memcached-1.31.tar.gz (13 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error'
+
+Syntax Error
+[LLM] Extracted module: python-memcached
+{'module': 'python-memcached', 'version': '2.0.0'}
+Docker build failed!
+2
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.2
+[local] pip install python-memcached==2.0.0
+[local] FAILED: python-memcached==2.0.0
+ERROR: Could not find a version that satisfies the requirement python-memcached==2.0.0 (from versions: 1.31, 1.47, 1.48, 1.51, 1.52, 1.53, 1.54, 1.56, 1.57, 1.58, 1.59, 1.60, 1.61, 1.62)
+ERROR: No matching distribution found for python-memcached==2.0.0
+
+ERROR: Could not find a version that satisfies the requirement python-memcached==2.0.0 (from versions: 1.31, 1.47, 1.48, 1.51, 1.52, 1.53, 1.54, 1.56, 1.57, 1.58, 1.59, 1.60, 1.61, 1.62)
+ERROR: No matching distribution found for python-memcached==2.0.0
+
+Could not find a version
+[REGEX] Extracted module: python-memcached (from VersionNotFound)
+{'module': 'python-memcached', 'version': 'None'}
+{'module': 'python-memcached', 'version': None}
+Docker build failed!
+3
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.2
+Docker build complete!
+[local] snippet exit code: 1
+  File "/home/geng-04/CP8202-python-dependencies/tools/new-pllm/../../hard-gists/005bbad123ef309a5bef/snippet.py", line 36
+    print str(typeid)+" exception :"+str(exceptionCounter)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+
+Syntax Error
+[LLM] Extracted module: snippet
+{'module': 'snippet', 'version': 'PLACEHOLDER'}
+{'module': 'snippet', 'version': ' '}
+{'module': 'snippet', 'version': "Please provide the comma separated list of 'Module versions' for the 'snippet' module, from oldest to newest."}
+{'module': 'snippet', 'version': ' '}
+{'module': 'snippet', 'version': 'v1.2.3'}
+No previous this time!
+4
+In process 0
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.2
+[local] pip install snippet==v1.2.3
+[local] FAILED: snippet==v1.2.3
+ERROR: Could not find a version that satisfies the requirement snippet==v1.2.3 (from versions: none)
+ERROR: No matching distribution found for snippet==v1.2.3
+
+ERROR: Could not find a version that satisfies the requirement snippet==v1.2.3 (from versions: none)
+ERROR: No matching distribution found for snippet==v1.2.3
+
+Could not find a version
+[REGEX] Extracted module: snippet (from VersionNotFound)
+{'module': 'snippet', 'version': 'None'}
+{'module': 'snippet', 'version': 'None'}
+{'module': 'snippet', 'version': 'None'}
+{'module': 'snippet', 'version': None}
+Docker build failed!
+5
+[local] Removed venv: ../../hard-gists/005bbad123ef309a5bef/.venv_005bbad123ef309a5bef_2.7
+Processing completed without timeout
+Done
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python test_executor.py     -f '../../hard-gists/005bbad123ef309a5bef/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker >> ../../output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ cd ../..
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ vim output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ cd tools/new-pllm
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ python test_executor.py     -f '../../hard-gists/005bbad123ef309a5bef/snippet.py'     -m 'gemma2'     -b 'http://localhost:11434'     -l 5     -r 0     --no-docker > ../../output.txt
+(venv) geng-04@gamma:~/CP8202-python-dependencies/tools/new-pllm$ cd ../..
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ ls
+clean_dirs.sh		 competition_guide.txt	fse-aiware.jpeg  hard-gists.tar.gz  output.txt	  pyego-results  readpy-results  venv
+cleanup_test_folders.sh  folder_to_file.sh	hard-gists	 LICENSE	    pllm_results  README.md	 tools
+(venv) geng-04@gamma:~/CP8202-python-dependencies$ vim output.txt
+
+  Using cached python-memcached-1.31.tar.gz (13 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'error'
+
+Syntax Error
+[LLM] Extracted module: python-memcached
+{'module': 'python-memcached', 'version': '2.0.0'}
+Docker build failed!
+2
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.1
+[local] pip install python-memcached==2.0.0
+[local] FAILED: python-memcached==2.0.0
+ERROR: Could not find a version that satisfies the requirement python-memcached==2.0.0 (from versions: 1.31, 1.47, 1.48, 1.51, 1.52, 1.53, 1.54, 1.56, 1.57, 1.58, 1.59, 1.60, 1.61, 1.62)
+ERROR: No matching distribution found for python-memcached==2.0.0
+
+ERROR: Could not find a version that satisfies the requirement python-memcached==2.0.0 (from versions: 1.31, 1.47, 1.48, 1.51, 1.52, 1.53, 1.54, 1.56, 1.57, 1.58, 1.59, 1.60, 1.61, 1.62)
+ERROR: No matching distribution found for python-memcached==2.0.0
+
+Could not find a version
+[REGEX] Extracted module: python-memcached (from VersionNotFound)
+{'module': 'python-memcached', 'version': 'None'}
+{'module': 'python-memcached', 'version': 'None'}
+{'module': 'python-memcached', 'version': 'None'}
+{'module': 'python-memcached', 'version': 'None'}
+{'module': 'python-memcached', 'version': 'None'}
+Docker build failed!
+3
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.1
+Docker build complete!
+[local] snippet exit code: 1
+  File "/home/geng-04/CP8202-python-dependencies/tools/new-pllm/../../hard-gists/005bbad123ef309a5bef/snippet.py", line 36
+    print str(typeid)+" exception :"+str(exceptionCounter)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+
+Syntax Error
+[LLM] Extracted module: snippet
+{'module': 'snippet', 'version': ' '}
+{'module': 'snippet', 'version': 'v1.2.5'}
+{'module': 'snippet', 'version': ' '}
+{'module': 'snippet', 'version': ' '}
+{'module': 'snippet', 'version': ''}
+No previous this time!
+4
+In process 0
+[local] pip install sqlalchemy==1.4.0
+[local] pip install redis==2.10.6
+[local] pip install requests==2.28.1
+Docker build complete!
+[local] snippet exit code: 1
+  File "/home/geng-04/CP8202-python-dependencies/tools/new-pllm/../../hard-gists/005bbad123ef309a5bef/snippet.py", line 36
+    print str(typeid)+" exception :"+str(exceptionCounter)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?
+
+Syntax Error
+"output.txt" 154L, 8435B                                                                                                                                                                113,1         88%

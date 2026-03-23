@@ -52,6 +52,7 @@ class LocalHelper:
             else:
                 name, ver = mod, modules[mod]
             ver_str = ver if isinstance(ver, str) else ver[0]
+            ver_str = ver_str.strip() if ver_str else ""
             self._modules.append((name, ver_str))
 
         self._snippet_path = filepath
@@ -96,6 +97,11 @@ class LocalHelper:
 
         errors = ""
         for name, ver in self._modules:
+            # Skip modules with empty/invalid versions
+            if not ver or ver.lower() in ("none",):
+                if self.logging:
+                    print(f"[local] SKIP: {name} (no valid version)")
+                continue
             pkg = f"{name}=={ver}"
             if self.logging:
                 print(f"[local] pip install {pkg}")
