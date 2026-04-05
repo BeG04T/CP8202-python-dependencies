@@ -80,13 +80,14 @@ class OllamaHelper(OllamaHelperBase):
         # Also returns an updated python version, based on what the model had provided
         llm_eval['python_modules'], llm_eval['python_version'] = self.pypi.get_module_specifics(llm_eval)
         
-        module_versions = self.get_module_versions(llm_eval)
+        module_versions = self.get_module_versions(llm_eval, [])
         llm_eval['python_modules'] = module_versions
 
         return llm_eval
 
     # Loops through the modules and request a version for each
-    def get_module_versions(self, details):
+    def get_module_versions(self, details, excludedMs):
+        # Added excludedMs, it should be a dictionary with the modules as a key and the version limits as their values.
         modules = details['python_modules']
 
         if len(modules) <= 0:
@@ -104,25 +105,33 @@ class OllamaHelper(OllamaHelperBase):
         while not completed:
             try:
                 for idx, module in enumerate(modules):
-                    versions = self.read_python_file(f"{self.base_modules}/{module}_{details['python_version']}.txt")
+                    if module not in excludedMs:
+                        versions = self.read_python_file(f"{self.base_modules}/{module}_{details['python_version']}.txt")
 
-                    tp = "Infer a possible working version of the '{module}' module for Python {python_version}.\nReturn the information with the format {format_instructions}"
-                    pv = {"version_details": versions, "module": module, "python_version": details['python_version'], "format_instructions": parser.get_format_instructions()}
-                    if self.rag:
-                        tp = "Given a comma separated list of '{version_details}', for the '{module}' module, from oldest to newest.\nSelect a recent version for us to use that isn't previously used: 'Previously used: {previous}, and return the information with the format {format_instructions}"
-                        pv = {"version_details": versions, "module": module, "previous": [], "format_instructions": parser.get_format_instructions()}
+                        pv = {"version_details": versions, "module": module, "python_version": details['python_version'], "format_instructions": parser.get_format_instructions()}
+                        tp = "Infer a possible working version of the '{module}' module for Python {python_version}"
+                        if len(excludedMs) > 0:
+                            tp += ", ensure it is compatible with the following Python Module versions: "
+                            for exmod in excludedMs:
+                                modstring = exmod + ": " + str(excludedMs[exmod])
+                                tp+= modstring
+                        tp += ".\nReturn the information with the format {format_instructions}"
+                        
+                        if self.rag:
+                            tp = "Given a comma separated list of '{version_details}', for the '{module}' module, from oldest to newest.\nSelect a recent version for us to use that isn't previously used: 'Previously used: {previous}, and return the information with the format {format_instructions}"
+                            pv = {"version_details": versions, "module": module, "previous": [], "format_instructions": parser.get_format_instructions()}
 
-                    prompt = PromptTemplate(
-                        template=tp,
-                        input_variables=[],
-                        partial_variables=pv
-                    )
+                        prompt = PromptTemplate(
+                            template=tp,
+                            input_variables=[],
+                            partial_variables=pv
+                        )
 
-                    chain = prompt | self.model | parser
+                        chain = prompt | self.model | parser
 
-                    out = chain.invoke({})
+                        out = chain.invoke({})
 
-                    updated_modules[out['module']] = out['version'].split(' ')[0]
+                        updated_modules[out['module']] = out['version'].split(' ')[0]
                 completed = True
             except Exception as e:
                 completed = False
