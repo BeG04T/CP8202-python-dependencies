@@ -88,8 +88,8 @@ All deadlines are Anywhere on Earth (AoE):
  - Antony Bartlett (Delft University of Technology)
  - Annibale Panichella (Delft University of Technology)
  - Cynthia Liem (Delft University of Technology)
- - TBA
- - ...
+ - Ali Al-Kaswan (Delft University of Technology)
+ - Ziyou Li (Delft University of Technology)
 
 ## Getting Started
 
