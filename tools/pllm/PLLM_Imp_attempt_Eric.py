@@ -179,9 +179,21 @@ class TestExecutor():
 
             if status:
                 print(f"{name}=={version} install successful")
+                
+
             else:
                 print(f"{name}=={version} install error, error reason:" + pip_process.stdout)
                 return 1
+        
+        
+        run_process = subprocess.run(["python3", file],
+        capture_output=True, text=True)
+        status = (run_process.returncode == 0)
+        if status:
+            print(file + " Code ran success!")
+        else:
+            print(file + "ran unsuccesful, error reason:" + run_process.stdout)
+            return 1
 
         return 0
 
