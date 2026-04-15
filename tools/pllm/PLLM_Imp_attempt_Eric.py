@@ -155,8 +155,12 @@ class TestExecutor():
 
         # The code assumes i have a venv running.
 
+        print("Reached Docker_Create")
+
+        llm_eval = self.get_module_specifics(ollama_helper, llm_eval)
+
         python_modules = llm_eval['python_modules']
-        if self.logging: print(python_modules)
+        print(python_modules)
         for module in python_modules:
             if type(module) == dict:
                 name = module['module']
@@ -167,20 +171,20 @@ class TestExecutor():
 
             # if self.logging: print(type(data))
             # if self.logging: print(data)
+            line = []
             if type(version) == str:
                 print(f"""RUN ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version}"]\n""")
+                line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"]
             else:
                 print(f"""RUN ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
+                line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
             
-            pip_process = subprocess.run(["pip","install","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"],
-                capture_output=True, text=True
-            )
+            pip_process = subprocess.run(line,capture_output=True, text=True)
             status = (pip_process.returncode == 0)
 
             if status:
                 print(f"{name}=={version} install successful")
                 
-
             else:
                 print(f"{name}=={version} install error, error reason:" + pip_process.stdout)
                 return 1
@@ -194,6 +198,30 @@ class TestExecutor():
         else:
             print(file + "ran unsuccesful, error reason:" + run_process.stdout)
             return 1
+
+        #Cleanup, removes all pip installs
+        for module in python_modules:
+            if type(module) == dict:
+                name = module['module']
+                version = module['version']
+            else:
+                name = module
+                version = python_modules[module]
+
+            line = []
+            if type(version) == str:
+                print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version}"]\n""")
+                line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"]
+            else:
+                print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
+                line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
+            
+            pip_process = subprocess.run(line,capture_output=True, text=True)
+            status = (pip_process.returncode == 0)
+
+            if not status:
+                print(f"{name}=={version} uninstall error, error reason:" + pip_process.stdout)
+                return 1
 
         return 0
 
