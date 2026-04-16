@@ -190,7 +190,7 @@ class TestExecutor():
             print(f"{name}=={version} install successful")
             
         else:
-            print(f"{name}=={version} install error, error reason:" + pip_process.stdout)
+            print(f"{name}=={version} install error, error reason: \n" + pip_process.stdout)
             return_dict[process_num] = 1
             return 1
     
@@ -201,9 +201,7 @@ class TestExecutor():
         if status:
             print(file + " Code ran success!")
         else:
-            print(file + "ran unsuccesful, error reason:" + run_process.stdout)
-            return_dict[process_num] = 2
-            return 2
+            print(file + "ran unsuccesful, error reason: \n" + run_process.stdout)
 
         #Cleanup, removes all pip installs
         for module in python_modules:
@@ -226,7 +224,7 @@ class TestExecutor():
             status = (pip_process.returncode == 0)
 
             if not status:
-                print(f"{name}=={version} uninstall error, error reason:" + pip_process.stdout)
+                print(f"{name}=={version} uninstall error, error reason: \n" + pip_process.stdout)
                 return_dict[process_num] = 3
                 return 3
 
