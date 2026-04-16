@@ -191,6 +191,7 @@ class TestExecutor():
             
         else:
             print(f"{name}=={version} install error, error reason:" + pip_process.stdout)
+            return_dict[process_num] = 1
             return 1
     
         # While the following code is included, running is not necessary as we lack the ability to run old/decrepit python versions. !This downside will be included in the report!
@@ -201,6 +202,7 @@ class TestExecutor():
             print(file + " Code ran success!")
         else:
             print(file + "ran unsuccesful, error reason:" + run_process.stdout)
+            return_dict[process_num] = 2
             return 2
 
         #Cleanup, removes all pip installs
@@ -225,8 +227,10 @@ class TestExecutor():
 
             if not status:
                 print(f"{name}=={version} uninstall error, error reason:" + pip_process.stdout)
-                return 1
+                return_dict[process_num] = 3
+                return 3
 
+        return_dict[process_num] = 0
         return 0
 
     # Logging specific, ensures correct spaces in log file to avoid later errors
@@ -315,6 +319,7 @@ def process_args():
 
 #modified attempt
 def main():
+    output_file = open("Eric_pllm_results.txt", "w")
     llm_eval = None
     llm_details = False
     loop = 0
@@ -368,6 +373,10 @@ def main():
     num_processes = (testExecutor.search_range * 2) + 1
 
     processes = []
+
+    # To access values from processes
+    manager = mp.Manager()
+    return_dict = manager.dict()
     
     # NOTE: CHANGE THIS TO TEST SPECIFIC VERSION
     # python_versions = ['3.8']
@@ -400,6 +409,10 @@ def main():
             p.terminate()
         else:
             print("Processing completed without the timeout")
+
+    print(return_dict.values())
+    if 0 in return_dict.values():
+        print("Dependency resolved at least once!")
 
 if __name__ == "__main__":
     main()
