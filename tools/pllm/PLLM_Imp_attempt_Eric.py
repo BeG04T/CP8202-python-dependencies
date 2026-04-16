@@ -161,6 +161,8 @@ class TestExecutor():
 
         python_modules = llm_eval['python_modules']
         print(python_modules)
+
+        line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
         for module in python_modules:
             if type(module) == dict:
                 name = module['module']
@@ -171,25 +173,27 @@ class TestExecutor():
 
             # if self.logging: print(type(data))
             # if self.logging: print(data)
-            line = []
-            if type(version) == str:
-                print(f"""RUN ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version}"]\n""")
-                line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"]
-            else:
-                print(f"""RUN ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
-                line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
             
-            pip_process = subprocess.run(line,capture_output=True, text=True)
-            status = (pip_process.returncode == 0)
-
-            if status:
-                print(f"{name}=={version} install successful")
-                
+            if type(version) == str:
+                print(f"""ADDING "{name}=={version}"\n""")
+                line.append(f"{name}=={version}")
             else:
-                print(f"{name}=={version} install error, error reason:" + pip_process.stdout)
-                return 1
-        
-        
+                print(f"""ADDING "{name}=={version[0]}"\n""")
+                line.append(f"{name}=={version[0]}")
+
+        print("Final Line for Running")
+        print(line)
+        pip_process = subprocess.run(line,capture_output=True, text=True)
+        status = (pip_process.returncode == 0)
+
+        if status:
+            print(f"{name}=={version} install successful")
+            
+        else:
+            print(f"{name}=={version} install error, error reason:" + pip_process.stdout)
+            return 1
+    
+        # While the following code is included, running is not necessary as we lack the ability to run old/decrepit python versions. !This downside will be included in the report!
         run_process = subprocess.run(["python3", file],
         capture_output=True, text=True)
         status = (run_process.returncode == 0)
@@ -197,7 +201,7 @@ class TestExecutor():
             print(file + " Code ran success!")
         else:
             print(file + "ran unsuccesful, error reason:" + run_process.stdout)
-            return 1
+            return 2
 
         #Cleanup, removes all pip installs
         for module in python_modules:
