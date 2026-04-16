@@ -143,7 +143,7 @@ class TestExecutor():
     # Main docker process loop
     # This method is given as a process to run in parallel with each other
     # Handles the main loop of building | running | validating
-    def docker_create_process(self, ollama_helper, llm_eval, file, process_num):
+    def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict):
 
         #Edit Attempt?
 
@@ -392,7 +392,8 @@ def main():
                 OllamaHelper(base_url=args.base, model=args.model, logging=True, temp=args.temp, base_modules=file_path+"/modules", rag=args.rag),
                 run_details,
                 args.file,
-                i)
+                i,
+                return_dict)
             )
         processes.append(p)
         p.start()
