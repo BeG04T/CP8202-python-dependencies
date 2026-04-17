@@ -248,7 +248,7 @@ class TestExecutor():
                     print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version}"]\n""")
                     line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"]
                 else:
-                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}}"]\n""")
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}"]\n""")
                     line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}"]
                     
             else:
