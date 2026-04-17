@@ -143,7 +143,7 @@ class TestExecutor():
     # Main docker process loop
     # This method is given as a process to run in parallel with each other
     # Handles the main loop of building | running | validating
-    def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict):
+    def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict, outpFile):
 
         #Edit Attempt?
 
@@ -183,6 +183,8 @@ class TestExecutor():
 
         print("Final Line for Running")
         print(line)
+        outpFile.write(' '.join(line))
+        outpFile.write("\n")
         pip_process = subprocess.run(line,capture_output=True, text=True)
         status = (pip_process.returncode == 0)
 
@@ -393,7 +395,8 @@ def main():
                 run_details,
                 args.file,
                 i,
-                return_dict)
+                return_dict,
+                output_file)
             )
         processes.append(p)
         p.start()
@@ -409,9 +412,15 @@ def main():
         else:
             print("Processing completed without the timeout")
 
+    output_file.write(args.file)
+    output_file.write("\n Status: ")
     print(return_dict.values())
     if 0 in return_dict.values():
         print("Dependency resolved at least once!")
+        output_file.write("0 \n")
+    else:
+        error_val = max(set(return_dict.values()), key=return_dict.values().count)
+        output_file.write(f"{error_val} \n")
 
 if __name__ == "__main__":
     main()
