@@ -155,12 +155,16 @@ class TestExecutor():
 
         # The code assumes i have a venv running.
 
+        #4 stands for timeout
+        
+
         print("Reached Docker_Create")
 
         llm_eval = self.get_module_specifics(ollama_helper, llm_eval)
 
         python_modules = llm_eval['python_modules']
         print(python_modules)
+        return_dict[process_num] = 4
 
         line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
         for module in python_modules:
@@ -404,7 +408,7 @@ def main():
     # Wait for all processes to finish
     for p in processes:
         # Give the process 20 minutes to complete
-        p.join(timeout=1200)
+        p.join(timeout=600)
     
     for p in processes:
         if p.is_alive():
