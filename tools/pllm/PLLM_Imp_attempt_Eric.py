@@ -338,6 +338,8 @@ def main():
 
     print(filepaths[0:3])
 
+    total = 0
+    total_pass = 0
     #ATM THIS IS ONLY FOR TESTING, WE WILL PROBABLY NOT RUN EVERYTHING BUT FUTURE CHANGE IS EITHER HAVE THIS LOOP THROUGH ALL FILES, OR SCRAMBLE THE FILE LISTS THEN CHOOSE A SMALL SUBSET
     for j in range(0, 3):
         llm_eval = None
@@ -436,9 +438,15 @@ def main():
         if 0 in return_dict.values():
             print("Dependency resolved at least once!")
             output_file.write("0 \n")
+            total_pass += 1
         else:
             error_val = max(set(return_dict.values()), key=return_dict.values().count)
             output_file.write(f"{error_val} \n")
+
+        total += 1
+
+    print(f"Out of {total} gists, {total_pass} successfully passed")
+    output_file.write(f"Out of {total} gists, {total_pass} successfully passed")
 
 if __name__ == "__main__":
     main()
