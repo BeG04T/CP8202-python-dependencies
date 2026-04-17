@@ -201,6 +201,7 @@ class TestExecutor():
 
         if status:
             print(f"{name}=={version} install successful")
+            return_dict[process_num] = 0
             
         else:
             print(f"{name}=={version} install error, error reason: \n" + pip_process.stdout)
