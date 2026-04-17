@@ -333,7 +333,7 @@ def main():
 
     filepaths = []
     for i_file in os.scandir(args.file):
-        if i_file.path[-7:] != "modules" and i_file.path[0:2] != "._":
+        if i_file.path[-7:] != "modules" and not ("._" in i_file.path):
             filepaths.append(i_file.path)
 
     print(filepaths[0:3])
