@@ -333,7 +333,10 @@ def main():
 
     filepaths = []
     for i_file in os.scandir(args.file):
-        filepaths.append(i_file.path)
+        if i_file.path[-7:] != "modules" and i_file.path[0:2] != "._":
+            filepaths.append(i_file.path)
+
+    print(filepaths[0:3])
 
     #ATM THIS IS ONLY FOR TESTING, WE WILL PROBABLY NOT RUN EVERYTHING BUT FUTURE CHANGE IS EITHER HAVE THIS LOOP THROUGH ALL FILES, OR SCRAMBLE THE FILE LISTS THEN CHOOSE A SMALL SUBSET
     for j in range(0, 3):
