@@ -165,7 +165,13 @@ class TestExecutor():
 
         python_modules = llm_eval['python_modules']
         print(python_modules)
-        return_dict[process_num] = 4
+        return_dict[process_num] = 5
+
+        if len(python_modules) == 0:
+            print("No Modules to install!")
+            return_dict[process_num] = 4
+            # No module 
+            return 4
 
         line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
         for module in python_modules:
