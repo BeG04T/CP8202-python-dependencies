@@ -69,11 +69,11 @@ class TestExecutor():
         return llm_eval
 
     # NEW FUNCTION
-    def re_acquire_modules(self, llm, llm_eval):
+    def re_acquire_modules(self, llm, llm_eval, threshold):
         # Is used as the second query to re-query llm with given module versions for our improvement
 
         #TODO, change the function below to the new one
-        module_versions = llm.get_module_versions(llm_eval)
+        module_versions = llm.get_module_specifics_with_thresh(llm_eval, threshold): 
         llm_eval['python_modules'] = module_versions
 
         return llm_eval
@@ -175,6 +175,28 @@ class TestExecutor():
             return_dict[process_num] = 4
             # No module 
             return 4
+
+        thresh_dict = {}
+        if len(python_modules) > 1:
+            # If there isn't enough modules, we ignore this step
+            # Pick the limiting value
+            
+            thresh_val = min(len(python_modules) - 1, threshold)
+            cur_thresh = 0
+            for module in python_modules:
+                if cur_thresh == thresh_val:
+                    break
+                if type(module) == dict:
+                    name = module['module']
+                    version = module['version']
+                else:
+                    name = module
+                    version = python_modules[module]
+                thresh_dict[name] = version
+                cur_thresh += 1
+
+            llm_eval = self.re_acquire_modules(ollama_helper, llm_eval, thresh_dict)
+        
         cur_loop = 0
         status = False
 
@@ -191,8 +213,12 @@ class TestExecutor():
         }
         
         while (cur_loop <= loop and not status):
-        
+
+            # ADD THRESHOLD MODULES TO THIS FIRST
             line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
+            for key, item in thresh_dict.items():
+                line.append(f"{key}=={item}")
+            
             for module in python_modules:
                 if type(module) == dict:
                     name = module['module']
@@ -225,7 +251,7 @@ class TestExecutor():
 
             if not status:
                 print(f"{name}=={version} install error, error reason: \n" + pip_process.stderr)
-                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, error_handler, llm_eval)[0], llm_eval)
+                llm_eval = self.update_llm_eval(ollama_helper.process_error(pip_process.stderr, error_handler, llm_eval)[0], llm_eval)
                 
                 cur_loop += 1
 
