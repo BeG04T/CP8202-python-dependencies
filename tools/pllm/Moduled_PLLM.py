@@ -195,10 +195,11 @@ class TestExecutor():
                     name = module
                     version = python_modules[module]
                 thresh_dict[name] = version
+                
+                cur_thresh += 1
+            for module in thresh_dict:
                 #this step removes it from python_modules
                 llm_eval['python_modules'].pop(module)
-                cur_thresh += 1
-
             llm_eval = self.re_acquire_modules(ollama_helper, llm_eval, thresh_dict)
 
             python_modules = llm_eval['python_modules']
