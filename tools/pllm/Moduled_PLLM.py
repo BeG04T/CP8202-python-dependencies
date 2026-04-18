@@ -68,6 +68,16 @@ class TestExecutor():
 
         return llm_eval
 
+    # NEW FUNCTION
+    def re_acquire_modules(self, llm, llm_eval):
+        # Is used as the second query to re-query llm with given module versions for our improvement
+
+        #TODO, change the function below to the new one
+        module_versions = llm.get_module_versions(llm_eval)
+        llm_eval['python_modules'] = module_versions
+
+        return llm_eval
+
     def build_container(self, dockerHelper, llm, llm_eval, file, error_details = {}):
         # Build the docker image with the given JSON and file/ paths
         dockerHelper.create_dockerfile(llm_eval, file)
@@ -137,8 +147,7 @@ class TestExecutor():
     # This method is given as a process to run in parallel with each other
     # Handles the main loop of building | running | validating
 
-# HERE IT S
-     def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict, outpFile, loop):
+    def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict, outpFile, loop, threshold):
 
         #Edit Attempt?
 
@@ -168,6 +177,18 @@ class TestExecutor():
             return 4
         cur_loop = 0
         status = False
+
+        error_handler = {
+            'previous': '',
+            'error_modules': {},
+            'ImportError': 0,
+            'ModuleNotFound': 0,
+            'VersionNotFound': 0,
+            'DependencyConflict': 0,
+            'AttributeError': 0,
+            'NonZeroCode': 0,
+            'SyntaxError': 0,
+        }
         
         while (cur_loop <= loop and not status):
         
@@ -203,7 +224,9 @@ class TestExecutor():
             status = (pip_process.returncode == 0)
 
             if not status:
-                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, pip_process.stderr, llm_eval)[0], llm_eval)
+                print(f"{name}=={version} install error, error reason: \n" + pip_process.stderr)
+                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, error_handler, llm_eval)[0], llm_eval)
+                
                 cur_loop += 1
 
         
@@ -341,6 +364,7 @@ def process_args():
     parser.add_argument('-r', '--range', type=int, nargs="?", default=0, const=0, help="The search range, expands out above and below the found Python version, defaults to 0")
     parser.add_argument('-ra', '--rag', type=str2bool, nargs="?", default=True, const=True, help="Flag to enable RAG in the system.")
     parser.add_argument('-v', '--verbose', action="store_true", help="Verbose logging of information")
+    parser.add_argument('-th', '--threshold', type=int, nargs="?", default=0, const=0, help="The threshold for how many modules to not be queried to the LLM, by default is 0")
     return parser.parse_args()
 
 
@@ -439,7 +463,8 @@ def main():
                     i,
                     return_dict,
                     output_file,
-                    args.loop)
+                    args.loop,
+                    args.threshold)
                 )
             processes.append(p)
             p.start()
