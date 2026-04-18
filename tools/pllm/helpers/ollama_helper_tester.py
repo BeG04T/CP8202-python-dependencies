@@ -136,6 +136,72 @@ class OllamaHelper(OllamaHelperBase):
 
         return updated_modules
 
+    ############################################################################
+    # THE FOLLOWING ARE ADDED ON THE ERIC-CHANGES
+
+    #Our Improvement specific
+    def get_module_specifics_with_thresh(self, llm_eval, thresh):       
+        module_versions = self.get_module_versions_thresh(llm_eval, thresh)
+        llm_eval['python_modules'] = module_versions
+
+        return llm_eval
+
+    # Compared to the regular one adds the extra theshold
+    def get_module_versions_thresh(self, details, threshold):
+        modules = details['python_modules']
+
+        threshold_module_v = ", ".join(f"{k} {v}" for k, v in threshold.items())
+        
+        if len(modules) <= 0:
+            return {}
+        
+        # Define the parser
+        parser = JsonOutputParser(pydantic_object=ModuleVersion)
+
+        updated_modules = {}
+
+        attempts = 5
+        completed = False
+        # Loop to ensure we get a version.
+        # If the LLM returns a bad version or bad information then we need to loop and try again
+        while not completed:
+            try:
+                for idx, module in enumerate(modules):
+                    versions = self.read_python_file(f"{self.base_modules}/{module}_{details['python_version']}.txt")
+
+                    tp = "Infer a possible working version of the '{module}' module for Python {python_version} and modules {thresholds}.\nReturn the information with the format {format_instructions}"
+                    pv = {"version_details": versions, "module": module, "python_version": details['python_version'], "thresholds": threshold_module_v , "format_instructions": parser.get_format_instructions()}
+                    if self.rag:
+                        tp = "Given a comma separated list of '{version_details}', for the '{module}' module, from oldest to newest.\nSelect a recent version for us to use that isn't previously used: 'Previously used: {previous}, and return the information with the format {format_instructions}"
+                        pv = {"version_details": versions, "module": module, "previous": [], "format_instructions": parser.get_format_instructions()}
+
+                    prompt = PromptTemplate(
+                        template=tp,
+                        input_variables=[],
+                        partial_variables=pv
+                    )
+
+                    chain = prompt | self.model | parser
+
+                    out = chain.invoke({})
+
+                    updated_modules[out['module']] = out['version'].split(' ')[0]
+                completed = True
+            except Exception as e:
+                completed = False
+                attempts -= 1
+            
+            if attempts <= 0:
+                print("Failed to find versions")
+                exit(0)
+
+        print(updated_modules)
+
+        return updated_modules
+
+
+    ##########################################################################
+
 
     # NOTE: Deprecated, update instances that use this!
     def execute_chain(self, chain, pydantic_model):
