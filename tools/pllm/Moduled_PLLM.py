@@ -97,6 +97,7 @@ class TestExecutor():
 
         return error_handler
 
+
     # Update the llm details
     # Set previous modules, so our output is correct
     # Removes and adds modules based on the new module returned by the LLM
@@ -135,7 +136,9 @@ class TestExecutor():
     # Main docker process loop
     # This method is given as a process to run in parallel with each other
     # Handles the main loop of building | running | validating
-    def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict, outpFile):
+
+# HERE IT S
+     def docker_create_process(self, ollama_helper, llm_eval, file, process_num, return_dict, outpFile, loop):
 
         #Edit Attempt?
 
@@ -163,38 +166,55 @@ class TestExecutor():
             return_dict[process_num] = 4
             # No module 
             return 4
+        cur_loop = 0
+        status = False
+        
+        while (cur_loop <= loop and not status):
+        
+            line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
+            for module in python_modules:
+                if type(module) == dict:
+                    name = module['module']
+                    version = module['version']
+                else:
+                    name = module
+                    version = python_modules[module]
+    
+                # if self.logging: print(type(data))
+                # if self.logging: print(data)
+                
+                if type(version) == str:
+                    # Sometimes PLLM responds with latest_version which causes a syntax error. We use this to check and simply use the default module instead if needed.
+                    if version.replace(".", "1").isdigit():
+                        print(f"""ADDING "{name}=={version}"\n""")
+                        line.append(f"{name}=={version}")
+                    else:
+                        print(f"""ADDING "{name}"\n""")
+                        line.append(f"{name}")
+                else:
+                    print(f"""ADDING "{name}=={version[0]}"\n""")
+                    line.append(f"{name}=={version[0]}")
+    
+            print("Final Line for Running")
+            print(line)
+            outpFile.write(' '.join(line))
+            outpFile.write("\n")
+            pip_process = subprocess.run(line,capture_output=True, text=True)
+            status = (pip_process.returncode == 0)
 
-        line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
-        for module in python_modules:
-            if type(module) == dict:
-                name = module['module']
-                version = module['version']
-            else:
-                name = module
-                version = python_modules[module]
+            if not status:
+                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, pip_process.stderr, llm_eval)[0], llm_eval)
+                cur_loop += 1
 
-            # if self.logging: print(type(data))
-            # if self.logging: print(data)
-            
-            if type(version) == str:
-                print(f"""ADDING "{name}=={version}"\n""")
-                line.append(f"{name}=={version}")
-            else:
-                print(f"""ADDING "{name}=={version[0]}"\n""")
-                line.append(f"{name}=={version[0]}")
-
-        print("Final Line for Running")
-        print(line)
-        outpFile.write(' '.join(line))
-        outpFile.write("\n")
-        pip_process = subprocess.run(line,capture_output=True, text=True)
-        status = (pip_process.returncode == 0)
+        
+        
 
         if status:
             print(f"{name}=={version} install successful")
+            return_dict[process_num] = 0
             
         else:
-            print(f"{name}=={version} install error, error reason: \n" + pip_process.stdout)
+            print(f"{name}=={version} install error, error reason: \n" + pip_process.stderr)
             return_dict[process_num] = 1
             return 1
     
@@ -218,8 +238,13 @@ class TestExecutor():
 
             line = []
             if type(version) == str:
-                print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version}"]\n""")
-                line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"]
+                if version.replace(".", "1").isdigit():
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version}"]\n""")
+                    line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version}"]
+                else:
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}"]\n""")
+                    line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}"]
+                    
             else:
                 print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
                 line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
@@ -228,14 +253,14 @@ class TestExecutor():
             status = (pip_process.returncode == 0)
 
             if not status:
-                print(f"{name}=={version} uninstall error, error reason: \n" + pip_process.stdout)
+                print(f"{name}=={version} uninstall error, error reason: \n" + pip_process.stderr)
                 return_dict[process_num] = 3
                 return 3
 
         return_dict[process_num] = 0
         return 0
-#Seperator for myself
- # Logging specific, ensures correct spaces in log file to avoid later errors
+
+    # Logging specific, ensures correct spaces in log file to avoid later errors
     def ensure_8_spaces(self, line):
         if not line.startswith(' ' * 8):
             return ' ' * 8 + line.lstrip()
@@ -413,7 +438,8 @@ def main():
                     filepath,
                     i,
                     return_dict,
-                    output_file)
+                    output_file,
+                    args.loop)
                 )
             processes.append(p)
             p.start()
