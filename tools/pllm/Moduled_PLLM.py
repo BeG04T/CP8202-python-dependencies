@@ -73,7 +73,7 @@ class TestExecutor():
         # Is used as the second query to re-query llm with given module versions for our improvement
 
         #TODO, change the function below to the new one
-        module_versions = llm.get_module_specifics_with_thresh(llm_eval, threshold): 
+        module_versions = llm.get_module_specifics_with_thresh(llm_eval, threshold)
         llm_eval['python_modules'] = module_versions
 
         return llm_eval
@@ -239,8 +239,13 @@ class TestExecutor():
                         print(f"""ADDING "{name}"\n""")
                         line.append(f"{name}")
                 else:
-                    print(f"""ADDING "{name}=={version[0]}"\n""")
-                    line.append(f"{name}=={version[0]}")
+                    # same as above
+                    if version[0].replace(".", "1").isdigit():
+                        print(f"""ADDING "{name}=={version[0]}"\n""")
+                        line.append(f"{name}=={version[0]}")
+                    else:
+                        print(f"""ADDING "{name}"\n""")
+                        line.append(f"{name}")
     
             print("Final Line for Running")
             print(line)
@@ -295,8 +300,12 @@ class TestExecutor():
                     line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}"]
                     
             else:
-                print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
-                line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
+                if version[0].replace(".", "1").isdigit():
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
+                    line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
+                else:
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}"]\n""")
+                    line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}"]
             
             pip_process = subprocess.run(line,capture_output=True, text=True)
             status = (pip_process.returncode == 0)
@@ -396,7 +405,7 @@ def process_args():
 
 #modified attempt
 def main():
-    output_file = open("Eric_pllm_results.txt", "w")
+    output_file = open("Eric_pllm_MOD_results.txt", "w")
     # Process the arguments, file, model ...
     args = process_args()
     # the line below is probably irrelevant now but i'm going to keep it in case it breaks lol
@@ -413,7 +422,7 @@ def main():
     total = 0
     total_pass = 0
     #ATM THIS IS ONLY FOR TESTING, WE WILL PROBABLY NOT RUN EVERYTHING BUT FUTURE CHANGE IS EITHER HAVE THIS LOOP THROUGH ALL FILES, OR SCRAMBLE THE FILE LISTS THEN CHOOSE A SMALL SUBSET
-    for j in range(0, 3):
+    for j in range(0, 1):
         llm_eval = None
         llm_details = False
         loop = 0
@@ -519,8 +528,9 @@ def main():
 
         total += 1
 
-    print(f"Out of {total} gists, {total_pass} successfully passed")
     output_file.write(f"Out of {total} gists, {total_pass} successfully passed")
+    print(f"Out of {total} gists, {total_pass} successfully passed")
+    
 
 if __name__ == "__main__":
     main()
