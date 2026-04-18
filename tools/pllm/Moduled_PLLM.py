@@ -189,13 +189,21 @@ class TestExecutor():
                 if type(module) == dict:
                     name = module['module']
                     version = module['version']
+
+                    
                 else:
                     name = module
                     version = python_modules[module]
                 thresh_dict[name] = version
+                #this step removes it from python_modules
+                llm_eval['python_modules'].pop(module)
                 cur_thresh += 1
 
             llm_eval = self.re_acquire_modules(ollama_helper, llm_eval, thresh_dict)
+
+            python_modules = llm_eval['python_modules']
+            print("Post-update")
+            print(python_modules)
         
         cur_loop = 0
         status = False
@@ -216,7 +224,23 @@ class TestExecutor():
 
             # ADD THRESHOLD MODULES TO THIS FIRST
             line = ["pip","install","--trusted-host","pypi.python.org","--default-timeout=100"]
-            for key, item in thresh_dict.items():
+            for name, version in thresh_dict.items():
+                if type(version) == str:
+                    # Sometimes PLLM responds with latest_version which causes a syntax error. We use this to check and simply use the default module instead if needed.
+                    if version.replace(".", "1").isdigit():
+                        print(f"""ADDING "{name}=={version}"\n""")
+                        line.append(f"{name}=={version}")
+                    else:
+                        print(f"""ADDING "{name}"\n""")
+                        line.append(f"{name}")
+                else:
+                    # same as above
+                    if version[0].replace(".", "1").isdigit():
+                        print(f"""ADDING "{name}=={version[0]}"\n""")
+                        line.append(f"{name}=={version[0]}")
+                    else:
+                        print(f"""ADDING "{name}"\n""")
+                        line.append(f"{name}")
                 line.append(f"{key}=={item}")
             
             for module in python_modules:
