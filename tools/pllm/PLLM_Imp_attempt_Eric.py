@@ -222,7 +222,7 @@ class TestExecutor():
 
             if not status:
                 print(f"{name}=={version} install error, error reason: \n" + pip_process.stderr)
-                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, error_handler, llm_eval)[0], llm_eval)
+                llm_eval = self.update_llm_eval(ollama_helper.process_error(pip_process.stderr, error_handler, llm_eval)[0], llm_eval)
                 
                 cur_loop += 1
 
