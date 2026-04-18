@@ -492,7 +492,11 @@ def main():
             output_file.write("0 \n")
             total_pass += 1
         else:
-            error_val = max(set(return_dict.values()), key=return_dict.values().count)
+            # For some reason during testing, I keep running into the dict not being set, so i'm going to append a 5 in case to stand for not finished
+            if len(return_dict.values()) == 0:
+                error_val = 5
+            else:
+                error_val = max(set(return_dict.values()), key=return_dict.values().count)
             output_file.write(f"{error_val} \n")
 
         total += 1
