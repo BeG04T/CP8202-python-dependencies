@@ -209,7 +209,7 @@ class TestExecutor():
             status = (pip_process.returncode == 0)
 
             if not status:
-                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, pip_process.stderr, llm_eval)[0], llm_eval)
+                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, {}, llm_eval)[0], llm_eval)
                 cur_loop += 1
 
         
