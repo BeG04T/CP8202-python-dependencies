@@ -174,6 +174,18 @@ class TestExecutor():
             return 4
         cur_loop = 0
         status = False
+
+        error_handler = {
+            'previous': '',
+            'error_modules': {},
+            'ImportError': 0,
+            'ModuleNotFound': 0,
+            'VersionNotFound': 0,
+            'DependencyConflict': 0,
+            'AttributeError': 0,
+            'NonZeroCode': 0,
+            'SyntaxError': 0,
+        }
         
         while (cur_loop <= loop and not status):
         
@@ -210,7 +222,7 @@ class TestExecutor():
 
             if not status:
                 print(f"{name}=={version} install error, error reason: \n" + pip_process.stderr)
-                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, {}, llm_eval)[0], llm_eval)
+                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, error_handler, llm_eval)[0], llm_eval)
                 
                 cur_loop += 1
 
