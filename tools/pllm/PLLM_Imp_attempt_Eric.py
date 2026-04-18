@@ -210,8 +210,13 @@ class TestExecutor():
                         print(f"""ADDING "{name}"\n""")
                         line.append(f"{name}")
                 else:
-                    print(f"""ADDING "{name}=={version[0]}"\n""")
-                    line.append(f"{name}=={version[0]}")
+                    # same as above
+                    if version[0].replace(".", "1").isdigit():
+                        print(f"""ADDING "{name}=={version[0]}"\n""")
+                        line.append(f"{name}=={version[0]}")
+                    else:
+                        print(f"""ADDING "{name}"\n""")
+                        line.append(f"{name}")
     
             print("Final Line for Running")
             print(line)
@@ -266,8 +271,12 @@ class TestExecutor():
                     line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}"]
                     
             else:
-                print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
-                line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
+                if version[0].replace(".", "1").isdigit():
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}=={version[0]}"]\n""")
+                    line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}=={version[0]}"]
+                else:
+                    print(f"""RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","{name}"]\n""")
+                    line = ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100",f"{name}"]
             
             pip_process = subprocess.run(line,capture_output=True, text=True)
             status = (pip_process.returncode == 0)
