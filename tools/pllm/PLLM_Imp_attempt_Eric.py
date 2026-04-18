@@ -209,7 +209,7 @@ class TestExecutor():
             status = (pip_process.returncode == 0)
 
             if not status:
-                llm_eval = self.update_llm_eval(pip_process.stdout, llm_eval)
+                llm_eval = self.update_llm_eval(self.ollama_helper.process_error(pip_process.stderr, pip_process.stderr, llm_eval)[0], llm_eval)
                 cur_loop += 1
 
         
@@ -220,7 +220,7 @@ class TestExecutor():
             return_dict[process_num] = 0
             
         else:
-            print(f"{name}=={version} install error, error reason: \n" + pip_process.stdout)
+            print(f"{name}=={version} install error, error reason: \n" + pip_process.stderr)
             return_dict[process_num] = 1
             return 1
     
@@ -259,7 +259,7 @@ class TestExecutor():
             status = (pip_process.returncode == 0)
 
             if not status:
-                print(f"{name}=={version} uninstall error, error reason: \n" + pip_process.stdout)
+                print(f"{name}=={version} uninstall error, error reason: \n" + pip_process.stderr)
                 return_dict[process_num] = 3
                 return 3
 
