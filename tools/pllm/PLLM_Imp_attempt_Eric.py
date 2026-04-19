@@ -375,134 +375,135 @@ def process_args():
 
 #modified attempt
 def main():
-    output_file = open("Eric_pllm_results.txt", "w")
-    # Process the arguments, file, model ...
-    args = process_args()
-    # the line below is probably irrelevant now but i'm going to keep it in case it breaks lol
-    # the main change is the filepath is now the filepath to the DIRECTORY that includes all the snippets
-    file_path = '/'.join(args.file.split('/')[:])
-
-    filepaths = []
-    for i_file in os.scandir(args.file):
-        if i_file.path[-7:] != "modules" and not ("._" in i_file.path):
-            filepaths.append(i_file.path)
-
-    print(filepaths[0:3])
-
-    total = 0
-    total_pass = 0
-    #ATM THIS IS ONLY FOR TESTING, WE WILL PROBABLY NOT RUN EVERYTHING BUT FUTURE CHANGE IS EITHER HAVE THIS LOOP THROUGH ALL FILES, OR SCRAMBLE THE FILE LISTS THEN CHOOSE A SMALL SUBSET
-    for j in range(0, 3):
-        llm_eval = None
-        llm_details = False
-        loop = 0
-        
-        filepath = filepaths[j] + "/snippet.py"
+    with open("Eric_pllm_results.txt", "w") as output_file:
+        output_file.write("New Line Ready \n")
+        # Process the arguments, file, model ...
+        args = process_args()
+        # the line below is probably irrelevant now but i'm going to keep it in case it breaks lol
+        # the main change is the filepath is now the filepath to the DIRECTORY that includes all the snippets
+        file_path = '/'.join(args.file.split('/')[:])
     
-        # Create the main 
-        testExecutor = TestExecutor(base_url=args.base, model=args.model, logging=True, temp=args.temp, end_loop=args.loop, search_range=args.range, base_modules=file_path+"/modules")
-        # Use a simple search to grab imports from file without the LLM
-        python_deps = []
-        if args.rag:
-            python_deps = testExecutor.deps.find_word_in_file(filepath, 'import', [])
+        filepaths = []
+        for i_file in os.scandir(args.file):
+            if i_file.path[-7:] != "modules" and not ("._" in i_file.path):
+                filepaths.append(i_file.path)
     
-        # Loop to ensure we handle invalid responses from the model
-        while not llm_details:
-            try:
-                # Evaluate the file to get an initial set of assumptions
-                llm_eval = testExecutor.evaluate_file(testExecutor.ollama_helper, filepath)
-                
-                # Run through all the dependencies and clean them for use. Removes useless imports
-                python_deps = testExecutor.pypi.check_module_name(python_deps + llm_eval['python_modules'])
+        print(filepaths[0:3])
     
-                # Combine the simple search modules with the LLMs suggestions.
-                llm_eval['python_modules'] = python_deps
-    
-                print(llm_eval)
-                llm_details = True
-            except Exception as e:
-                print(f"Failed to get Python modules from file: {e}")
-                llm_details = False
-                loop += 1
+        total = 0
+        total_pass = 0
+        #ATM THIS IS ONLY FOR TESTING, WE WILL PROBABLY NOT RUN EVERYTHING BUT FUTURE CHANGE IS EITHER HAVE THIS LOOP THROUGH ALL FILES, OR SCRAMBLE THE FILE LISTS THEN CHOOSE A SMALL SUBSET
+        for j in range(0, 3):
+            llm_eval = None
+            llm_details = False
+            loop = 0
             
-            if loop >= 5: break
-        # If the LLM didn't return anything, set the Python version to 3.8
-        if not llm_details:
-            llm_eval = {'python_version': '3.8'}
-            llm_eval['python_modules'] = testExecutor.pypi.check_module_name(python_deps)
-    
-        # testExecutor.docker_create_process(ollama_helper, llm_eval, filepath, 1)
-        # Search range is how far either side of the found Python verion we want to look.
-        # For example, a value of 1 where the found version is 3.7 will return [3.6,3.7,3.8]
-        python_versions = testExecutor.pypi.get_python_range(python_version=llm_eval['python_version'], pyrange=testExecutor.search_range)
-        print(python_versions)
+            filepath = filepaths[j] + "/snippet.py"
         
-        # If python_versions is empty then there was an issue with versions.
-        # Give the lowest Python and work with this range
-        if not python_versions:
-            python_versions = testExecutor.pypi.get_python_range(python_version=llm_eval['python_version'], range=testExecutor.search_range)
-        num_processes = (testExecutor.search_range * 2) + 1
-    
-        processes = []
-    
-        # To access values from processes
-        manager = mp.Manager()
-        return_dict = manager.dict()
+            # Create the main 
+            testExecutor = TestExecutor(base_url=args.base, model=args.model, logging=True, temp=args.temp, end_loop=args.loop, search_range=args.range, base_modules=file_path+"/modules")
+            # Use a simple search to grab imports from file without the LLM
+            python_deps = []
+            if args.rag:
+                python_deps = testExecutor.deps.find_word_in_file(filepath, 'import', [])
         
-        # NOTE: CHANGE THIS TO TEST SPECIFIC VERSION
-        # python_versions = ['3.8']
-    
-        # Create and start the processes
-        for i in range(num_processes):
-            run_details = llm_eval.copy()
-            # Select a version from the python range
-            run_details['python_version'] = python_versions[i]
-            # run_details['python_version'] = '3.6'
-            # Give the docker create process, ollama helper, the snippet analysis, python file and the iteration
-            p = mp.Process(
-                target=testExecutor.docker_create_process,
-                args=(
-                    OllamaHelper(base_url=args.base, model=args.model, logging=True, temp=args.temp, base_modules=file_path+"/modules", rag=args.rag),
-                    run_details,
-                    filepath,
-                    i,
-                    return_dict,
-                    output_file,
-                    args.loop)
-                )
-            processes.append(p)
-            p.start()
-    
-        # Wait for all processes to finish
-        for p in processes:
-            # Give the process 20 minutes to complete
-            p.join(timeout=600)
+            # Loop to ensure we handle invalid responses from the model
+            while not llm_details:
+                try:
+                    # Evaluate the file to get an initial set of assumptions
+                    llm_eval = testExecutor.evaluate_file(testExecutor.ollama_helper, filepath)
+                    
+                    # Run through all the dependencies and clean them for use. Removes useless imports
+                    python_deps = testExecutor.pypi.check_module_name(python_deps + llm_eval['python_modules'])
         
-        for p in processes:
-            if p.is_alive():
-                p.terminate()
+                    # Combine the simple search modules with the LLMs suggestions.
+                    llm_eval['python_modules'] = python_deps
+        
+                    print(llm_eval)
+                    llm_details = True
+                except Exception as e:
+                    print(f"Failed to get Python modules from file: {e}")
+                    llm_details = False
+                    loop += 1
+                
+                if loop >= 5: break
+            # If the LLM didn't return anything, set the Python version to 3.8
+            if not llm_details:
+                llm_eval = {'python_version': '3.8'}
+                llm_eval['python_modules'] = testExecutor.pypi.check_module_name(python_deps)
+        
+            # testExecutor.docker_create_process(ollama_helper, llm_eval, filepath, 1)
+            # Search range is how far either side of the found Python verion we want to look.
+            # For example, a value of 1 where the found version is 3.7 will return [3.6,3.7,3.8]
+            python_versions = testExecutor.pypi.get_python_range(python_version=llm_eval['python_version'], pyrange=testExecutor.search_range)
+            print(python_versions)
+            
+            # If python_versions is empty then there was an issue with versions.
+            # Give the lowest Python and work with this range
+            if not python_versions:
+                python_versions = testExecutor.pypi.get_python_range(python_version=llm_eval['python_version'], range=testExecutor.search_range)
+            num_processes = (testExecutor.search_range * 2) + 1
+        
+            processes = []
+        
+            # To access values from processes
+            manager = mp.Manager()
+            return_dict = manager.dict()
+            
+            # NOTE: CHANGE THIS TO TEST SPECIFIC VERSION
+            # python_versions = ['3.8']
+        
+            # Create and start the processes
+            for i in range(num_processes):
+                run_details = llm_eval.copy()
+                # Select a version from the python range
+                run_details['python_version'] = python_versions[i]
+                # run_details['python_version'] = '3.6'
+                # Give the docker create process, ollama helper, the snippet analysis, python file and the iteration
+                p = mp.Process(
+                    target=testExecutor.docker_create_process,
+                    args=(
+                        OllamaHelper(base_url=args.base, model=args.model, logging=True, temp=args.temp, base_modules=file_path+"/modules", rag=args.rag),
+                        run_details,
+                        filepath,
+                        i,
+                        return_dict,
+                        output_file,
+                        args.loop)
+                    )
+                processes.append(p)
+                p.start()
+        
+            # Wait for all processes to finish
+            for p in processes:
+                # Give the process 20 minutes to complete
+                p.join(timeout=600)
+            
+            for p in processes:
+                if p.is_alive():
+                    p.terminate()
+                else:
+                    print("Processing completed without the timeout")
+        
+            output_file.write(i_file.path.split("/")[-1])
+            output_file.write("\n Status: ")
+            print(return_dict.values())
+            if 0 in return_dict.values():
+                print("Dependency resolved at least once!")
+                output_file.write("0 \n")
+                total_pass += 1
             else:
-                print("Processing completed without the timeout")
+                # For some reason during testing, I keep running into the dict not being set, so i'm going to append a 5 in case to stand for not finished
+                if len(return_dict.values()) == 0:
+                    error_val = 5
+                else:
+                    error_val = max(set(return_dict.values()), key=return_dict.values().count)
+                output_file.write(f"{error_val} \n")
     
-        output_file.write(i_file.path.split("/")[-1])
-        output_file.write("\n Status: ")
-        print(return_dict.values())
-        if 0 in return_dict.values():
-            print("Dependency resolved at least once!")
-            output_file.write("0 \n")
-            total_pass += 1
-        else:
-            # For some reason during testing, I keep running into the dict not being set, so i'm going to append a 5 in case to stand for not finished
-            if len(return_dict.values()) == 0:
-                error_val = 5
-            else:
-                error_val = max(set(return_dict.values()), key=return_dict.values().count)
-            output_file.write(f"{error_val} \n")
-
-        total += 1
-
-    print(f"Out of {total} gists, {total_pass} successfully passed")
-    output_file.write(f"Out of {total} gists, {total_pass} successfully passed")
+            total += 1
+    
+        print(f"Out of {total} gists, {total_pass} successfully passed")
+        output_file.write(f"Out of {total} gists, {total_pass} successfully passed")
 
 if __name__ == "__main__":
     main()
