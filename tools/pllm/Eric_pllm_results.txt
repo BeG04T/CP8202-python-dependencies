@@ -1,1 +1,72 @@
-
+New Line Ready 
+8577232
+ Status: 5 
+8577232
+ Status: 4 
+8577232
+ Status: 1 
+8577232
+ Status: 3 
+8577232
+ Status: 3 
+8577232
+ Status: 3 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 3 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 1 
+8577232
+ Status: 5 
+8577232
+ Status: 1 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 3 
+8577232
+ Status: 4 
+8577232
+ Status: 3 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 3 
+8577232
+ Status: 1 
+8577232
+ Status: 3 
+8577232
+ Status: 1 
+8577232
+ Status: 5 
+8577232
+ Status: 5 
+8577232
+ Status: 1 
+8577232
+ Status: 3 
+Out of 35 gists, 0 successfully passed
