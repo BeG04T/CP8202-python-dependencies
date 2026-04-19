@@ -1,0 +1,1611 @@
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 14, in <module>
+    from helpers.ollama_helper_tester import OllamaHelper
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/helpers/ollama_helper_tester.py", line 6, in <module>
+    from helpers.ollama_helper_base import OllamaHelperBase
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/helpers/ollama_helper_base.py", line 4, in <module>
+    from langchain_community.chat_models import ChatOllama
+ModuleNotFoundError: No module named 'langchain_community'
+['gists/cc0ac48d34860c5bb3f9112f4d9a0300', 'gists/9301467', 'gists/5660363']
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 1:
+B: ['from', '__future__', 'import', 'print_function']
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 2:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 3:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 4:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 5:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 6:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 7:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 8:
+B: ['from', 'scipy.io', 'import', 'wavfile']
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 9:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 10:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 248:
+B: ['from', 'IPython', 'import', 'embed;', 'embed();', 'raise', 'ValueError()']
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 387:
+B: ['from', 'IPython', 'import', 'embed;', 'embed()']
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 428:
+B: ['from', 'IPython', 'import', 'embed;', 'embed();', 'raise', 'ValueError()']
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 460:
+B: ['from', 'IPython', 'import', 'embed;', 'embed();', 'raise', 'ValueError()']
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 1290:
+Found "import" in gists/cc0ac48d34860c5bb3f9112f4d9a0300/snippet.py at line 1363:
+{'python_version': '3.7', 'python_modules': ['os', 'shutil', 'argparse', 'numpy']}
+{'python_version': '3.7', 'python_modules': ['stat', 'numpy', 'scipy', 'ipython']}
+['2.7']
+[]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/9301467/snippet.py at line 2:
+Found "import" in gists/9301467/snippet.py at line 3:
+Found "import" in gists/9301467/snippet.py at line 4:
+Found "import" in gists/9301467/snippet.py at line 5:
+Found "import" in gists/9301467/snippet.py at line 6:
+Found "import" in gists/9301467/snippet.py at line 9:
+B: ['from', 'email', 'import', 'policy']
+Found "import" in gists/9301467/snippet.py at line 10:
+B: ['from', 'email.parser', 'import', 'BytesParser']
+{'python_version': '3.4', 'python_modules': ['io', 'os', 'sys', 'mimetypes', 'uuid', 'email.policy', 'email.parser', 'BytesParser']}
+{'python_version': '3.4', 'python_modules': ['bytesparser']}
+['2.7']
+Reached Docker_Create
+{'bytesparser': '2.0.4'}
+{'bytesparser': '2.0.4'}
+ADDING "bytesparser==2.0.4"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'bytesparser==2.0.4']
+bytesparser==2.0.4 install error, error reason: 
+ERROR: Could not find a version that satisfies the requirement bytesparser==2.0.4 (from versions: none)
+ERROR: No matching distribution found for bytesparser==2.0.4
+
+Could not find a version
+{'properties': {'module': {'title': 'Module', 'description': 'Name of the module', 'type': 'string'}, 'version': {'title': 'Version', 'description': 'The version of the module to use', 'type': 'string'}}, 'required': ['module', 'version']}
+could not find version: Error getting versions from error message: 'version'
+{'module': 'bytesparser', 'version': None}
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100']
+bytesparser==2.0.4 install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+No error type found
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100']
+bytesparser==2.0.4 install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+No error type found
+bytesparser==2.0.4 install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+Processing completed without the timeout
+[1]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/5660363/snippet.py at line 3:
+Found "import" in gists/5660363/snippet.py at line 4:
+B: ['from', 'time', 'import', 'sleep']
+Found "import" in gists/5660363/snippet.py at line 5:
+Found "import" in gists/5660363/snippet.py at line 6:
+{'python_version': '3.x', 'python_modules': ['RPi.GPIO', 'time', 're', 'sys']}
+{'python_version': '3.x', 'python_modules': ['rpi']}
+['2.7']
+Reached Docker_Create
+{'rpi': 'latest'}
+{'rpi': 'latest'}
+ADDING "rpi"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'rpi']
+rpi==latest install error, error reason: 
+ERROR: Could not find a version that satisfies the requirement rpi (from versions: none)
+ERROR: No matching distribution found for rpi
+
+Could not find a version
+{'module': 'rpi', 'version': 'None'}
+{'module': 'rpi', 'version': 'None'}
+{'module': 'rpi', 'version': None}
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100']
+rpi==latest install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+No error type found
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100']
+rpi==latest install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+No error type found
+rpi==latest install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+Processing completed without the timeout
+[1]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/238302/snippet.py at line 16:
+Found "import" in gists/238302/snippet.py at line 17:
+Found "import" in gists/238302/snippet.py at line 18:
+Found "import" in gists/238302/snippet.py at line 24:
+Found "import" in gists/238302/snippet.py at line 26:
+Found "import" in gists/238302/snippet.py at line 27:
+Found "import" in gists/238302/snippet.py at line 28:
+Found "import" in gists/238302/snippet.py at line 29:
+Found "import" in gists/238302/snippet.py at line 91:
+{'python_version': '3.6', 'python_modules': ['os', 'sys', 'getopt', 're', 'svn', 'subprocess']}
+{'python_version': '3.6', 'python_modules': ['svn']}
+['2.7']
+Reached Docker_Create
+{'svn': '<recent_version>'}
+{'svn': '<recent_version>'}
+ADDING "svn"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'svn']
+svn==<recent_version> install successful
+gists/238302/snippet.pyran unsuccesful, error reason: 
+
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","svn"]
+
+svn==<recent_version> uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/2913338/snippet.py at line 1:
+B: ['from', 'django.utils.decorators', 'import', 'method_decorator']
+Found "import" in gists/2913338/snippet.py at line 17:
+Found "import" in gists/2913338/snippet.py at line 18:
+{'python_version': '3.6+', 'python_modules': ['django.utils.decorators', 'django.views.decorators.cache', 'django.views.generic']}
+{'python_version': '3.6+', 'python_modules': ['django']}
+['2.7']
+Reached Docker_Create
+{'django': '4.2.1'}
+{'django': '4.2.1'}
+ADDING "django==4.2.1"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'django==4.2.1']
+django==4.2.1 install successful
+gists/2913338/snippet.py Code ran success!
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","django==4.2.1"]
+
+django==4.2.1 uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/730765/snippet.py at line 1:
+B: ['from', 'django.db.models.signals', 'import', 'post_init']
+{'python_version': '3.6+', 'python_modules': ['django']}
+{'python_version': '3.6+', 'python_modules': ['django']}
+['2.7']
+Reached Docker_Create
+{'django': '4.2.1'}
+{'django': '4.2.1'}
+ADDING "django==4.2.1"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'django==4.2.1']
+django==4.2.1 install successful
+gists/730765/snippet.py Code ran success!
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","django==4.2.1"]
+
+django==4.2.1 uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/1873692/snippet.py at line 24:
+Found "import" in gists/1873692/snippet.py at line 25:
+Found "import" in gists/1873692/snippet.py at line 26:
+B: ['from', 'bs3.BeautifulSoup', 'import', 'BeautifulSoup,', 'BeautifulStoneSoup']
+Found "import" in gists/1873692/snippet.py at line 27:
+{'python_version': '3.x', 'python_modules': ['requests', 'bs3']}
+{'python_version': '3.x', 'python_modules': ['codecs', 'requests', 'bs3']}
+['2.7']
+Process Process-14:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'codecs': '2.1.0', 'requests': '2.30.0', 'bs3': '4.7.0'}
+{'codecs': '2.1.0', 'requests': '2.30.0', 'bs3': '4.7.0'}
+{'bs3': '4.5.2'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "codecs==2.1.0"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/1042778/snippet.py at line 20:
+Found "import" in gists/1042778/snippet.py at line 22:
+Found "import" in gists/1042778/snippet.py at line 23:
+Found "import" in gists/1042778/snippet.py at line 24:
+Found "import" in gists/1042778/snippet.py at line 25:
+Found "import" in gists/1042778/snippet.py at line 26:
+{'properties': {'python_version': {'title': 'Python Version', 'description': 'Name of the Python version required for this file', 'type': 'string'}, 'python_modules': {'title': 'Python Modules', 'type': 'array', 'items': {'type': 'string'}}}, 'required': ['python_version', 'python_modules']}
+Failed to get Python modules from file: 'python_version'
+{'python_version': '3.x', 'python_modules': ['time', 'cPickle', 'simplejson', 'json', 'cjson', 'ujson']}
+{'python_version': '3.x', 'python_modules': ['cpickle', 'simplejson', 'ujson', 'python-cjson']}
+['2.7']
+Process Process-16:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'cpickle': '6.4.0', 'simplejson': '3.17.0', 'ujson': '2.1.0', 'python-cjson': '1.5'}
+{'cpickle': '6.4.0', 'simplejson': '3.17.0', 'ujson': '2.1.0', 'python-cjson': '1.5'}
+{'ujson': '3.1.5', 'python-cjson': '6.5.0'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "cpickle==6.4.0"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 4:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 5:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 6:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 7:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 8:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 9:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 10:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 11:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 12:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 13:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 14:
+B: ['from', 'theano', 'import', 'tensor', 'as', 'T']
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 15:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 16:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 17:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 18:
+Found "import" in gists/3e8b195ff63929db69ccc4e5287d8ae5/snippet.py at line 26:
+{'python_version': '3.7', 'python_modules': ['os', 'sys', 'time', 'glob', 'shutil', 'operator', 'theano', 'lasagne', 'numpy', 'scipy', 'pickle']}
+{'python_version': '3.7', 'python_modules': ['theano', 'lasagne', 'dataset', 'network', 'config', 'misc', 'numpy', 'scipy', 'train']}
+['2.7']
+[]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/6074452/snippet.py at line 3:
+Found "import" in gists/6074452/snippet.py at line 4:
+Found "import" in gists/6074452/snippet.py at line 5:
+B: ['from', 'Foundation', 'import', 'NSDate']
+Found "import" in gists/6074452/snippet.py at line 7:
+B: ['from', 'Foundation', 'import', 'NSPredicate']
+{'python_version': '3.x', 'python_modules': ['sys', 'os', 'Foundation']}
+{'python_version': '3.x', 'python_modules': ['foundation']}
+['2.7']
+Reached Docker_Create
+{'foundation': 'latest'}
+{'foundation': 'latest'}
+ADDING "foundation"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'foundation']
+foundation==latest install successful
+gists/6074452/snippet.pyran unsuccesful, error reason: 
+
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","foundation"]
+
+foundation==latest uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/7671688/snippet.py at line 8:
+Found "import" in gists/7671688/snippet.py at line 9:
+Found "import" in gists/7671688/snippet.py at line 10:
+Found "import" in gists/7671688/snippet.py at line 11:
+{'python_version': '3.x', 'python_modules': ['idaapi', 'idc', 'ctypes', 'reprint']}
+{'python_version': '3.x', 'python_modules': ['idaapi', 'idc', 'reprint']}
+['2.7']
+Process Process-22:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'idaapi': '7.8', 'idc': 'latest', 'reprint': 'latest'}
+{'idaapi': '7.8', 'idc': 'latest', 'reprint': 'latest'}
+{'reprint': ''}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "idaapi==7.8"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 1:
+B: ['from', 'picamera.array', 'import', 'PiRGBArray']
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 2:
+B: ['from', 'picamera', 'import', 'PiCamera']
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 3:
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 4:
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 5:
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 6:
+Found "import" in gists/5b581d774fc8500325f7/snippet.py at line 7:
+{'python_version': '3.x', 'python_modules': ['picamera.array', 'picamera', 'time', 'sys', 'cv2', 'zbar', 'Image']}
+{'python_version': '3.x', 'python_modules': ['picamera', 'opencv-python', 'zbar', 'image']}
+['2.7']
+Process Process-24:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'picamera': '1.20', 'opencv-python': '4.8.1.72', 'zbar': '0.4.12', 'image': 'latest'}
+{'picamera': '1.20', 'opencv-python': '4.8.1.72', 'zbar': '0.4.12', 'image': 'latest'}
+{'zbar': '0.4.1', 'image': 'latest'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "picamera==1.20"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/6118172/snippet.py at line 7:
+B: ['from', 'jnius', 'import', 'autoclass,', 'cast']
+Found "import" in gists/6118172/snippet.py at line 8:
+B: ['from', 'android.runnable', 'import', 'Runnable']
+{'python_version': '3.7', 'python_modules': ['jnius']}
+{'python_version': '3.7', 'python_modules': ['pyjnius', 'android']}
+['2.7']
+Process Process-26:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'pyjnius': '2.6.1', 'android': 'latest-available'}
+{'pyjnius': '2.6.1', 'android': 'latest-available'}
+{'android': 'latest_available'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "pyjnius==2.6.1"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/5796677/snippet.py at line 1:
+B: ['from', 'classytags.arguments', 'import', 'Argument,', 'MultiValueArgument']
+Found "import" in gists/5796677/snippet.py at line 2:
+B: ['from', 'classytags.values', 'import', 'StringValue']
+Found "import" in gists/5796677/snippet.py at line 4:
+B: ['from', 'cms.templatetags.cms_tags', 'import', 'Placeholder,', 'PlaceholderOptions']
+Found "import" in gists/5796677/snippet.py at line 5:
+B: ['from', 'cms.models.placeholdermodel', 'import', 'Placeholder', 'as', 'PlaceholderModel']
+Found "import" in gists/5796677/snippet.py at line 7:
+B: ['from', 'django', 'import', 'template']
+Found "import" in gists/5796677/snippet.py at line 8:
+B: ['from', 'django.utils.safestring', 'import', 'mark_safe']
+{'python_version': '3.6+', 'python_modules': ['django', 'classytags', 'cms']}
+{'python_version': '3.6+', 'python_modules': ['classytags', 'django-cms', 'django']}
+['2.7']
+Process Process-28:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'classytags': '0.1.0', 'django-cms': '3.4.0', 'django': '4.3.1'}
+{'classytags': '0.1.0', 'django-cms': '3.4.0', 'django': '4.3.1'}
+{'django': '4.2.1'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "classytags==0.1.0"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/3141128/snippet.py at line 3:
+Found "import" in gists/3141128/snippet.py at line 4:
+Found "import" in gists/3141128/snippet.py at line 5:
+Found "import" in gists/3141128/snippet.py at line 7:
+B: ['from', 'gi.repository', 'import', 'Gtk,Gdk']
+{'python_version': '3.x', 'python_modules': ['numpy', 'cairo', 'math', 'gi.repository']}
+{'python_version': '3.x', 'python_modules': ['numpy', 'cairo', 'pygobject']}
+['2.7']
+Process Process-30:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'numpy': '1.25.0', 'cairo': '1.16.0', 'pygobject': '4.6.0'}
+{'numpy': '1.25.0', 'cairo': '1.16.0', 'pygobject': '4.6.0'}
+{'pygobject': '4.72.0'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "numpy==1.25.0"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/7282822/snippet.py at line 1:
+B: ['from', 'kivy.app', 'import', 'App']
+Found "import" in gists/7282822/snippet.py at line 2:
+B: ['from', 'kivy.garden.magnet', 'import', 'Magnet']
+Found "import" in gists/7282822/snippet.py at line 3:
+B: ['from', 'kivy.uix.image', 'import', 'Image']
+Found "import" in gists/7282822/snippet.py at line 4:
+B: ['from', 'kivy.properties', 'import', 'ObjectProperty']
+Found "import" in gists/7282822/snippet.py at line 5:
+B: ['from', 'kivy.lang', 'import', 'Builder']
+Found "import" in gists/7282822/snippet.py at line 6:
+B: ['from', 'kivy.clock', 'import', 'Clock']
+Found "import" in gists/7282822/snippet.py at line 8:
+B: ['from', 'os', 'import', 'listdir']
+{'python_version': '3.7+', 'python_modules': ['kivy', 'kivy.garden.magnet', 'os']}
+{'python_version': '3.7+', 'python_modules': ['kivy']}
+['2.7']
+Reached Docker_Create
+{'kivy': '2.1.0'}
+{'kivy': '2.1.0'}
+ADDING "kivy==2.1.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'kivy==2.1.0']
+kivy==2.1.0 install error, error reason: 
+  error: subprocess-exited-with-error
+  
+  × Building wheel for kivy (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [104 lines of output]
+      [[1;32mINFO[0m   ] [Logger      ] Record log in /home/geng-04/.kivy/logs/kivy_26-04-19_2.txt
+      [[1;32mINFO[0m   ] [Kivy        ] v2.1.0
+      [[1;32mINFO[0m   ] [Kivy        ] Installed at "/tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970/kivy/__init__.py"
+      [[1;32mINFO[0m   ] [Python      ] v3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+      [[1;32mINFO[0m   ] [Python      ] Interpreter at "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/bin/python3"
+      [[1;32mINFO[0m   ] [Logger      ] Purge log fired. Processing...
+      [[1;32mINFO[0m   ] [Logger      ] Purge finished!
+       <string>:370: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:373: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:377: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       /tmp/pip-build-env-lah7tix0/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+       !!
+      
+               ********************************************************************************
+               Please consider removing the following classifiers in favor of a SPDX license expression:
+      
+               License :: OSI Approved :: MIT License
+      
+               See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+               ********************************************************************************
+      
+       !!
+         self._finalize_license_expression()
+       warning: kivy/graphics/common.pxi:9:4: 'const_char_ptr' redeclared
+       warning: kivy/graphics/common.pxi:23:4: 'size_t' redeclared
+      Current directory is: /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970
+      Source and initial build directory is: /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970
+      Python path is:
+      /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970
+      /tmp/pip-build-env-lah7tix0/site
+      /usr/lib/python312.zip
+      /usr/lib/python3.12
+      /usr/lib/python3.12/lib-dynload
+      /tmp/pip-build-env-lah7tix0/overlay/lib/python3.12/site-packages
+      /tmp/pip-build-env-lah7tix0/normal/lib/python3.12/site-packages
+      /tmp/pip-build-env-lah7tix0/overlay/lib/python3.12/site-packages/setuptools/_vendor
+      /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970/kivy/modules
+      /home/geng-04/.kivy/mods
+      
+      
+      Found Cython at /tmp/pip-build-env-lah7tix0/overlay/lib/python3.12/site-packages/Cython/__init__.py
+      Detected supported Cython version 0.29.28
+      Using this graphics system: OpenGL
+      WARNING: A problem occurred while running pkg-config --libs --cflags gstreamer-1.0 (code 1)
+      
+      b"Package gstreamer-1.0 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `gstreamer-1.0.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'gstreamer-1.0', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags sdl2 SDL2_ttf SDL2_image SDL2_mixer (code 1)
+      
+      b"Package sdl2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `sdl2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'sdl2', required by 'virtual:world', not found\nPackage 'SDL2_ttf', required by 'virtual:world', not found\nPackage 'SDL2_image', required by 'virtual:world', not found\nPackage 'SDL2_mixer', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags pangoft2 (code 1)
+      
+      b"Package pangoft2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `pangoft2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'pangoft2', required by 'virtual:world', not found\n"
+      
+      ERROR: Dependency for context.pyx not resolved: config.pxi
+      ERROR: Dependency for compiler.pyx not resolved: config.pxi
+      ERROR: Dependency for context_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for fbo.pyx not resolved: config.pxi
+      ERROR: Dependency for gl_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl_utils.pyx not resolved: config.pxi
+      ERROR: Dependency for shader.pyx not resolved: config.pxi
+      ERROR: Dependency for stencil_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for scissor_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for texture.pyx not resolved: config.pxi
+      ERROR: Dependency for vbo.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_mock.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_gl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_glew.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_sdl2.pyx not resolved: config.pxi
+      ERROR: Dependency for svg.pyx not resolved: config.pxi
+      Building extensions in parallel using 4 cores
+      Updated build directory to: build/lib.linux-x86_64-cpython-312
+      Build configuration is:
+       * use_rpi = 0
+       * use_egl = 0
+       * use_opengl_es2 = 0
+       * use_opengl_mock = 0
+       * use_sdl2 = 0
+       * use_pangoft2 = 0
+       * use_ios = 0
+       * use_android = 0
+       * use_mesagl = 0
+       * use_x11 = 0
+       * use_wayland = 0
+       * use_gstreamer = 0
+       * use_avfoundation = 0
+       * use_osx_frameworks = 0
+       * debug_gl = 0
+       * kivy_sdl_gl_alpha_size = 8
+       * debug = False
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.h
+      Updated /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970/kivy/include/config.h
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.pxi
+      Updated /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970/kivy/include/config.pxi
+      Updated build/lib.linux-x86_64-cpython-312/kivy/setupconfig.py
+      Updated /tmp/pip-install-0j7powfx/kivy_dcb54310727f4543ba864508e9801970/kivy/setupconfig.py
+      Detected compiler is unix
+       error: command 'x86_64-linux-gnu-gcc' failed: No such file or directory
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for kivy
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> kivy
+
+No error type found
+ADDING "kivy==2.1.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'kivy==2.1.0']
+kivy==2.1.0 install error, error reason: 
+  error: subprocess-exited-with-error
+  
+  × Building wheel for kivy (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [104 lines of output]
+      [[1;32mINFO[0m   ] [Logger      ] Record log in /home/geng-04/.kivy/logs/kivy_26-04-19_5.txt
+      [[1;32mINFO[0m   ] [Kivy        ] v2.1.0
+      [[1;32mINFO[0m   ] [Kivy        ] Installed at "/tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b/kivy/__init__.py"
+      [[1;32mINFO[0m   ] [Python      ] v3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+      [[1;32mINFO[0m   ] [Python      ] Interpreter at "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/bin/python3"
+      [[1;32mINFO[0m   ] [Logger      ] Purge log fired. Processing...
+      [[1;32mINFO[0m   ] [Logger      ] Purge finished!
+       <string>:370: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:373: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:377: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       /tmp/pip-build-env-9di1o5o_/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+       !!
+      
+               ********************************************************************************
+               Please consider removing the following classifiers in favor of a SPDX license expression:
+      
+               License :: OSI Approved :: MIT License
+      
+               See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+               ********************************************************************************
+      
+       !!
+         self._finalize_license_expression()
+       warning: kivy/graphics/common.pxi:9:4: 'const_char_ptr' redeclared
+       warning: kivy/graphics/common.pxi:23:4: 'size_t' redeclared
+      Current directory is: /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b
+      Source and initial build directory is: /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b
+      Python path is:
+      /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b
+      /tmp/pip-build-env-9di1o5o_/site
+      /usr/lib/python312.zip
+      /usr/lib/python3.12
+      /usr/lib/python3.12/lib-dynload
+      /tmp/pip-build-env-9di1o5o_/overlay/lib/python3.12/site-packages
+      /tmp/pip-build-env-9di1o5o_/normal/lib/python3.12/site-packages
+      /tmp/pip-build-env-9di1o5o_/overlay/lib/python3.12/site-packages/setuptools/_vendor
+      /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b/kivy/modules
+      /home/geng-04/.kivy/mods
+      
+      
+      Found Cython at /tmp/pip-build-env-9di1o5o_/overlay/lib/python3.12/site-packages/Cython/__init__.py
+      Detected supported Cython version 0.29.28
+      Using this graphics system: OpenGL
+      WARNING: A problem occurred while running pkg-config --libs --cflags gstreamer-1.0 (code 1)
+      
+      b"Package gstreamer-1.0 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `gstreamer-1.0.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'gstreamer-1.0', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags sdl2 SDL2_ttf SDL2_image SDL2_mixer (code 1)
+      
+      b"Package sdl2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `sdl2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'sdl2', required by 'virtual:world', not found\nPackage 'SDL2_ttf', required by 'virtual:world', not found\nPackage 'SDL2_image', required by 'virtual:world', not found\nPackage 'SDL2_mixer', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags pangoft2 (code 1)
+      
+      b"Package pangoft2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `pangoft2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'pangoft2', required by 'virtual:world', not found\n"
+      
+      ERROR: Dependency for context.pyx not resolved: config.pxi
+      ERROR: Dependency for compiler.pyx not resolved: config.pxi
+      ERROR: Dependency for context_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for fbo.pyx not resolved: config.pxi
+      ERROR: Dependency for gl_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl_utils.pyx not resolved: config.pxi
+      ERROR: Dependency for shader.pyx not resolved: config.pxi
+      ERROR: Dependency for stencil_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for scissor_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for texture.pyx not resolved: config.pxi
+      ERROR: Dependency for vbo.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_mock.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_gl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_glew.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_sdl2.pyx not resolved: config.pxi
+      ERROR: Dependency for svg.pyx not resolved: config.pxi
+      Building extensions in parallel using 4 cores
+      Updated build directory to: build/lib.linux-x86_64-cpython-312
+      Build configuration is:
+       * use_rpi = 0
+       * use_egl = 0
+       * use_opengl_es2 = 0
+       * use_opengl_mock = 0
+       * use_sdl2 = 0
+       * use_pangoft2 = 0
+       * use_ios = 0
+       * use_android = 0
+       * use_mesagl = 0
+       * use_x11 = 0
+       * use_wayland = 0
+       * use_gstreamer = 0
+       * use_avfoundation = 0
+       * use_osx_frameworks = 0
+       * debug_gl = 0
+       * kivy_sdl_gl_alpha_size = 8
+       * debug = False
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.h
+      Updated /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b/kivy/include/config.h
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.pxi
+      Updated /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b/kivy/include/config.pxi
+      Updated build/lib.linux-x86_64-cpython-312/kivy/setupconfig.py
+      Updated /tmp/pip-install-hvs7f9ae/kivy_664765f7c3bd4b1886f74314e092de1b/kivy/setupconfig.py
+      Detected compiler is unix
+       error: command 'x86_64-linux-gnu-gcc' failed: No such file or directory
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for kivy
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> kivy
+
+No error type found
+ADDING "kivy==2.1.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'kivy==2.1.0']
+kivy==2.1.0 install error, error reason: 
+  error: subprocess-exited-with-error
+  
+  × Building wheel for kivy (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [104 lines of output]
+      [[1;32mINFO[0m   ] [Logger      ] Record log in /home/geng-04/.kivy/logs/kivy_26-04-19_8.txt
+      [[1;32mINFO[0m   ] [Kivy        ] v2.1.0
+      [[1;32mINFO[0m   ] [Kivy        ] Installed at "/tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/__init__.py"
+      [[1;32mINFO[0m   ] [Python      ] v3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+      [[1;32mINFO[0m   ] [Python      ] Interpreter at "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/bin/python3"
+      [[1;32mINFO[0m   ] [Logger      ] Purge log fired. Processing...
+      [[1;32mINFO[0m   ] [Logger      ] Purge finished!
+       <string>:370: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:373: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:377: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+       !!
+      
+               ********************************************************************************
+               Please consider removing the following classifiers in favor of a SPDX license expression:
+      
+               License :: OSI Approved :: MIT License
+      
+               See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+               ********************************************************************************
+      
+       !!
+         self._finalize_license_expression()
+       warning: kivy/graphics/common.pxi:9:4: 'const_char_ptr' redeclared
+       warning: kivy/graphics/common.pxi:23:4: 'size_t' redeclared
+      Current directory is: /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459
+      Source and initial build directory is: /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459
+      Python path is:
+      /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459
+      /tmp/pip-build-env-6ir09ok8/site
+      /usr/lib/python312.zip
+      /usr/lib/python3.12
+      /usr/lib/python3.12/lib-dynload
+      /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages
+      /tmp/pip-build-env-6ir09ok8/normal/lib/python3.12/site-packages
+      /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages/setuptools/_vendor
+      /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/modules
+      /home/geng-04/.kivy/mods
+      
+      
+      Found Cython at /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages/Cython/__init__.py
+      Detected supported Cython version 0.29.28
+      Using this graphics system: OpenGL
+      WARNING: A problem occurred while running pkg-config --libs --cflags gstreamer-1.0 (code 1)
+      
+      b"Package gstreamer-1.0 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `gstreamer-1.0.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'gstreamer-1.0', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags sdl2 SDL2_ttf SDL2_image SDL2_mixer (code 1)
+      
+      b"Package sdl2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `sdl2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'sdl2', required by 'virtual:world', not found\nPackage 'SDL2_ttf', required by 'virtual:world', not found\nPackage 'SDL2_image', required by 'virtual:world', not found\nPackage 'SDL2_mixer', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags pangoft2 (code 1)
+      
+      b"Package pangoft2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `pangoft2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'pangoft2', required by 'virtual:world', not found\n"
+      
+      ERROR: Dependency for context.pyx not resolved: config.pxi
+      ERROR: Dependency for compiler.pyx not resolved: config.pxi
+      ERROR: Dependency for context_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for fbo.pyx not resolved: config.pxi
+      ERROR: Dependency for gl_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl_utils.pyx not resolved: config.pxi
+      ERROR: Dependency for shader.pyx not resolved: config.pxi
+      ERROR: Dependency for stencil_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for scissor_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for texture.pyx not resolved: config.pxi
+      ERROR: Dependency for vbo.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_mock.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_gl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_glew.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_sdl2.pyx not resolved: config.pxi
+      ERROR: Dependency for svg.pyx not resolved: config.pxi
+      Building extensions in parallel using 4 cores
+      Updated build directory to: build/lib.linux-x86_64-cpython-312
+      Build configuration is:
+       * use_rpi = 0
+       * use_egl = 0
+       * use_opengl_es2 = 0
+       * use_opengl_mock = 0
+       * use_sdl2 = 0
+       * use_pangoft2 = 0
+       * use_ios = 0
+       * use_android = 0
+       * use_mesagl = 0
+       * use_x11 = 0
+       * use_wayland = 0
+       * use_gstreamer = 0
+       * use_avfoundation = 0
+       * use_osx_frameworks = 0
+       * debug_gl = 0
+       * kivy_sdl_gl_alpha_size = 8
+       * debug = False
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.h
+      Updated /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/include/config.h
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.pxi
+      Updated /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/include/config.pxi
+      Updated build/lib.linux-x86_64-cpython-312/kivy/setupconfig.py
+      Updated /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/setupconfig.py
+      Detected compiler is unix
+       error: command 'x86_64-linux-gnu-gcc' failed: No such file or directory
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for kivy
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> kivy
+
+No error type found
+kivy==2.1.0 install error, error reason: 
+  error: subprocess-exited-with-error
+  
+  × Building wheel for kivy (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [104 lines of output]
+      [[1;32mINFO[0m   ] [Logger      ] Record log in /home/geng-04/.kivy/logs/kivy_26-04-19_8.txt
+      [[1;32mINFO[0m   ] [Kivy        ] v2.1.0
+      [[1;32mINFO[0m   ] [Kivy        ] Installed at "/tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/__init__.py"
+      [[1;32mINFO[0m   ] [Python      ] v3.12.3 (main, Mar  3 2026, 12:15:18) [GCC 13.3.0]
+      [[1;32mINFO[0m   ] [Python      ] Interpreter at "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/bin/python3"
+      [[1;32mINFO[0m   ] [Logger      ] Purge log fired. Processing...
+      [[1;32mINFO[0m   ] [Logger      ] Purge finished!
+       <string>:370: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:373: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       <string>:377: DeprecationWarning: distutils Version classes are deprecated. Use packaging.version instead.
+       /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages/setuptools/dist.py:765: SetuptoolsDeprecationWarning: License classifiers are deprecated.
+       !!
+      
+               ********************************************************************************
+               Please consider removing the following classifiers in favor of a SPDX license expression:
+      
+               License :: OSI Approved :: MIT License
+      
+               See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+               ********************************************************************************
+      
+       !!
+         self._finalize_license_expression()
+       warning: kivy/graphics/common.pxi:9:4: 'const_char_ptr' redeclared
+       warning: kivy/graphics/common.pxi:23:4: 'size_t' redeclared
+      Current directory is: /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459
+      Source and initial build directory is: /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459
+      Python path is:
+      /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459
+      /tmp/pip-build-env-6ir09ok8/site
+      /usr/lib/python312.zip
+      /usr/lib/python3.12
+      /usr/lib/python3.12/lib-dynload
+      /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages
+      /tmp/pip-build-env-6ir09ok8/normal/lib/python3.12/site-packages
+      /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages/setuptools/_vendor
+      /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/modules
+      /home/geng-04/.kivy/mods
+      
+      
+      Found Cython at /tmp/pip-build-env-6ir09ok8/overlay/lib/python3.12/site-packages/Cython/__init__.py
+      Detected supported Cython version 0.29.28
+      Using this graphics system: OpenGL
+      WARNING: A problem occurred while running pkg-config --libs --cflags gstreamer-1.0 (code 1)
+      
+      b"Package gstreamer-1.0 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `gstreamer-1.0.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'gstreamer-1.0', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags sdl2 SDL2_ttf SDL2_image SDL2_mixer (code 1)
+      
+      b"Package sdl2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `sdl2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'sdl2', required by 'virtual:world', not found\nPackage 'SDL2_ttf', required by 'virtual:world', not found\nPackage 'SDL2_image', required by 'virtual:world', not found\nPackage 'SDL2_mixer', required by 'virtual:world', not found\n"
+      
+      WARNING: A problem occurred while running pkg-config --libs --cflags pangoft2 (code 1)
+      
+      b"Package pangoft2 was not found in the pkg-config search path.\nPerhaps you should add the directory containing `pangoft2.pc'\nto the PKG_CONFIG_PATH environment variable\nPackage 'pangoft2', required by 'virtual:world', not found\n"
+      
+      ERROR: Dependency for context.pyx not resolved: config.pxi
+      ERROR: Dependency for compiler.pyx not resolved: config.pxi
+      ERROR: Dependency for context_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for fbo.pyx not resolved: config.pxi
+      ERROR: Dependency for gl_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl.pyx not resolved: config.pxi
+      ERROR: Dependency for opengl_utils.pyx not resolved: config.pxi
+      ERROR: Dependency for shader.pyx not resolved: config.pxi
+      ERROR: Dependency for stencil_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for scissor_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for texture.pyx not resolved: config.pxi
+      ERROR: Dependency for vbo.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex.pyx not resolved: config.pxi
+      ERROR: Dependency for vertex_instructions.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_mock.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_gl.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_glew.pyx not resolved: config.pxi
+      ERROR: Dependency for cgl_sdl2.pyx not resolved: config.pxi
+      ERROR: Dependency for svg.pyx not resolved: config.pxi
+      Building extensions in parallel using 4 cores
+      Updated build directory to: build/lib.linux-x86_64-cpython-312
+      Build configuration is:
+       * use_rpi = 0
+       * use_egl = 0
+       * use_opengl_es2 = 0
+       * use_opengl_mock = 0
+       * use_sdl2 = 0
+       * use_pangoft2 = 0
+       * use_ios = 0
+       * use_android = 0
+       * use_mesagl = 0
+       * use_x11 = 0
+       * use_wayland = 0
+       * use_gstreamer = 0
+       * use_avfoundation = 0
+       * use_osx_frameworks = 0
+       * debug_gl = 0
+       * kivy_sdl_gl_alpha_size = 8
+       * debug = False
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.h
+      Updated /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/include/config.h
+      Updated build/lib.linux-x86_64-cpython-312/kivy/include/config.pxi
+      Updated /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/include/config.pxi
+      Updated build/lib.linux-x86_64-cpython-312/kivy/setupconfig.py
+      Updated /tmp/pip-install-0q3a68kw/kivy_f28ccb2170bc4be59339f7400794a459/kivy/setupconfig.py
+      Detected compiler is unix
+       error: command 'x86_64-linux-gnu-gcc' failed: No such file or directory
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for kivy
+error: failed-wheel-build-for-install
+
+× Failed to build installable wheels for some pyproject.toml based projects
+╰─> kivy
+
+Processing completed without the timeout
+[1]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/6426282/snippet.py at line 16:
+B: ['from', '__future__', 'import', 'division']
+Found "import" in gists/6426282/snippet.py at line 17:
+Found "import" in gists/6426282/snippet.py at line 18:
+Found "import" in gists/6426282/snippet.py at line 19:
+B: ['from', 'statsmodels.regression.linear_model', 'import', 'OLS,', 'OLSResults']
+Found "import" in gists/6426282/snippet.py at line 367:
+B: ['from', 'numpy.testing', 'import', 'assert_equal,', 'assert_almost_equal']
+{'python_version': '3.7', 'python_modules': ['numpy', 'pandas']}
+{'python_version': '3.7', 'python_modules': ['numpy', 'pandas', 'statsmodels']}
+['2.7']
+[]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/70ed63ee8992c401a9dd/snippet.py at line 6:
+Found "import" in gists/70ed63ee8992c401a9dd/snippet.py at line 7:
+{'python_version': '3.7', 'python_modules': ['os', 'ycm_core']}
+{'python_version': '3.7', 'python_modules': ['ycm_core']}
+['2.7']
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 3:
+B: ['from', '__future__', 'import', 'unicode_literals']
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 5:
+B: ['from', 'datetime', 'import', 'datetime']
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 6:
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 7:
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 8:
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 10:
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 12:
+B: ['from', 'sopel.module', 'import', 'commands,', 'interval']
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 13:
+B: ['from', 'sopel.config', 'import', 'ConfigurationError']
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 14:
+B: ['from', 'sopel.logger', 'import', 'get_logger']
+Found "import" in gists/b02bac4b48f780bee77b/snippet.py at line 29:
+{'python_version': '3.6+', 'python_modules': ['feedparser', 'datetime', 're', 'socket']}
+{'python_version': '3.6+', 'python_modules': ['feedparser', 'sopel']}
+['2.7']
+[]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 4:
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 7:
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 8:
+B: ['from', 'PyQt4.QtGui', 'import', '(QMainWindow,', 'QApplication,', 'QDockWidget,', 'QWidget,']
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 10:
+B: ['from', 'PyQt4.QtCore', 'import', 'Qt']
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 12:
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 13:
+Found "import" in gists/7f4e44a42b8e1f457f77/snippet.py at line 14:
+{'python_version': '3.6', 'python_modules': ['sys', 'PyQt4.QtGui', 'PyQt4.QtCore', 'numpy', 'matplotlib.pyplot', 'matplotlib.backends.backend_qt4agg']}
+{'python_version': '3.6', 'python_modules': ['pyqt4', 'numpy', 'matplotlib']}
+['2.7']
+Process Process-40:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'pyqt4': '4.11.4', 'numpy': '1.24.3', 'matplotlib': '3.7.0'}
+{'pyqt4': '4.11.4', 'numpy': '1.24.3', 'matplotlib': '3.7.0'}
+{'matplotlib': '3.7.1'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "pyqt4==4.11.4"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/9089444/snippet.py at line 1:
+B: ['from', 'rest_framework', 'import', 'serializers']
+{'python_version': '3.6+', 'python_modules': ['rest_framework']}
+{'python_version': '3.6+', 'python_modules': ['djangorestframework']}
+['2.7']
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/6027504/snippet.py at line 1:
+Found "import" in gists/6027504/snippet.py at line 2:
+Found "import" in gists/6027504/snippet.py at line 3:
+Found "import" in gists/6027504/snippet.py at line 4:
+Found "import" in gists/6027504/snippet.py at line 5:
+B: ['from', 'struct', 'import', '*']
+Found "import" in gists/6027504/snippet.py at line 6:
+B: ['from', 'twisted.web', 'import', 'server,', 'resource']
+Found "import" in gists/6027504/snippet.py at line 7:
+B: ['from', 'twisted.internet.protocol', 'import', 'DatagramProtocol']
+Found "import" in gists/6027504/snippet.py at line 8:
+B: ['from', 'twisted.internet', 'import', 'reactor']
+Found "import" in gists/6027504/snippet.py at line 9:
+B: ['from', 'twisted.application.internet', 'import', 'MulticastServer']
+{'python_version': '3.x', 'python_modules': ['struct', 'sys', 'time', 'json', 'twisted.web.server', 'twisted.web.resource', 'twisted.internet.protocol', 'twisted.internet', 'twisted.application.internet']}
+{'python_version': '3.x', 'python_modules': ['twisted']}
+['2.7']
+Reached Docker_Create
+{'twisted': '22.10.0'}
+{'twisted': '22.10.0'}
+ADDING "twisted==22.10.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'twisted==22.10.0']
+twisted==22.10.0 install successful
+gists/6027504/snippet.pyran unsuccesful, error reason: 
+
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","twisted==22.10.0"]
+
+twisted==22.10.0 uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/10955449/snippet.py at line 3:
+Found "import" in gists/10955449/snippet.py at line 4:
+Found "import" in gists/10955449/snippet.py at line 5:
+{'python_version': '3.x', 'python_modules': ['urllib.request', 'json']}
+{'python_version': '3.x', 'python_modules': []}
+['2.7']
+Reached Docker_Create
+{}
+No Modules to install!
+Processing completed without the timeout
+[4]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/11280233/snippet.py at line 2:
+Found "import" in gists/11280233/snippet.py at line 3:
+B: ['from', 'mininet.net', 'import', 'Mininet']
+Found "import" in gists/11280233/snippet.py at line 4:
+B: ['from', 'mininet.node', 'import', 'Controller,', 'RemoteController']
+Found "import" in gists/11280233/snippet.py at line 5:
+B: ['from', 'mininet.cli', 'import', 'CLI']
+Found "import" in gists/11280233/snippet.py at line 6:
+B: ['from', 'mininet.link', 'import', 'Intf']
+Found "import" in gists/11280233/snippet.py at line 7:
+B: ['from', 'mininet.log', 'import', 'setLogLevel,', 'info']
+{'python_version': '3.x', 'python_modules': ['os', 'mininet']}
+{'python_version': '3.x', 'python_modules': ['mininet']}
+['2.7']
+Reached Docker_Create
+{'mininet': '3.2.0'}
+{'mininet': '3.2.0'}
+ADDING "mininet==3.2.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'mininet==3.2.0']
+mininet==3.2.0 install error, error reason: 
+ERROR: Could not find a version that satisfies the requirement mininet==3.2.0 (from versions: 2.3.0.dev6)
+ERROR: No matching distribution found for mininet==3.2.0
+
+Could not find a version
+{'module': 'mininet', 'version': '2.3.0.dev6'}
+{'module': 'mininet', 'version': '2.3.0.dev6'}
+{'module': 'mininet', 'version': '2.3.0.dev6'}
+{'module': 'mininet', 'version': '2.3.0.dev6'}
+{'module': 'mininet', 'version': '2.3.0.dev6'}
+ADDING "mininet"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'mininet']
+mininet==2.3.0.dev6 install successful
+gists/11280233/snippet.pyran unsuccesful, error reason: 
+
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","mininet"]
+
+mininet==2.3.0.dev6 uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/a0a5dd7bfcaac3d3e9c18e5ea1080b95/snippet.py at line 7:
+Found "import" in gists/a0a5dd7bfcaac3d3e9c18e5ea1080b95/snippet.py at line 8:
+Found "import" in gists/a0a5dd7bfcaac3d3e9c18e5ea1080b95/snippet.py at line 9:
+B: ['from', 'pandas_datareader', 'import', 'data', 'as', 'web']
+Found "import" in gists/a0a5dd7bfcaac3d3e9c18e5ea1080b95/snippet.py at line 10:
+{'python_version': '3.7', 'python_modules': ['numpy', 'pandas', 'pandas_datareader', 'seaborn']}
+{'python_version': '3.7', 'python_modules': ['numpy', 'pandas', 'pandas_datareader', 'seaborn']}
+['2.7']
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 1:
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 2:
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 3:
+B: ['from', 'collections', 'import', 'namedtuple']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 4:
+B: ['from', 'datetime', 'import', 'timedelta']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 5:
+B: ['from', 'math', 'import', 'sqrt']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 6:
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 7:
+B: ['from', 'os.path', 'import', 'join,', 'exists']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 8:
+B: ['from', 'os', 'import', 'getcwd,', 'mkdir']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 9:
+B: ['from', 'ffprobe', 'import', 'FFProbe']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 10:
+B: ['from', 'pytube', 'import', 'YouTube']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 11:
+B: ['from', 'PIL', 'import', 'Image,', 'ImageDraw']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 12:
+B: ['from', 'glob', 'import', 'glob']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 13:
+B: ['from', 'os', 'import', 'unlink']
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 16:
+Found "import" in gists/4cd70e9515ab722b2bce/snippet.py at line 18:
+B: ['from', 'PIL', 'import', 'Image']
+{'python_version': '3.x', 'python_modules': ['random', 'subprocess', 'collections', 'datetime', 'math', 'argparse', 'os', 'glob', 'Image', 'ImageDraw', 'PIL', 'ffprobe', 'pytube']}
+{'python_version': '3.x', 'python_modules': ['ffprobe', 'pytube', 'pillow', 'image', 'imagedraw']}
+['2.7']
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+{'python_version': '3.6.0', 'python_modules': ['numpy', 'gensim', 'sklearn.linear_model', 'sklearn.datasets', 'sklearn.feature_extraction.text']}
+{'python_version': '3.6.0', 'python_modules': ['numpy', 'gensim', 'scikit-learn']}
+['2.7']
+Process Process-54:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'numpy': '1.24.5', 'gensim': '4.0.1', 'scikit-learn': '1.0.2'}
+{'numpy': '1.24.5', 'gensim': '4.0.1', 'scikit-learn': '1.0.2'}
+{'scikit-learn': '1.0.2'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "numpy==1.24.5"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/9f782f83e25d3c9eb202/snippet.py at line 1:
+Found "import" in gists/9f782f83e25d3c9eb202/snippet.py at line 2:
+B: ['from', 'c4d', 'import', 'gui']
+{'python_version': '3.x', 'python_modules': ['c4d']}
+{'python_version': '3.x', 'python_modules': ['c4ddev']}
+['2.7']
+Reached Docker_Create
+{'c4ddev': '1.0.8'}
+{'c4ddev': '1.0.8'}
+ADDING "c4ddev==1.0.8"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'c4ddev==1.0.8']
+c4ddev==1.0.8 install error, error reason: 
+ERROR: Could not find a version that satisfies the requirement c4ddev==1.0.8 (from versions: 1.7.1, 1.7.2)
+ERROR: No matching distribution found for c4ddev==1.0.8
+
+Could not find a version
+{'module': 'c4ddev', 'version': '1.7.1'}
+ADDING "c4ddev==1.7.1"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'c4ddev==1.7.1']
+c4ddev==1.7.1 install successful
+gists/9f782f83e25d3c9eb202/snippet.pyran unsuccesful, error reason: 
+
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","c4ddev==1.7.1"]
+
+c4ddev==1.7.1 uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/c0fdb29ddf0d338bcbd021b68f5bea51/snippet.py at line 1:
+{'properties': {'python_version': {'title': 'Python Version', 'description': 'Name of the Python version required for this file', 'type': 'string'}, 'python_modules': {'title': 'Python Modules', 'type': 'array', 'items': {'type': 'string'}}}, 'required': ['python_version', 'python_modules']}
+Failed to get Python modules from file: 'python_version'
+{'properties': {'python_version': {'title': 'Python Version', 'description': 'Name of the Python version required for this file', 'type': 'string'}, 'python_modules': {'title': 'Python Modules', 'type': 'array', 'items': {'type': 'string'}}}, 'required': ['python_version', 'python_modules']}
+Failed to get Python modules from file: 'python_version'
+{'properties': {'python_version': {'title': 'Python Version', 'description': 'Name of the Python version required for this file', 'type': 'string'}, 'python_modules': {'title': 'Python Modules', 'type': 'array', 'items': {'type': 'string'}}}, 'required': ['python_version', 'python_modules']}
+Failed to get Python modules from file: 'python_version'
+{'properties': {'python_version': {'title': 'Python Version', 'description': 'Name of the Python version required for this file', 'type': 'string'}, 'python_modules': {'title': 'Python Modules', 'type': 'array', 'items': {'type': 'string'}}}, 'required': ['python_version', 'python_modules']}
+Failed to get Python modules from file: 'python_version'
+{'properties': {'python_version': {'title': 'Python Version', 'description': 'Name of the Python version required for this file', 'type': 'string'}, 'python_modules': {'title': 'Python Modules', 'type': 'array', 'items': {'type': 'string'}}}, 'required': ['python_version', 'python_modules']}
+Failed to get Python modules from file: 'python_version'
+['2.7']
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/2604241/snippet.py at line 1:
+Found "import" in gists/2604241/snippet.py at line 2:
+Found "import" in gists/2604241/snippet.py at line 3:
+Found "import" in gists/2604241/snippet.py at line 5:
+B: ['from', 'django.utils', 'import', 'simplejson']
+{'python_version': '3.x', 'python_modules': ['base64', 'time', 'OpenSSL', 'django.utils.simplejson']}
+{'python_version': '3.x', 'python_modules': ['pyopenssl', 'django']}
+['2.7']
+Process Process-60:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'pyopenssl': '23.0.1', 'django': '4.2.1'}
+{'pyopenssl': '23.0.1', 'django': '4.2.1'}
+{'django': '4.2.1'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "pyopenssl==23.0.1"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/a027a9fc5aac66e6a382/snippet.py at line 7:
+Found "import" in gists/a027a9fc5aac66e6a382/snippet.py at line 8:
+{'python_version': '3.x', 'python_modules': ['wx', 'serial']}
+{'python_version': '3.x', 'python_modules': ['wx', 'pyserial']}
+['2.7']
+Process Process-62:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'wx': '4.1.0', 'pyserial': '3.5'}
+{'wx': '4.1.0', 'pyserial': '3.5'}
+{'pyserial': '3.5'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "wx==4.1.0"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 3:
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 4:
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 5:
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 6:
+B: ['from', 'random', 'import', 'shuffle']
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 7:
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 8:
+B: ['from', 'PIL', 'import', 'Image']
+Found "import" in gists/aa46105d34349543582b177ae79f32f0/snippet.py at line 26:
+B: ['from', 'skimage.viewer', 'import', 'ImageViewer']
+{'python_version': '3.7', 'python_modules': ['h5py', 'os', 'numpy', 'random', 'shutil', 'PIL']}
+{'python_version': '3.7', 'python_modules': ['h5py', 'numpy', 'pillow', 'scikit-image']}
+['2.7']
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/3494203/snippet.py at line 1:
+B: ['from', 'glfwpy.glfw', 'import', '(AUTO_POLL_EVENTS,', 'OPENED,', 'OPENGL_CORE_PROFILE,']
+Found "import" in gists/3494203/snippet.py at line 6:
+Found "import" in gists/3494203/snippet.py at line 7:
+B: ['from', 'OpenGL.arrays', 'import', 'ArrayDatatype']
+Found "import" in gists/3494203/snippet.py at line 8:
+B: ['from', 'OpenGL.GL', 'import', '(GL_ARRAY_BUFFER,', 'GL_COLOR_BUFFER_BIT,']
+Found "import" in gists/3494203/snippet.py at line 20:
+{'python_version': '3.x', 'python_modules': ['numpy', 'OpenGL.arrays', 'OpenGL.GL', 'glfwpy']}
+{'python_version': '3.x', 'python_modules': ['glfwpy', 'numpy', 'opengl']}
+['2.7']
+Process Process-66:
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+    self.run()
+  File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/./Moduled_PLLM.py", line 245, in docker_create_process
+    line.append(f"{key}=={item}")
+                   ^^^
+NameError: name 'key' is not defined
+Reached Docker_Create
+{'glfwpy': '0.2.0', 'numpy': '1.24.3', 'opengl': '4.6.2'}
+{'glfwpy': '0.2.0', 'numpy': '1.24.3', 'opengl': '4.6.2'}
+{'opengl': '4.6.0'}
+Post-update
+{'python_version': '2.7', 'python_modules': {...}}
+ADDING "glfwpy==0.2.0"
+
+Processing completed without the timeout
+[5]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/6099960/snippet.py at line 7:
+B: ['from', 'libmproxy', 'import', 'controller,', 'proxy']
+Found "import" in gists/6099960/snippet.py at line 8:
+Found "import" in gists/6099960/snippet.py at line 9:
+{'python_version': '3.x', 'python_modules': ['libmproxy', 'os', 'sys']}
+{'python_version': '3.x', 'python_modules': ['libmproxy']}
+['2.7']
+Reached Docker_Create
+{'libmproxy': '3.1.0'}
+{'libmproxy': '3.1.0'}
+ADDING "libmproxy==3.1.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'libmproxy==3.1.0']
+libmproxy==3.1.0 install error, error reason: 
+ERROR: Could not find a version that satisfies the requirement libmproxy==3.1.0 (from versions: none)
+ERROR: No matching distribution found for libmproxy==3.1.0
+
+Could not find a version
+{'module': 'libmproxy', 'version': 'None'}
+{'module': 'libmproxy', 'version': 'None'}
+{'module': 'libmproxy', 'version': 'None'}
+{'module': 'libmproxy', 'version': 'None'}
+{'module': 'libmproxy', 'version': 'None'}
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100']
+libmproxy==3.1.0 install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+No error type found
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100']
+libmproxy==3.1.0 install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+No error type found
+libmproxy==3.1.0 install error, error reason: 
+ERROR: You must give at least one requirement to install (see "pip help install")
+
+Processing completed without the timeout
+[1]
+Running model- gemma2 with temp 0.7. Looping 2 times with a search range of 0
+Found "import" in gists/5099161/snippet.py at line 3:
+B: ['from', 'Crypto.Cipher', 'import', 'AES']
+Found "import" in gists/5099161/snippet.py at line 4:
+Found "import" in gists/5099161/snippet.py at line 5:
+Found "import" in gists/5099161/snippet.py at line 6:
+Found "import" in gists/5099161/snippet.py at line 7:
+Found "import" in gists/5099161/snippet.py at line 125:
+{'python_version': '3.x', 'python_modules': ['Crypto.Cipher', 'base64', 'hashlib', 'os', 'random']}
+{'python_version': '3.x', 'python_modules': ['pycryptodome']}
+['2.7']
+Reached Docker_Create
+{'pycryptodome': '3.12.0'}
+{'pycryptodome': '3.12.0'}
+ADDING "pycryptodome==3.12.0"
+
+Final Line for Running
+['pip', 'install', '--trusted-host', 'pypi.python.org', '--default-timeout=100', 'pycryptodome==3.12.0']
+pycryptodome==3.12.0 install successful
+gists/5099161/snippet.py Code ran success!
+RUN ["pip","uninstall","--trusted-host","pypi.python.org","--default-timeout=100","pycryptodome==3.12.0"]
+
+pycryptodome==3.12.0 uninstall error, error reason: 
+ERROR: Exception:
+Traceback (most recent call last):
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 107, in _run_wrapper
+    status = _inner_run()
+             ^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/cli/base_command.py", line 98, in _inner_run
+    return self.run(options, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/commands/uninstall.py", line 105, in run
+    uninstall_pathset = req.uninstall(
+                        ^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py", line 675, in uninstall
+    uninstalled_pathset.remove(auto_confirm, verbose)
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 367, in remove
+    if auto_confirm or self._allowed_to_proceed(verbose):
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/req/req_uninstall.py", line 407, in _allowed_to_proceed
+    return ask("Proceed (Y/n)? ", ("y", "n", "")) != "n"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/geng-04/CP8202-python-dependencies/tools/pllm/.venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py", line 223, in ask
+    response = input(message)
+               ^^^^^^^^^^^^^^
+OSError: [Errno 9] Bad file descriptor
+
+Processing completed without the timeout
+[3]
+Out of 35 gists, 0 successfully passed
+Done
